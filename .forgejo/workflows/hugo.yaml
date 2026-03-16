@@ -1,0 +1,61 @@
+name: Deploy Hugo site to Codeberg Pages
+
+on:
+  # Runs on pushes targeting the main branch
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    # Use lazy Codeberg runner for lightweight tasks
+    runs-on: codeberg-tiny-lazy
+    container:
+      # Pin version of Hugo used for building
+      image: ghcr.io/gohugoio/hugo:v0.158.0
+    steps:
+      - name: Clone the repository
+        uses: https://code.forgejo.org/actions/checkout@v6
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      - name: Generate static files with Hugo
+        env:
+          # For maximum backward compatibility with Hugo modules
+          HUGO_ENVIRONMENT: production
+          HUGO_ENV: production
+        run: |
+          hugo \
+            --gc \
+            --minify
+      - name: Upload generated files
+        uses: https://code.forgejo.org/actions/upload-artifact@v3
+        with:
+          name: Generated files
+          path: public/
+  deploy:
+    needs:
+      - build
+    # Use lazy Codeberg runner for lightweight tasks
+    runs-on: codeberg-tiny-lazy
+    steps:
+      - name: Clone the repository
+        uses: https://code.forgejo.org/actions/checkout@v6
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - name: Checkout the target branch and clean it up
+        run: |
+          git checkout pages || git switch --orphan pages && \
+          rm -Rfv $(ls -A | egrep -v '^(\.git|.domains|_redirects|LICENSE)$')
+      - name: Download generated files
+        uses: https://code.forgejo.org/actions/download-artifact@v3
+        with:
+          name: Generated files
+      - name: Publish the website
+        run: |
+          git config user.email codeberg-ci && \
+          git config user.name "Codeberg CI" && \
+          git add . && \
+          git commit --allow-empty --message "Codeberg build for ${GITHUB_SHA}" && \
+          git push origin pages

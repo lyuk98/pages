@@ -1,0 +1,115 @@
+baseURL: https://lyuk98.com/
+title: 이영욱
+theme: PaperMod
+
+copyright: >-
+  This work is marked [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/)
+
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: true
+languages:
+  en:
+    locale: en
+    direction: ltr
+    label: English
+
+    contentDir: content/en
+    permalinks:
+      page:
+        blog: /blog/:year/:month/:slug/
+      section:
+        blog: /blog/
+
+    menus:
+      main:
+        - name: About me
+          pageRef: /about-me/
+          weight: 20
+        - name: Search
+          pageRef: /search/
+          weight: 10
+
+privacy:
+  disqus:
+    disable: true
+  googleAnalytics:
+    disable: true
+  instagram:
+    disable: true
+  vimeo:
+    disable: false
+    enableDNT: true
+  x:
+    disable: true
+  youTube:
+    disable: false
+    privacyEnhanced: true
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+outputs:
+  home:
+    - html
+    - rss
+    - json
+
+params:
+  env: development
+  title: 이영욱
+  author: 이영욱
+
+  images:
+    - https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif
+  keywords:
+    - blog
+
+  assets:
+    favicon: https://images.lyuk98.com/313a1eef-52de-4ad3-8f51-bf7f0f17f757.ico
+    favicon16x16: https://images.lyuk98.com/e697b861-1499-4040-b7a4-f25b4ecea28a.png
+    favicon32x32: https://images.lyuk98.com/9c8c6d90-d044-418c-8d45-cc6298d8d484.png
+    apple_touch_icon: https://images.lyuk98.com/00216b7f-de82-4f30-aa8a-aea379918177.png
+
+  DateFormat: 2 January 2006
+
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowCodeCopyButtons: false
+  ShowFullTextinRSS: true
+  defaultTheme: auto
+  disableThemeToggle: false
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  disableAnchoredHeadings: false
+  hideMeta: false
+  hideSummary: false
+  showtoc: true
+  tocopen: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShareButtons: []
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: false
+  UseHugoToc: false
+  comments: true
+  hideFooter: false
+  displayFullLangName: true
+
+  homeInfoParams:
+    Title: 이영욱
+
+  socialIcons:
+    - name: other
+      url: https://keyoxide.org/wkd/pr@lyuk98.com
+    - name: github
+      url: https://github.com/lyuk98
+    - name: gitlab
+      url: https://github.com/lyuk98
+    - name: gitea
+      url: https://codeberg.org/lyuk98
+    - name: mastodon
+      url: https://mastodon.social/@lyuk98
+    - name: linkedin
+      url: https://www.linkedin.com/in/lyuk98/
