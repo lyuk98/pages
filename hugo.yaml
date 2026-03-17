@@ -29,6 +29,8 @@ languages:
           pageRef: /search/
           weight: 10
 
+enableGitInfo: true
+
 privacy:
   disqus:
     disable: true
