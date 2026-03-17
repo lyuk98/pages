@@ -1,5 +1,4 @@
 ---
-date: '2026-03-13'
 title: About me
 ---
 
@@ -131,7 +130,7 @@ There are some personal values I would like to adhere to while working on person
 
 Arguments (that I could see) in favour of open-source software typically revolve around improved security. While public scrutiny may help, what I can really benefit from one is the ability to read its code when the documentation is not clear enough.
 
-I have two examples where it actually helped me. First, while [packaging programmes with Nix](https://lyuk98.com/66674/building-obscure-packages-with-nix), I had to read the code to confirm what I could not find from anywhere else.
+I have two examples where it actually helped me. First, while [packaging programmes with Nix](/en/blog/2025/10/building-obscure-packages-with-nix/), I had to read the code to confirm what I could not find from anywhere else.
 
 > The solution was [to wrap the program](https://nixos.org/manual/nixpkgs/stable/#fun-makeWrapper "Nixpkgs Reference Manual") with `makeWrapper`. By looking at an example that has been presented to me, it seemed like I can set environment variables with it.
 > 
@@ -144,7 +143,7 @@ I have two examples where it actually helped me. First, while [packaging program
 > 
 > It took a while to find what I have been looking for, which was hidden [in the code](https://github.com/NixOS/nixpkgs/blob/7b9c6346ffc9c16910c25c56534733e70935f306/pkgs/build-support/setup-hooks/make-wrapper.sh#L13-L39 "nixpkgs/pkgs/build-support/setup-hooks/make-wrapper.sh at 7b9c6346ffc9c16910c25c56534733e70935f306 · NixOS/nixpkgs"):
 
-Another example is where I [performed Tailscale integration with K3s](https://lyuk98.com/67660/building-a-project-3-attempting-to-run-kubernetes-and-openstack); I had to pass an option to the `k3s` binary, but its accepted values were not documented in detail.
+Another example is where I [performed Tailscale integration with K3s](/en/blog/2025/12/building-a-project-%233-attempting-to-run-kubernetes-and-openstack/); I had to pass an option to the `k3s` binary, but its accepted values were not documented in detail.
 
 > I could not find the accepted value for `--vpn-auth` documented anywhere, so I read the code and verified that:
 > 
@@ -174,7 +173,7 @@ I know, I have been talking about them all the time earlier. However, I mean it.
 
 The most important thing to me is not much about what should be used, but instead about doing my best to reach the goal. While the previous two points I have made are also pretty significant, I believe they should not be something that would block progress.
 
-When I tried [to configure and run Kubernetes the NixOS way](https://lyuk98.com/67660/building-a-project-3-attempting-to-run-kubernetes-and-openstack), I realised I was trying so hard to do something that was just not designed to work well. It was [when I made a switch to OpenTofu](https://lyuk98.com/70549/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux) that made the process a lot easier.
+When I tried [to configure and run Kubernetes the NixOS way](/en/blog/2025/12/building-a-project-%233-attempting-to-run-kubernetes-and-openstack/), I realised I was trying so hard to do something that was just not designed to work well. It was [when I made a switch to OpenTofu](/en/blog/2026/02/building-a-homelab-%231-creating-a-kubernetes-cluster-with-talos-linux/) that made the process a lot easier.
 
 I do not want to stick with only a handful of skills and call it a day. Solutions to problems likely exist for a reason, and I would like to understand how some of them differentiate themselves from the others, as well as what influences people in making their choices.
 
@@ -188,7 +187,7 @@ I appreciate taking your time to read what was probably a lengthy set of paragra
 
 Here, I mostly document my journey to achieving my goal and/or solving problems. It is not meant to be about teaching you or providing you with a useful piece of knowledge; I believe I have to learn more (about what I have written) to do so properly. However, as things that I do sometimes differ from what others from the internet seem to be doing, I would still be grateful if anyone coming across this place finds a solution to their unique problem.
 
-Since I started writing when I was introduced to DevOps, the majority of my posts at this time are related to what I have learned about it so far. However, anything that I find interesting can end up here, like how [I used Zrythm to make some music](https://lyuk98.com/68518/using-zrythm-for-audio-production).
+Since I started writing when I was introduced to DevOps, the majority of my posts at this time are related to what I have learned about it so far. However, anything that I find interesting can end up here, like how [I used Zrythm to make some music](/en/blog/2025/12/using-zrythm-for-audio-production/).
 
 All words written here, except where quoted, are of my own. Please understand that, while I do my best to get facts right through researches, I may still make mistakes, especially given that I usually write about my learning experiences.
 
