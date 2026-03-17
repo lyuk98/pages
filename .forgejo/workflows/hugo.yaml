@@ -38,6 +38,7 @@ jobs:
         with:
           name: Generated files
           path: public/
+          include-hidden-files: true
   deploy:
     needs:
       - build
