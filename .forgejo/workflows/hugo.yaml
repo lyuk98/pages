@@ -28,6 +28,11 @@ jobs:
           hugo \
             --gc \
             --minify
+      - name: Copy files for Codeberg Pages
+        run: |
+          cp _redirects public/_redirects
+          cp .domains public/.domains
+          cp LICENSE public/LICENSE
       - name: Upload generated files
         uses: https://code.forgejo.org/actions/upload-artifact@v3
         with:
@@ -47,7 +52,7 @@ jobs:
       - name: Checkout the target branch and clean it up
         run: |
           git checkout pages || git switch --orphan pages && \
-          rm -Rfv $(ls -A | egrep -v '^(\.git|.domains|_redirects|LICENSE)$')
+          rm -Rfv $(ls -A | egrep -v '^(\.git)$')
       - name: Download generated files
         uses: https://code.forgejo.org/actions/download-artifact@v3
         with:
