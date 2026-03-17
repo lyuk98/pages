@@ -1,6 +1,7 @@
 ---
 date: '2025-12-01'
 title: Building a project (#3) - Attempting to run Kubernetes and OpenStack
+slug: building-a-project-3-attempting-to-run-kubernetes-and-openstack
 ---
 
 This is a part of series *Building a project*, where I try to make something using [OpenStack](https://www.openstack.org/ "Open Source Cloud Computing Infrastructure - OpenStack").

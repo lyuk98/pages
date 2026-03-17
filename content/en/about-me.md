@@ -143,7 +143,7 @@ I have two examples where it actually helped me. First, while [packaging program
 > 
 > It took a while to find what I have been looking for, which was hidden [in the code](https://github.com/NixOS/nixpkgs/blob/7b9c6346ffc9c16910c25c56534733e70935f306/pkgs/build-support/setup-hooks/make-wrapper.sh#L13-L39 "nixpkgs/pkgs/build-support/setup-hooks/make-wrapper.sh at 7b9c6346ffc9c16910c25c56534733e70935f306 · NixOS/nixpkgs"):
 
-Another example is where I [performed Tailscale integration with K3s](/blog/2025/12/building-a-project-%233-attempting-to-run-kubernetes-and-openstack/); I had to pass an option to the `k3s` binary, but its accepted values were not documented in detail.
+Another example is where I [performed Tailscale integration with K3s](/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/); I had to pass an option to the `k3s` binary, but its accepted values were not documented in detail.
 
 > I could not find the accepted value for `--vpn-auth` documented anywhere, so I read the code and verified that:
 > 
@@ -173,7 +173,7 @@ I know, I have been talking about them all the time earlier. However, I mean it.
 
 The most important thing to me is not much about what should be used, but instead about doing my best to reach the goal. While the previous two points I have made are also pretty significant, I believe they should not be something that would block progress.
 
-When I tried [to configure and run Kubernetes the NixOS way](/blog/2025/12/building-a-project-%233-attempting-to-run-kubernetes-and-openstack/), I realised I was trying so hard to do something that was just not designed to work well. It was [when I made a switch to OpenTofu](/blog/2026/02/building-a-homelab-%231-creating-a-kubernetes-cluster-with-talos-linux/) that made the process a lot easier.
+When I tried [to configure and run Kubernetes the NixOS way](/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/), I realised I was trying so hard to do something that was just not designed to work well. It was [when I made a switch to OpenTofu](/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/) that made the process a lot easier.
 
 I do not want to stick with only a handful of skills and call it a day. Solutions to problems likely exist for a reason, and I would like to understand how some of them differentiate themselves from the others, as well as what influences people in making their choices.
 

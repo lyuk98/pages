@@ -1,6 +1,7 @@
 ---
 date: '2025-03-11'
 title: Building a project (#1) - Learning about OpenStack
+slug: building-a-project-1-learning-about-openstack
 ---
 
 This is a part of series *Building a project*, where I try to make something using [OpenStack](https://www.openstack.org/).

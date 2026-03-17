@@ -1,6 +1,7 @@
 ---
 date: '2026-02-26'
 title: Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux
+slug: building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux
 ---
 
 This is part of series *Building a homelab*, where I document my journey to build my own homelab with Kubernetes.
