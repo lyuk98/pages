@@ -6,7 +6,7 @@ copyright: >-
   This work is marked [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/)
 
 defaultContentLanguage: en
-defaultContentLanguageInSubdir: true
+defaultContentLanguageInSubdir: false
 languages:
   en:
     locale: en
