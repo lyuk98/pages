@@ -30,6 +30,12 @@ languages:
           weight: 10
 
 enableGitInfo: true
+frontmatter:
+  date:
+    - date
+    - publishdate
+    - :git
+    - lastmod
 
 privacy:
   disqus:
