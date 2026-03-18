@@ -65,7 +65,7 @@ outputs:
     - json
 
 params:
-  env: development
+  env: production
   title: 이영욱
   author: 이영욱
 
