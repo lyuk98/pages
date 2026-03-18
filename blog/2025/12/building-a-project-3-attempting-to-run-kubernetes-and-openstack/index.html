@@ -542,7 +542,7 @@ error:
 </span></span><span style=display:flex><span><span style=color:#66d9ef>in</span>
 </span></span><span style=display:flex><span>{ }
 </span></span></code></pre></div><p>The charts could then <a href=https://github.com/lyuk98/nixos-config/blob/2385dbee5c6691ad0692343415fed21bc179c2fe/hosts/xps13/openstack.nix#L60-L117 title="nixos-config/hosts/xps13/openstack.nix at 2385dbee5c6691ad0692343415fed21bc179c2fe · lyuk98/nixos-config">be defined</a> without the tedious <code>hash</code>-keeping. Some values were also added by roughly following <a href=https://docs.openstack.org/openstack-helm/latest/install/openstack.html title="Deploy OpenStack — openstack-helm 2025.2.1.dev21 documentation">the guide from OpenStack-Helm</a>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-nix data-lang=nix><span style=display:flex><span><span style=color:#75715e># Deploy Helm charts for OpenStack</span>
-</span></span><span style=display:flex><span>services<span style=color:#f92672>.</span>k3s<span style=color:#f92672>.</span>autoDeployCharts <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>services<span style=color:#f92672>.</span>k3s<span style=color:#960050;background-color:#1e0010>.</span>autoDeployCharts <span style=color:#f92672>=</span>
 </span></span><span style=display:flex><span>  builtins<span style=color:#f92672>.</span>mapAttrs
 </span></span><span style=display:flex><span>    (
 </span></span><span style=display:flex><span>      name: value:
