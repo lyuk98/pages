@@ -1,4 +1,9 @@
 ---
+tags:
+  - Blog
+  - Docker
+  - Google Cloud Platform
+  - Listed
 date: '2025-04-21'
 title: Using custom domain with Listed
 description: I wanted to use a custom domain for my blog. It was supposed to be easy, but the steps I took to solve the problem during the integration were far more than what I have initially expected.

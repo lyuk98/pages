@@ -1,4 +1,6 @@
 ---
+tags:
+  - OpenStack
 date: '2025-03-11'
 title: Building a project (#1) - Learning about OpenStack
 slug: building-a-project-1-learning-about-openstack

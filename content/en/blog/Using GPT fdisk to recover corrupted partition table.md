@@ -1,4 +1,6 @@
 ---
+tags:
+  - GPT fdisk
 date: '2025-04-13'
 title: Using GPT fdisk to recover corrupted partition table
 description: I was not able to boot into Linux due to a corrupted partition table, which I tried to fix by using GPT fdisk.

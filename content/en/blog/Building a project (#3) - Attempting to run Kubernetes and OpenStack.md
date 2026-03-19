@@ -1,4 +1,12 @@
 ---
+tags:
+  - Helm
+  - K3s
+  - Kubernetes
+  - Nix
+  - NixOS
+  - OpenStack
+  - SOPS
 date: '2025-12-01'
 title: Building a project (#3) - Attempting to run Kubernetes and OpenStack
 slug: building-a-project-3-attempting-to-run-kubernetes-and-openstack

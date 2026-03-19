@@ -1,4 +1,13 @@
 ---
+tags:
+  - Caddy
+  - GitHub Actions
+  - PeerTube
+  - Podman
+  - Podman Quadlet
+  - Raspberry Pi
+  - Tailscale
+  - Ubuntu
 date: '2025-03-27'
 title: Self-hosting PeerTube with Tailscale
 description: I tried self-hosting PeerTube in a Tailscale network.

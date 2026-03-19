@@ -1,4 +1,10 @@
 ---
+tags:
+  - Arch Linux
+  - Home Manager
+  - Nix
+  - NixOS
+  - SOPS
 date: '2025-05-16'
 title: Switching from Arch Linux to NixOS
 description: The switch to NixOS involved learning a whole new language. It may not be everyone's cup of tea, but I personally enjoyed the journey I took to get it running.

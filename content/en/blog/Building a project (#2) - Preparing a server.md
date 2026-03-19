@@ -1,4 +1,8 @@
 ---
+tags:
+  - NixOS
+  - SOPS
+  - Tailscale
 date: '2025-11-05'
 title: Building a project (#2) - Preparing a server
 description: As an effort to host OpenStack, I prepared a device to run the service with.

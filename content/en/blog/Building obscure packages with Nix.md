@@ -1,4 +1,8 @@
 ---
+tags:
+  - CMake
+  - Nix
+  - Rust
 date: '2025-10-28'
 title: Building obscure packages with Nix
 description: It is understandable that not every software on the internet is available on any given Linux distribution, but it is sometimes disappointing when something I have been looking for is missing.

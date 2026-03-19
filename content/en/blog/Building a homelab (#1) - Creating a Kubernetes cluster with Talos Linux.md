@@ -1,4 +1,12 @@
 ---
+tags:
+  - Backblaze B2
+  - Cloudflare
+  - Helm
+  - Kubernetes
+  - OpenTofu
+  - Tailscale
+  - Talos Linux
 date: '2026-02-26'
 title: Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux
 slug: building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux

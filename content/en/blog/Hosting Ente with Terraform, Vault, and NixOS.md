@@ -1,4 +1,16 @@
 ---
+tags:
+  - Amazon Web Services
+  - Backblaze B2
+  - Cloudflare
+  - DigitalOcean
+  - Ente
+  - GitHub Actions
+  - HashiCorp Vault
+  - NixOS
+  - SOPS
+  - Tailscale
+  - Terraform
 date: '2025-09-28'
 title: Hosting Ente with Terraform, Vault, and NixOS
 description: Ente, the private photo storage service, was self-hosted in a hard way using declarative methods of resource management.

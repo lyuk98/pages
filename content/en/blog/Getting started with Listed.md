@@ -1,4 +1,8 @@
 ---
+tags:
+  - Blog
+  - Listed
+  - Standard Notes
 date: '2025-03-11'
 title: 'Getting started with Listed'
 ---

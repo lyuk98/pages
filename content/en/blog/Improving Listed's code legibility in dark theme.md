@@ -1,4 +1,8 @@
 ---
+tags:
+  - Blog
+  - Listed
+  - Rouge
 date: '2025-12-04'
 title: Improving Listed's code legibility in dark theme
 ---
