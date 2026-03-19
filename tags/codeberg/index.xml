@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Codeberg on 이영욱</title><link>https://lyuk98.com/tags/codeberg/</link><description>Recent content in Codeberg on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Thu, 19 Mar 2026 15:36:17 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/codeberg/index.xml" rel="self" type="application/rss+xml"/><item><title>Migrating to Codeberg Pages</title><link>https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/</link><pubDate>Thu, 19 Mar 2026 15:36:17 +0900</pubDate><guid>https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/</guid><description>For various reaons, I migrated to Codeberg Pages for my blog.</description><content:encoded><![CDATA[<p>If anyone is wondering, I started my writing journey with <a href="https://listed.to/" title="Listed — Welcome to your new public journal.">Listed</a> blogging platform by <a href="https://standardnotes.com/" title="Standard Notes | End-To-End Encrypted Notes App">Standard Notes</a>. I think it had served me well, but for reasons I will soon mention, I ultimately decided to find a new home.</p>
+<h1 id="why-the-switch">Why the switch?</h1>
+<p>Just about three and a half months ago, I wrote the following while <a href="/blog/2025/12/improving-listeds-code-legibility-in-dark-theme/" title="Improving Listed&#39;s code legibility in dark theme">working on improving my code snippets&rsquo; legibility</a> on the blogging platform:</p>
+<blockquote>
+<p>It has been some time since I started writing on <a href="https://listed.to/" title="Listed — Welcome to your new public journal.">Listed</a>. Although the development around the blogging platform seems to be slow-paced (which I feel is an understatement) and some note-taking services like <a href="https://anytype.io/" title="The Everything App">Anytype</a> also offer <a href="https://doc.anytype.io/anytype-docs/getting-started/web-publishing" title="Publish | Anytype Docs">publication of notes</a>, I have yet to find a compelling reason nor devote my time for migration.</p>
+</blockquote>
+<p>At that time, despite being real concerns, problems I came across during its usage were, at worst, inconveniences to me. However, as I wrote more, I felt the need for a switch; the reasons why are as follows:</p>
+<h2 id="version-controlled-blog">Version-controlled blog</h2>
+<p>I write blog posts in <a href="https://daringfireball.net/projects/markdown/" title="Daring Fireball: Markdown">Markdown</a> format. Documents using this format, however, appear in just about every open-source project&rsquo;s <a href="https://git-scm.com/" title="Git">Git</a> repositories; it was, to me, as if they were meant to be version-controlled.</p>
+<p>Making my blog a Git-based project was, while not a priority, something I wished to do. An added benefit was that, since I always <a href="https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work" title="Git - Signing Your Work">sign Git commits</a> with my OpenPGP key, anyone would be able to verify that I am the actual author.</p>
+<h2 id="my-desire-for-sharing-open-knowledge-and-its-obstacle">My desire for sharing open knowledge (and its obstacle)</h2>
+<p>Another non-critical, yet concerning nonetheless, problem was that Listed puts the following text to my blog&rsquo;s footer:</p>
+<blockquote>
+<p>Copyright © 2026 이영욱</p>
+</blockquote>
+<p>This will likely not be a problem for many, but it was not desirable to me. I started writing in the hope of sharing what I have learned, but the copyright notice was the opposite of what I wanted my work to be labelled with.</p>
+<p>As such, I aimed to dedicate my work to the public domain during the migration. To do so, I used <a href="https://creativecommons.org/publicdomain/zero/1.0/" title="Deed - CC0 1.0 Universal - Creative Commons">CC0 1.0 Universal</a> as a way to waive my rights.</p>
+<h2 id="a-series-of-workarounds">A series of workarounds</h2>
+<p>While previous points were more about my wish, this one pertains to actual problems. I have a few examples:</p>
+<ul>
+<li>Inline code (and possibly other formatted text) is ignored within hyperlinks. It means that writing <code>[`example`](https://example.org/)</code> will render the text as just &ldquo;<a href="https://example.org/">example</a>&rdquo; (and not &ldquo;<a href="https://example.org/"><code>example</code></a>&rdquo;).</li>
+<li>Some HTML tags are ignored and not rendered. That in itself is not a problem, but:
+<ul>
+<li>I do wish to use some of them for features Listed (and sometimes Markdown itself) does not support, like strikethrough text or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/picture" title="&lt;picture&gt;: The Picture element - HTML | MDN"><code>&lt;picture&gt;</code></a> elements.</li>
+<li>I cannot specify which tags to whether allow or prohibit</li>
+</ul>
+</li>
+<li>Same-page navigation seems to do full page loads.</li>
+<li>Code snippets become less legible in dark theme.</li>
+</ul>
+<p>I was able to solve some of those issues, but when the solutions look something like <a href="/blog/2025/12/improving-listeds-code-legibility-in-dark-theme/#applying-the-theme" title="Improving Listed&#39;s code legibility in dark theme">adding a bunch of CSS</a> to replace the default theme, I do not consider them to be proper fixes.</p>
+<p>It would be great if the issues are addressed upstream, but&hellip;</p>
+<h2 id="the-uncertainty">The uncertainty</h2>
+<p>Code for Listed is available at <a href="https://github.com/standardnotes/listed" title="standardnotes/listed: Create an online publication with automatic email newsletters. https://listed.to">its Git repository</a>. <a href="https://github.com/standardnotes/listed/commits/master/?since=2025-03-11&amp;until=2026-03-18" title="Commits · standardnotes/listed">Exactly 2 commits were made</a> since I published my first post about a year ago, where the more recent one was there <a href="https://github.com/standardnotes/listed/commit/d7e82ea3725148d1dbc5960aa147b1aa4da8a215" title="chore: remove custom domain from settings (#302) · standardnotes/listed@d7e82ea">to remove support for custom domains</a> (that I <a href="/blog/2025/04/using-custom-domain-with-listed/" title="Using custom domain with Listed">have worked hard</a> to enable).</p>
+<p>Those at Standard Notes are not really known for <a href="https://standardnotes.com/longevity" title="Built to Last | Standard Notes End-To-End Encrypted Notes App">actively implementing new features</a>, but with <a href="/blog/2025/04/using-custom-domain-with-listed/#:~:text=It%20looked%20like%20this%20project%E2%80%99s%20dependencies%20are%20quite%20old." title="Using custom domain with Listed">old versions of dependencies</a> still being used somewhere in the code, it looked closer to being unmaintained.</p>
+<p>Another writer that I have previously come across while browsing Listed was also seen migrating away from the blogging platform, although <a href="https://kieran.colfer.net/blog/moving-away-from-listed/" title="Why I&#39;m moving away from Listed.to | kieran.colfer.net">reasons for the switch</a> seemed to be a little different (but genuine nonetheless).</p>
+<p>With <a href="https://proton.me/" title="Proton: Privacy by default">Proton</a>&rsquo;s merger with the note-taking service, I believe those working on the product did not just abandon it, at least not without a reason. However, while I wish the best for them, I will do what I can do to make my environment favourable to me.</p>
+<h1 id="tools-of-choice">Tools of choice</h1>
+<h2 id="software-forge"><a href="https://en.wikipedia.org/wiki/Forge_%28software%29" title="Forge (software) - Wikipedia">Software forge</a></h2>
+<p>I primarily use <a href="https://github.com/" title="GitHub · Change is constant. GitHub keeps you ahead. · GitHub">GitHub</a> for most (if not all) of my projects. It was perfectly fine to do so again, but I wanted to give myself a new challenge with a different environment. Some things about the Microsoft-owned service, while not necessarily applicable to this scenario, also irked me enough to pursue a change:</p>
+<ul>
+<li>They do not support repositories with <a href="https://git-scm.com/docs/hash-function-transition" title="Git - hash-function-transition Documentation">SHA-256 hash function</a>, which <a href="https://about.gitlab.com/blog/gitlab-now-supports-sha256-repositories/" title="GitLab now supports SHA256 repositories">GitLab managed to do</a> a while ago.</li>
+<li>Some parts of their infrastructure is still IPv4-only, requiring <a href="https://gh-v6.com/">workarounds</a> to deploy <a href="https://nixos.org/" title="Nix &amp; NixOS | Declarative builds and deployments">NixOS</a> on IPv6-only cloud instances.</li>
+</ul>
+<p><a href="https://about.gitlab.com/" title="Finally, AI for the entire software lifecycle.">GitLab</a> could be seen as an alternative, but I had a different idea.</p>
+<p>I had an account at <a href="https://codeberg.org/" title="Codeberg.org">Codeberg</a> for a while. The service aims to be home for open-source projects, so it felt like a great place to put my contents to. They also offer <a href="https://codeberg.page/" title="Codeberg Pages - static pages for your projects">Codeberg Pages</a>, similar to <a href="https://docs.github.com/pages" title="GitHub Pages documentation - GitHub Docs">GitHub Pages</a>, which became my choice of web hosting service.</p>
+<p>However, since <a href="https://docs.github.com/en/account-and-profile/concepts/contributions-on-your-profile#about-your-contribution-graph" title="Contributions on your profile - GitHub Docs">contribution graph</a> might be of importance, I later decided to mirror my repository from the non-profit, community-led service.</p>
+<h2 id="static-site-generator">Static site generator</h2>
+<p><a href="https://docs.github.com/pages" title="GitHub Pages documentation - GitHub Docs">The GitHub Pages documentation</a> suggests using <a href="https://jekyllrb.com/" title="Jekyll • Simple, blog-aware, static sites | Transform your plain text into static websites and blogs">Jekyll</a> static site generator, which would turn Markdown documents into HTML pages. With some people I know setting up their websites this way, it sure seemed like one of the most common ways to reach the goal.</p>
+<p>However, I did not want to go down that road. It may be for the sake of being different, but I also had to consider the build speed.</p>
+<p>To build the website, I planned to use <a href="https://forgejo.org/docs/next/user/actions/reference/" title="Forgejo Actions | Reference | Forgejo – Beyond coding. We forge.">Forgejo Actions</a> hosted by Codeberg. Unlike big corporations, though, their users <a href="https://codeberg.org/actions/meta/src/commit/a4b2c34e7020e6372690345bdb0b9ae56d3a9820#rules-and-conditions" title="actions/meta: Information and discussions around hosted Forgejo Actions at Codeberg - Codeberg.org">are asked</a> to keep the resource usage to a minimum; although I have not tried using Jekyll at this point, resources I could find online told me that it is not the fastest option available. A reasonably fast, yet still commonly used, option would help reduce build time, lessening the burden to Codeberg&rsquo;s infrastructure.</p>
+<p>That is when I was introduced to <a href="https://gohugo.io/" title="The world&#39;s fastest framework for building websites">Hugo</a>.</p>
+<blockquote>
+<p>Written in Go, optimized for speed and designed for flexibility. With its advanced templating system and fast asset pipelines, Hugo renders a large site in seconds, often less.</p>
+</blockquote>
+<p>It soon became my choice of tool to deploy my website. There were <a href="https://themes.gohugo.io/" title="Hugo Themes">a set of Hugo themes</a> for me to choose from, where I picked <a href="https://themes.gohugo.io/themes/hugo-papermod/" title="PaperMod">PaperMod</a>; it seemed simple enough and closer to what Listed offered, compared to other themes that I have come across.</p>
+<h1 id="setting-up-the-project">Setting up the project</h1>
+<p>I started with the static site generator&rsquo;s <a href="https://gohugo.io/getting-started/quick-start/" title="Quick start">quick start guide</a>. However, I immediately encountered a problem.</p>
+<blockquote>
+<p>Before you begin this tutorial you must:</p>
+<ol>
+<li><a href="https://gohugo.io/installation/">Install Hugo</a> (extended or extended/deploy edition, v0.156.0 or later)</li>
+<li><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Install Git</a></li>
+</ol>
+<p>You must also be comfortable working from the command line.</p>
+</blockquote>
+<p><a href="https://github.com/NixOS/nixpkgs" title="NixOS/nixpkgs: Nix Packages collection &amp; NixOS">Nixpkgs</a>, on the other hand, only offers Hugo v0.155.3 at the time of writing.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[lyuk98@framework:~]$ nix run nixpkgs#hugo -- version
+</span></span><span style="display:flex;"><span>hugo v0.155.3+extended+withdeploy linux/amd64 BuildDate=unknown VendorInfo=nixpkgs
+</span></span></code></pre></div><p>I could see that some significant changes were made since the release of v0.155, including the command to set up the directory structure. As such, I decided to grab the latest version of its binary from the <a href="https://github.com/gohugoio/hugo/releases/tag/v0.158.0" title="Release v0.158.0 · gohugoio/hugo">release page</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[lyuk98@framework:~]$ nix run nixpkgs#wget -- https://github.com/gohugoio/hugo/releases/download/v0.158.0/hugo_0.158.0_linux-amd64.tar.gz
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>[lyuk98@framework:~]$ echo <span style="color:#e6db74">&#34;d0d8f0735dccef76e900719a70102f269c418e010a02e3e0f9e206a208346e2f hugo_0.158.0_linux-amd64.tar.gz&#34;</span> | sha256sum --check
+</span></span><span style="display:flex;"><span>hugo_0.158.0_linux-amd64.tar.gz: OK
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>[lyuk98@framework:~]$ tar --extract --file hugo_0.158.0_linux-amd64.tar.gz
+</span></span></code></pre></div><p>A new project was set up with the downloaded binary. The command to do so was previously known as <code>hugo new site</code>, but it was changed to a different one.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[lyuk98@framework:~]$ ./hugo new project pages --format yaml
+</span></span><span style="display:flex;"><span>Congratulations! Your new Hugo project was created in /home/lyuk98/pages.
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>Just a few more steps...
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>1. Change the current directory to /home/lyuk98/pages.
+</span></span><span style="display:flex;"><span>2. Create or install a theme:
+</span></span><span style="display:flex;"><span>   - Create a new theme with the command &#34;hugo new theme &lt;THEMENAME&gt;&#34;
+</span></span><span style="display:flex;"><span>   - Or, install a theme from https://themes.gohugo.io/
+</span></span><span style="display:flex;"><span>3. Edit hugo.yaml, setting the &#34;theme&#34; property to the theme name.
+</span></span><span style="display:flex;"><span>4. Create new content with the command &#34;hugo new content &lt;SECTIONNAME&gt;/&lt;FILENAME&gt;.&lt;FORMAT&gt;&#34;.
+</span></span><span style="display:flex;"><span>5. Start the embedded web server with the command &#34;hugo server --buildDrafts&#34;.
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>See documentation at https://gohugo.io/.
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>[lyuk98@framework:~]$ cd pages/
+</span></span></code></pre></div><p>I used <a href="https://yaml.org/" title="- YAML Ain&#39;t Markup Language">YAML</a>, since I was more familiar with it (with experiences in troubleshooting Kubernetes-related services) than <a href="https://toml.io/" title="TOML: Tom&#39;s Obvious Minimal Language">TOML</a>.</p>
+<p>Git was set up afterwards. Since I wanted to try its SHA-256 hash function, I ran <code>git init</code> with the option <code>--object-format</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[lyuk98@framework:~/pages]$ git init --object-format<span style="color:#f92672">=</span>sha256 --initial-branch<span style="color:#f92672">=</span>main
+</span></span><span style="display:flex;"><span>Initialized empty Git repository in /home/lyuk98/pages/.git/
+</span></span></code></pre></div><p>However, when I tried adding the theme with <code>git submodule add</code>, I realised that mismatch in hash algorithm would not let me progress further.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[lyuk98@framework:~/pages]$ git submodule add https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
+</span></span><span style="display:flex;"><span>Cloning into &#39;/home/lyuk98/pages/themes/PaperMod&#39;...
+</span></span><span style="display:flex;"><span>remote: Enumerating objects: 7908, done.
+</span></span><span style="display:flex;"><span>remote: Counting objects: 100% (22/22), done.
+</span></span><span style="display:flex;"><span>remote: Compressing objects: 100% (10/10), done.
+</span></span><span style="display:flex;"><span>remote: Total 7908 (delta 15), reused 12 (delta 12), pack-reused 7886 (from 2)
+</span></span><span style="display:flex;"><span>Receiving objects: 100% (7908/7908), 9.56 MiB | 4.40 MiB/s, done.
+</span></span><span style="display:flex;"><span>Resolving deltas: 100% (4659/4659), done.
+</span></span><span style="display:flex;"><span>error: cannot add a submodule of a different hash algorithm
+</span></span><span style="display:flex;"><span>error: unable to index file &#39;themes/PaperMod/&#39;
+</span></span><span style="display:flex;"><span>fatal: adding files failed
+</span></span><span style="display:flex;"><span>fatal: Failed to add submodule &#39;themes/PaperMod&#39;
+</span></span></code></pre></div><p>It was disappointing, but as using submodules was (to me) the cleanest way to add themes, I reinitialised the directory with <code>git init</code>, while using SHA-1 this time.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[lyuk98@framework:~/pages]$ rm --force --recursive .git/
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>[lyuk98@framework:~/pages]$ git init --object-format<span style="color:#f92672">=</span>sha1 --initial-branch<span style="color:#f92672">=</span>main
+</span></span><span style="display:flex;"><span>Initialized empty Git repository in /home/lyuk98/pages/.git/
+</span></span></code></pre></div><p>The submodule was then added, which completed successfully this time.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[lyuk98@framework:~/pages]$ rm --force --recursive themes/PaperMod/
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>[lyuk98@framework:~/pages]$ git submodule add https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
+</span></span></code></pre></div><p><a href="https://codeberg.org/lyuk98/pages/src/commit/464b586b198cfc6e6b2497d9ec4c15211b9031bf/hugo.yaml" title="pages/hugo.yaml at 464b586b198cfc6e6b2497d9ec4c15211b9031bf - lyuk98/pages - Codeberg.org"><code>hugo.yaml</code></a> was then edited while referring to documentation by both <a href="https://gohugo.io/documentation/" title="Hugo Documentation">Hugo</a> and <a href="https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-installation/" title="Install / Update PaperMod | PaperMod">PaperMod</a>. Notably, <a href="https://gohugo.io/content-management/multilingual/" title="Multilingual mode">multilingual mode</a> was set up, the <code>copyright</code> option was edited to indicate CC0 declaration, and <a href="https://gohugo.io/methods/page/gitinfo/" title="GitInfo">Git-based metadata access</a> was configured.</p>
+<p>When the project was ready, I tried running the server.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[lyuk98@framework:~/pages]$ ../hugo server
+</span></span></code></pre></div><p>I could now see how my future website would look like.</p>
+<picture>
+  <source srcset="https://images.lyuk98.com/d579cf32-d33d-48f7-b5d3-59a9fd945ec5.avif" media="(prefers-color-scheme: dark)" type="image/avif">
+  <source srcset="https://images.lyuk98.com/9208c312-52b7-4e77-bff1-bc2dcd488501.avif" type="image/avif">
+  <source srcset="https://images.lyuk98.com/d579cf32-d33d-48f7-b5d3-59a9fd945ec5.webp" media="(prefers-color-scheme: dark)">
+  <img src="https://images.lyuk98.com/9208c312-52b7-4e77-bff1-bc2dcd488501.webp" alt="The new website, with no post available">
+</picture>
+<h1 id="moving-blog-posts">Moving blog posts</h1>
+<p>It was time to put my posts into the new home. First, I exported them from the Standard Notes client.</p>
+<picture>
+  <source srcset="https://images.lyuk98.com/f75cf2db-3645-4f0a-8387-e5f671357719.avif" media="(prefers-color-scheme: dark)" type="image/avif">
+  <source srcset="https://images.lyuk98.com/eeab4f9d-a26e-4302-a6a6-719a6119aaa2.avif" type="image/avif">
+  <source srcset="https://images.lyuk98.com/f75cf2db-3645-4f0a-8387-e5f671357719.webp" media="(prefers-color-scheme: dark)">
+  <img src="https://images.lyuk98.com/eeab4f9d-a26e-4302-a6a6-719a6119aaa2.webp" alt="Expanded menu for a note on the Standard Notes client. The option &quot;Export&quot; is selected.">
+</picture>
+<p>They were then copied to a directory for my blog posts, at <a href="https://codeberg.org/lyuk98/pages/src/commit/464b586b198cfc6e6b2497d9ec4c15211b9031bf/content/en/blog" title="pages/content/en/blog at 464b586b198cfc6e6b2497d9ec4c15211b9031bf - lyuk98/pages - Codeberg.org"><code>content/en/blog</code></a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[lyuk98@framework:~/pages]$ ls content/en/blog/
+</span></span><span style="display:flex;"><span>&#39;Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux.md&#39;
+</span></span><span style="display:flex;"><span>&#39;Building a project (#1) - Learning about OpenStack.md&#39;
+</span></span><span style="display:flex;"><span>&#39;Building a project (#2) - Preparing a server.md&#39;
+</span></span><span style="display:flex;"><span>&#39;Building a project (#3) - Attempting to run Kubernetes and OpenStack.md&#39;
+</span></span><span style="display:flex;"><span>&#39;Building obscure packages with Nix.md&#39;
+</span></span><span style="display:flex;"><span>&#39;Getting started with Listed.md&#39;
+</span></span><span style="display:flex;"><span>&#39;Hosting Ente with Terraform, Vault, and NixOS.md&#39;
+</span></span><span style="display:flex;"><span>&#34;Improving Listed&#39;s code legibility in dark theme.md&#34;
+</span></span><span style="display:flex;"><span>&#39;Self-hosting PeerTube with Tailscale.md&#39;
+</span></span><span style="display:flex;"><span>&#39;Switching from Arch Linux to NixOS.md&#39;
+</span></span><span style="display:flex;"><span>&#39;Using GPT fdisk to recover corrupted partition table.md&#39;
+</span></span><span style="display:flex;"><span>&#39;Using Zrythm for audio production.md&#39;
+</span></span><span style="display:flex;"><span>&#39;Using custom domain with Listed.md&#39;
+</span></span></code></pre></div><p>Their <a href="https://gohugo.io/content-management/front-matter/" title="Front matter">front matter</a> was subsequently edited to match Hugo&rsquo;s specification. <code>date</code> properties were set to their publication dates, <code>title</code> to their titles (obviously), and <code>description</code> to what used to be <code>desc</code> properties. For some posts with <code>#</code> in their titles, I also manually added <code>slug</code>; it was due to problems with Codeberg Pages, where accessing affected posts throws a 404 error.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>date: &#39;2025-11-05&#39;
+</span></span><span style="display:flex;"><span>title: Building a project (#2) - Preparing a server
+</span></span><span style="display:flex;"><span>description: As an effort to host OpenStack, I prepared a device to run the service with.
+</span></span><span style="display:flex;"><span>slug: building-a-project-2-preparing-a-server
+</span></span><span style="display:flex;"><span>---
+</span></span></code></pre></div><h1 id="setting-up-codeberg-and-codeberg-pages">Setting up Codeberg and Codeberg Pages</h1>
+<p>Looking at <a href="https://codeberg.page/" title="Codeberg Pages - static pages for your projects">Codeberg Pages</a>, there were three ways to deploy my website:</p>
+<ul>
+<li>legacy method</li>
+<li>new method without CI</li>
+<li>new method with CI</li>
+</ul>
+<p>However, the &ldquo;legacy method&rdquo; was the only option I could choose, since others currently do not support custom domains.</p>
+<p>To start, I first created a repository named <code>pages</code>.</p>
+<picture>
+  <source srcset="https://images.lyuk98.com/600461c8-2eb3-45a8-b2f9-eee77a817e85.avif" media="(prefers-color-scheme: dark)" type="image/avif">
+  <source srcset="https://images.lyuk98.com/8ea05d26-04f6-4cce-b899-edba4f6240e1.avif" type="image/avif">
+  <source srcset="https://images.lyuk98.com/600461c8-2eb3-45a8-b2f9-eee77a817e85.webp" media="(prefers-color-scheme: dark)">
+  <img src="https://images.lyuk98.com/8ea05d26-04f6-4cce-b899-edba4f6240e1.webp" alt="Repository creation page at Codeberg. Owner is set to &quot;lyuk98&quot;, and the repository name is &quot;pages&quot;.">
+</picture>
+<p>I then headed to settings and enabled Forgejo Actions for the repository.</p>
+<picture>
+  <source srcset="https://images.lyuk98.com/7c784f31-65a8-49ab-8d2a-e68d5ae7d82f.avif" media="(prefers-color-scheme: dark)" type="image/avif">
+  <source srcset="https://images.lyuk98.com/622832ae-3f39-40b5-b65b-726b04b6ab14.avif" type="image/avif">
+  <source srcset="https://images.lyuk98.com/7c784f31-65a8-49ab-8d2a-e68d5ae7d82f.webp" media="(prefers-color-scheme: dark)">
+  <img src="https://images.lyuk98.com/622832ae-3f39-40b5-b65b-726b04b6ab14.webp" alt="Settings page at the pages repository. From the &quot;Overview&quot; section, the &quot;Actions&quot; option, described as &quot;Enable integrated CI/CD pipelines with Forgejo Actions&quot;, is checked together with &quot;Code&quot;.">
+</picture>
+<h2 id="domains-and-_redirects"><code>.domains</code> and <code>_redirects</code></h2>
+<p>I did not want to break existing links that were created by Listed. To keep them working even after the migration, I tried to find a way to redirect requests.</p>
+<p>Hugo supports <a href="https://gohugo.io/methods/page/aliases/" title="Aliases">aliases</a>, redirecting requests on its own, but they recommended doing so at the server level for improved efficiency.</p>
+<blockquote>
+<p>By default, Hugo handles aliases by creating individual HTML files for each alias path. These files contain a <code>meta http-equiv=&quot;refresh&quot;</code> tag to redirect the visitor via the browser.</p>
+<p>While functional, generating a single <code>_redirects</code> file allows your hosting provider to handle redirects at the server level. This is more efficient than client-side redirection and improves performance by eliminating the need to load a middle-man HTML page.</p>
+</blockquote>
+<p>Codeberg Pages allow <a href="https://docs.codeberg.org/codeberg-pages/advanced-usage/#redirects" title="Advanced usage | Codeberg Documentation">setting up one</a>, so I wrote <a href="https://codeberg.org/lyuk98/pages/src/commit/464b586b198cfc6e6b2497d9ec4c15211b9031bf/_redirects" title="pages/_redirects at 464b586b198cfc6e6b2497d9ec4c15211b9031bf - lyuk98/pages - Codeberg.org"><code>_redirects</code></a> containing redirect rules.</p>
+<pre tabindex="0"><code># Redirect from previously used URLs in the Listed blogging platform
+/60208/getting-started-with-listed /blog/2025/03/getting-started-with-listed/ 301
+/60219/building-a-project-1-learning-about-openstack /blog/2025/03/building-a-project-1-learning-about-openstack/ 301
+/60610/self-hosting-peertube-with-tailscale /blog/2025/03/self-hosting-peertube-with-tailscale/ 301
+/61071/using-gpt-fdisk-to-recover-corrupted-partition-table /blog/2025/04/using-gpt-fdisk-to-recover-corrupted-partition-table/ 301
+/61351/using-custom-domain-with-listed /blog/2025/04/using-custom-domain-with-listed/ 301
+/62055/switching-from-arch-linux-to-nixos /blog/2025/05/switching-from-arch-linux-to-nixos/ 301
+/65671/hosting-ente-with-terraform-vault-and-nixos /blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/ 301
+/66674/building-obscure-packages-with-nix /blog/2025/10/building-obscure-packages-with-nix/ 301
+/66893/building-a-project-2-preparing-a-server /blog/2025/11/building-a-project-2-preparing-a-server/ 301
+/67660/building-a-project-3-attempting-to-run-kubernetes-and-openstack /blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/ 301
+/67775/improving-listed-s-code-legibility-in-dark-theme /blog/2025/12/improving-listeds-code-legibility-in-dark-theme/ 301
+/68518/using-zrythm-for-audio-production /blog/2025/12/using-zrythm-for-audio-production/ 301
+/70549/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux /blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/ 301
+</code></pre><p>Next up was <a href="https://codeberg.org/lyuk98/pages/src/commit/464b586b198cfc6e6b2497d9ec4c15211b9031bf/.domains" title="pages/.domains at 464b586b198cfc6e6b2497d9ec4c15211b9031bf - lyuk98/pages - Codeberg.org"><code>.domains</code></a>, but this one was simple; I just had to add domains I want to link my pages to.</p>
+<pre tabindex="0"><code>lyuk98.com
+www.lyuk98.com
+</code></pre><p>Any domain from the second line simply redirects to the first one. It was unfortunate that HTTP <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/307" title="307 Temporary Redirect - HTTP | MDN"><code>307 Temporary Redirect</code></a> response was used instead of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/301" title="301 Moved Permanently - HTTP | MDN"><code>301 Moved Permanently</code></a>, but I could not find a way to change the status code for now.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[lyuk98@framework:~]$ curl --head https://www.lyuk98.com/
+</span></span><span style="display:flex;"><span>HTTP/2 307 
+</span></span><span style="display:flex;"><span>allow: GET, HEAD, OPTIONS
+</span></span><span style="display:flex;"><span>cache-control: public, max-age=600
+</span></span><span style="display:flex;"><span>content-type: text/html; charset=utf-8
+</span></span><span style="display:flex;"><span>location: https://lyuk98.com/
+</span></span><span style="display:flex;"><span>referrer-policy: strict-origin-when-cross-origin
+</span></span><span style="display:flex;"><span>server: pages-server
+</span></span><span style="display:flex;"><span>date: Wed, 18 Mar 2026 08:54:35 GMT
+</span></span></code></pre></div><h2 id="writing-the-workflow">Writing the workflow</h2>
+<p>I started from <a href="https://neohugo.github.io/host-and-deploy/host-on-codeberg-pages/#automated-deployment-using-forgejo-actions" title="Host on Codeberg Pages">an example workflow</a> from a page I came across. However, I had to make some adjustments.</p>
+<p>The guide uses an image named <code>hugomods/hugo:exts-0.147.9</code>. It seemed pretty dated, so I went to <a href="https://hub.docker.com/r/hugomods/hugo" title="hugomods/hugo - Docker Image">its Docker Hub page</a> to check for newer versions. However, newest <code>exts</code> images were still not recent enough, at v0.154.5 (possibly due to <a href="https://github.com/hugomods/docker/issues/126#issuecomment-3922750393" title="ci-0.155.x images missing · Issue #126 · hugomods/docker">build errors</a>).</p>
+<p>Fortunately, after a while of searching, I found an <a href="https://github.com/gohugoio/hugo/pkgs/container/hugo" title="Package hugo">official GitHub Package</a>, which was set as a container image for the Codeberg runner.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">jobs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">build</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Use lazy Codeberg runner for lightweight tasks</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">codeberg-tiny-lazy</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Pin version of Hugo used for building</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">image</span>: <span style="color:#ae81ff">ghcr.io/gohugoio/hugo:v0.158.0</span>
+</span></span></code></pre></div><p>The workflow would first upload generated static files, which would then be downloaded by the <code>deploy</code> job. A problem with this, however, was that I needed a few more files to be present.</p>
+<p>I added another step (after running <code>hugo</code>) to copy the necessary files. When it was done, I included an option <code>include-hidden-files</code> to make sure <code>.domains</code> is included in the artifact.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Generate static files with Hugo</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># For maximum backward compatibility with Hugo modules</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">HUGO_ENVIRONMENT</span>: <span style="color:#ae81ff">production</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">HUGO_ENV</span>: <span style="color:#ae81ff">production</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          hugo \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            --gc \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            --minify</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Copy files for Codeberg Pages</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          cp _redirects public/_redirects
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          cp .domains public/.domains
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          cp LICENSE public/LICENSE</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Upload generated files</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">https://code.forgejo.org/actions/upload-artifact@v3</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Generated files</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">public/</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">include-hidden-files</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><p>The rest was pretty much the same. The <code>deploy</code> job would download the artifact and push to the <code>pages</code> branch with newly generated static contents.</p>
+<p>The remote was added to the Git directory afterwards.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[lyuk98@framework:~/pages]$ git remote add origin ssh://git@codeberg.org/lyuk98/pages.git
+</span></span></code></pre></div><p>Before running <code>git push</code>, though, I had a few more things to do.</p>
+<h1 id="deploying-the-service">Deploying the service</h1>
+<p>It was finally time to <del>say goodbye to Listed</del> deploy the website. Up until now, I could have backed out with no consequences; however, there was no going back after taking the following steps.</p>
+<p>After going to my Listed blog&rsquo;s settings, I disabled the custom domain integration. I knew this was going to happen, but it was nevertheless hard to press that button.</p>
+<picture>
+  <source srcset="https://images.lyuk98.com/6a82daf5-fbb7-4f7d-9e63-70871eb502ff.avif" type="image/avif">
+  <img src="https://images.lyuk98.com/6a82daf5-fbb7-4f7d-9e63-70871eb502ff.webp" alt="Settings page for the Listed blog, where an existing custom domain integration, that says &quot;Linked to: https://lyuk98.com&quot;, is visible. A menu is expanded from there, where an option to &quot;Delete&quot; the integration can be seen.">
+</picture>
+<p>When it was done, I went to my DNS provider, Cloudflare. From there, I added <a href="https://docs.codeberg.org/codeberg-pages/using-custom-domain/#option-3%3A-a%2Faaaa-record" title="Using custom domains | Codeberg Documentation">the following records</a> to my domain:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Data</th>
+          <th>Proxy status</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>A</code></td>
+          <td><code>@</code></td>
+          <td><code>217.197.84.141</code></td>
+          <td>DNS only</td>
+      </tr>
+      <tr>
+          <td><code>AAAA</code></td>
+          <td><code>@</code></td>
+          <td><code>2a0a:4580:103f:c0de::2</code></td>
+          <td>DNS only</td>
+      </tr>
+      <tr>
+          <td><code>TXT</code></td>
+          <td><code>@</code></td>
+          <td><code>pages.pages.lyuk98.codeberg.page</code></td>
+          <td>DNS only</td>
+      </tr>
+      <tr>
+          <td><code>A</code></td>
+          <td><code>www</code></td>
+          <td><code>217.197.84.141</code></td>
+          <td>DNS only</td>
+      </tr>
+      <tr>
+          <td><code>AAAA</code></td>
+          <td><code>www</code></td>
+          <td><code>2a0a:4580:103f:c0de::2</code></td>
+          <td>DNS only</td>
+      </tr>
+      <tr>
+          <td><code>TXT</code></td>
+          <td><code>www</code></td>
+          <td><code>pages.pages.lyuk98.codeberg.page</code></td>
+          <td>DNS only</td>
+      </tr>
+  </tbody>
+</table>
+<p>I messed up in this step, in two ways:</p>
+<ul>
+<li>I initially set the records to be &ldquo;Proxied&rdquo;, which likely prevented proper issuance of a TLS certificate; after changing it to &ldquo;DNS only&rdquo; and waiting for more than 6 hours, the issue was eventually solved without any further action.</li>
+<li><code>TXT</code> records were initially set to just <code>lyuk98.codeberg.page</code>; expected value is something like <code>[[branch.]repo.]user.codeberg.page</code>, but I did not know omitting <code>branch</code> causes a fallback to the repository&rsquo;s default branch, which is <code>main</code>.</li>
+</ul>
+<p>Changes made to the local directory were then finally pushed to Codeberg, where the workflow pushed the generated website to a separate <code>pages</code> branch.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[lyuk98@framework:~/pages]$ git push --set-upstream origin main
+</span></span></code></pre></div><h1 id="mirroring-the-repository">Mirroring the repository</h1>
+<p>I polished a few rough edges after the successful first deployment. With the new blog now operational, I decided to mirror my repository next.</p>
+<p>There was <a href="https://forgejo.org/docs/latest/user/repo-mirror/" title="Repository Mirrors | Forgejo – Beyond coding. We forge.">a guide</a> I could follow to reach my goal. Instead of creating personal access tokens, though, I chose to use SSH authentication.</p>
+<p>For start, I created a repository at GitHub, with the same name as the one at Codeberg.</p>
+<picture>
+  <source srcset="https://images.lyuk98.com/6de51736-dfd9-4abd-95f2-a5579fdb1b01.avif" media="(prefers-color-scheme: dark)" type="image/avif">
+  <source srcset="https://images.lyuk98.com/f1225f63-7f21-445d-b843-f53a065c570e.avif" type="image/avif">
+  <source srcset="https://images.lyuk98.com/6de51736-dfd9-4abd-95f2-a5579fdb1b01.webp" media="(prefers-color-scheme: dark)">
+  <img src="https://images.lyuk98.com/f1225f63-7f21-445d-b843-f53a065c570e.webp" alt="Repository creation page at GitHub. Owner is set to &quot;lyuk98&quot;, and the repository name is &quot;pages&quot;.">
+</picture>
+<p>When it was done, I went to the settings of my Codeberg repository, where I set up a push mirror.</p>
+<picture>
+  <source srcset="https://images.lyuk98.com/b1bf110c-0618-43a3-82b1-b88a57dffd87.avif" media="(prefers-color-scheme: dark)" type="image/avif">
+  <source srcset="https://images.lyuk98.com/ebe5e397-e3c6-4a7c-943d-916dd50dfa82.avif" type="image/avif">
+  <source srcset="https://images.lyuk98.com/b1bf110c-0618-43a3-82b1-b88a57dffd87.webp" media="(prefers-color-scheme: dark)">
+  <img src="https://images.lyuk98.com/ebe5e397-e3c6-4a7c-943d-916dd50dfa82.webp" alt="Settings at Codeberg repository for setting up repository mirroring. A form for creating a pushed repository is partially filled up, where &quot;Git remote repository URL&quot; is set to &quot;git@github.com:lyuk98/pages.git&quot;, &quot;Use SSH authentication&quot; and &quot;Sync when commits are pushed&quot; are checked, and &quot;Mirror interval&quot; is set to &quot;0&quot; (disabling periodic sync).">
+</picture>
+<p>Doing so generated a public SSH key, which I added as a <a href="https://docs.github.com/authentication/connecting-to-github-with-ssh/managing-deploy-keys#deploy-keys" title="Managing deploy keys - GitHub Docs">deploy key</a> in my GitHub repository.</p>
+<picture>
+  <source srcset="https://images.lyuk98.com/48dafed4-9ddd-434e-876b-78a87abcbcb4.avif" media="(prefers-color-scheme: dark)" type="image/avif">
+  <source srcset="https://images.lyuk98.com/64835cf8-52ff-4e15-b25b-b5f7ee79cf0b.avif" type="image/avif">
+  <source srcset="https://images.lyuk98.com/48dafed4-9ddd-434e-876b-78a87abcbcb4.webp" media="(prefers-color-scheme: dark)">
+  <img src="https://images.lyuk98.com/64835cf8-52ff-4e15-b25b-b5f7ee79cf0b.webp" alt="A dialog for adding a new deploy key at the GitHub repository. &quot;Title&quot; is set to &quot;Codeberg&quot;, &quot;Key&quot; is set to the public key generated by Codeberg, and &quot;Allow write access&quot; is checked.">
+</picture>
+<h1 id="measuring-the-benefits">Measuring the benefits</h1>
+<h2 id="setting-up-a-jekyll-site">Setting up a Jekyll site</h2>
+<p><a href="/blog/2026/03/migrating-to-codeberg-pages/#static-site-generator">Earlier in this post</a>, I mentioned a possible performance improvement by using Hugo over Jekyll. I decided to see if the difference is noticeable, even if I do not have a lot of documents for the generator to build.</p>
+<p>Running a Ruby gem (<a href="https://jekyllrb.com/docs/ruby-101/" title="Ruby 101 | Jekyll • Simple, blog-aware, static sites">like Jekyll</a>) in NixOS turned out to be a more involved process than I have previously imagined. However, the <a href="https://nixos.org/manual/nixpkgs/stable/#developing-with-ruby" title="Nixpkgs Reference Manual">Nixpkgs reference manual</a> helped me throughout the process.</p>
+<p>First, a new site was created.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[lyuk98@framework:~]$ nix run nixpkgs#jekyll -- new myblog
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>[lyuk98@framework:~]$ cd myblog/
+</span></span></code></pre></div><p><code>Gemfile.lock</code> and <code>gemset.nix</code> were to be generated next. Before that, though, I commented out a line from <code>Gemfile</code> that contains <code>http_parser.rb</code>, as <a href="https://github.com/nix-community/bundix/issues/105#issuecomment-1810677126" title="attribute &#39;\&#34;http_parser.rb\&#34;&#39; missing · Issue #105 · nix-community/bundix">an error occurs</a> otherwise.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[lyuk98@framework:~/myblog]$ sed <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --in-place \
+</span></span><span style="display:flex;"><span>  --expression &#39;s/gem &#34;http_parser.rb&#34;/# gem &#34;http_parser.rb&#34;/g&#39; \
+</span></span><span style="display:flex;"><span>  Gemfile
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>[lyuk98@framework:~/myblog]$ nix run nixpkgs#bundler -- lock
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>[lyuk98@framework:~/myblog]$ nix run nixpkgs#bundix
+</span></span></code></pre></div><p>A shell environment for running Jekyll was then defined. With <code>nix-shell</code>, I was now ready to build my site.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[lyuk98@framework:~/myblog]$ cat &lt;&lt; EOF &gt; shell.nix
+</span></span><span style="display:flex;"><span>with (import &lt;nixpkgs&gt; {}); let
+</span></span><span style="display:flex;"><span>  gems = bundlerEnv {
+</span></span><span style="display:flex;"><span>    name = &#34;myblog&#34;;
+</span></span><span style="display:flex;"><span>    gemdir = ./.;
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>in
+</span></span><span style="display:flex;"><span>mkShell {
+</span></span><span style="display:flex;"><span>  packages = [
+</span></span><span style="display:flex;"><span>    gems
+</span></span><span style="display:flex;"><span>    gems.wrappedRuby
+</span></span><span style="display:flex;"><span>  ];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>EOF
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>[lyuk98@framework:~/myblog]$ nix-shell
+</span></span></code></pre></div><p>To generate a website from my blog posts, they were first copied from the Hugo project. A Markdown document generated upon the site&rsquo;s creation was then removed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[nix-shell:~/myblog]$ cp ~/pages/content/en/blog/* ~/myblog/_posts/
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>[nix-shell:~/myblog]$ cp ~/pages/content/en/about-me.md ~/myblog/_posts/
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>[nix-shell:~/myblog]$ rm _posts/2026-03-18-welcome-to-jekyll.markdown
+</span></span></code></pre></div><p>Date was added to the start of each document&rsquo;s filename, since posts oddly did not appear without one. Furthermore, <code>layout: post</code> was added to each post&rsquo;s front matter.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[nix-shell:~/myblog]$ cd _posts/
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>[nix-shell:~/myblog/_posts]$ for md in *.md; do mv &#34;$md&#34; &#34;2026-03-18-$md&#34;; done
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>[nix-shell:~/myblog/_posts]$ cd -
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>[nix-shell:~/myblog]$ for md in _posts/*.md; do \
+</span></span><span style="display:flex;"><span>  sed \
+</span></span><span style="display:flex;"><span>    --in-place \
+</span></span><span style="display:flex;"><span>    --expression &#34;s/title:/layout: post\ntitle:/g&#34; \
+</span></span><span style="display:flex;"><span>    &#34;$md&#34;; \
+</span></span><span style="display:flex;"><span>done
+</span></span></code></pre></div><p>It was now time to build the whole thing. I ran <code>jekyll build</code> to do so.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[nix-shell:~/myblog]$ jekyll build --profile
+</span></span></code></pre></div><p>When it was done, I was somewhat surprised by the result.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>Build Process Summary: 
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>| PHASE    |   TIME |
+</span></span><span style="display:flex;"><span>+----------+--------+
+</span></span><span style="display:flex;"><span>| RESET    | 0.0000 |
+</span></span><span style="display:flex;"><span>| READ     | 0.0113 |
+</span></span><span style="display:flex;"><span>| GENERATE | 0.0003 |
+</span></span><span style="display:flex;"><span>| RENDER   | 0.5104 |
+</span></span><span style="display:flex;"><span>| CLEANUP  | 0.0007 |
+</span></span><span style="display:flex;"><span>| WRITE    | 0.0017 |
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>Site Render Stats: 
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>| Filename                                                           | Count |    Bytes |  Time |
+</span></span><span style="display:flex;"><span>+--------------------------------------------------------------------+-------+----------+-------+
+</span></span><span style="display:flex;"><span>| minima-2.5.2/_layouts/default.html                                 |    17 | 1256.60K | 0.033 |
+</span></span><span style="display:flex;"><span>| minima-2.5.2/_includes/head.html                                   |    17 |   34.47K | 0.020 |
+</span></span><span style="display:flex;"><span>| minima-2.5.2/_layouts/post.html                                    |    14 | 1178.08K | 0.016 |
+</span></span><span style="display:flex;"><span>| feed.xml                                                           |     1 | 1114.81K | 0.013 |
+</span></span><span style="display:flex;"><span>| minima-2.5.2/_includes/footer.html                                 |    17 |   19.77K | 0.006 |
+</span></span><span style="display:flex;"><span>| minima-2.5.2/_includes/header.html                                 |    17 |   16.82K | 0.005 |
+</span></span><span style="display:flex;"><span>| minima-2.5.2/_includes/social.html                                 |    17 |    6.64K | 0.004 |
+</span></span><span style="display:flex;"><span>| _posts/2026-03-18-Hosting Ente with Terraform, Vault, and NixOS.md |     1 |  113.84K | 0.002 |
+</span></span><span style="display:flex;"><span>| minima-2.5.2/_layouts/home.html                                    |     1 |    3.53K | 0.001 |
+</span></span><span style="display:flex;"><span>| minima-2.5.2/_layouts/page.html                                    |     2 |    1.18K | 0.000 |
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>                    done in 0.529 seconds.
+</span></span><span style="display:flex;"><span> Auto-regeneration: disabled. Use --watch to enable.
+</span></span></code></pre></div><p>It was pretty close to how much Hugo took to generate my site. To be sure, however, I ran <code>hugo build</code> again to see how long the Go-based site generator would take.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>[lyuk98@framework:~/pages]$ ../hugo build --templateMetrics
+</span></span><span style="display:flex;"><span>Start building sites … 
+</span></span><span style="display:flex;"><span>hugo v0.158.0-f41be7959a44108641f1e081adf5c4be7fc1bb63 linux/amd64 BuildDate=2026-03-16T17:42:04Z VendorInfo=gohugoio
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>Template Metrics:
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>       cumulative       average       maximum         
+</span></span><span style="display:flex;"><span>         duration      duration      duration  count  template
+</span></span><span style="display:flex;"><span>       ----------      --------      --------  -----  --------
+</span></span><span style="display:flex;"><span>     752.364974ms   50.157664ms   97.795613ms     15  single.html
+</span></span><span style="display:flex;"><span>      746.99613ms   32.478092ms   93.366651ms     23  _partials/head.html
+</span></span><span style="display:flex;"><span>     414.504195ms   18.021921ms   87.866032ms     23  _partials/templates/schema_json.html
+</span></span><span style="display:flex;"><span>     286.526687ms   71.631671ms  143.170913ms      4  rss.xml
+</span></span><span style="display:flex;"><span>     191.161551ms   47.790387ms   94.426211ms      4  list.html
+</span></span><span style="display:flex;"><span>     160.054027ms  160.054027ms  160.054027ms      1  index.json
+</span></span><span style="display:flex;"><span>      55.725994ms      24.334µs     753.117µs   2290  _markup/render-link.html
+</span></span><span style="display:flex;"><span>        30.4545ms     708.244µs    5.271358ms     43  _partials/post_meta.html
+</span></span><span style="display:flex;"><span>      24.771099ms    1.651406ms    4.521961ms     15  _partials/toc.html
+</span></span><span style="display:flex;"><span>      21.563459ms   21.563459ms   21.563459ms      1  search.html
+</span></span><span style="display:flex;"><span>      17.617011ms     765.957µs    1.980081ms     23  _partials/templates/opengraph.html
+</span></span><span style="display:flex;"><span>      11.829105ms    5.914552ms     8.17769ms      2  _default/terms.html
+</span></span><span style="display:flex;"><span>      11.066758ms     481.163µs    2.162197ms     23  _partials/header.html
+</span></span><span style="display:flex;"><span>       9.148543ms      38.278µs     631.799µs    239  _markup/render-image.html
+</span></span><span style="display:flex;"><span>       8.640652ms    8.640652ms    8.640652ms      1  404.html
+</span></span><span style="display:flex;"><span>       8.296751ms     360.728µs     1.09994ms     23  _partials/_funcs/get-page-images.html
+</span></span><span style="display:flex;"><span>       6.729657ms     292.593µs    1.191821ms     23  _partials/templates/twitter_cards.html
+</span></span><span style="display:flex;"><span>       6.696737ms     446.449µs     883.798µs     15  _partials/anchored_headings.html
+</span></span><span style="display:flex;"><span>       5.614319ms    5.614319ms    5.614319ms      1  _partials/home_info.html
+</span></span><span style="display:flex;"><span>       5.392968ms    5.392968ms    5.392968ms      1  _partials/social_icons.html
+</span></span><span style="display:flex;"><span>       4.933541ms     822.256µs    3.426743ms      6  _partials/svg.html
+</span></span><span style="display:flex;"><span>       4.843961ms     124.204µs     569.818µs     39  _partials/templates/_funcs/get-page-images.html
+</span></span><span style="display:flex;"><span>       2.376216ms     158.414µs     474.253µs     15  _partials/post_nav_links.html
+</span></span><span style="display:flex;"><span>       2.031413ms     119.494µs     280.406µs     17  _partials/breadcrumbs.html
+</span></span><span style="display:flex;"><span>       1.666743ms      25.253µs     144.466µs     66  _partials/author.html
+</span></span><span style="display:flex;"><span>       1.587784ms      69.034µs     603.984µs     23  _partials/footer.html
+</span></span><span style="display:flex;"><span>       1.120081ms     112.008µs     780.924µs     10  _markup/render-table.html.html
+</span></span><span style="display:flex;"><span>        914.008µs      39.739µs     855.377µs     23  _partials/extend_head.html
+</span></span><span style="display:flex;"><span>        510.797µs     510.797µs     510.797µs      1  sitemap.xml
+</span></span><span style="display:flex;"><span>        494.178µs      21.486µs     107.575µs     23  _partials/google_analytics.html
+</span></span><span style="display:flex;"><span>        330.503µs      22.033µs     194.021µs     15  _partials/edit_post.html
+</span></span><span style="display:flex;"><span>        296.279µs      29.627µs      180.17µs     10  _markup/render-table.rss.xml
+</span></span><span style="display:flex;"><span>        245.244µs      24.524µs     150.219µs     10  _markup/render-table.json.json
+</span></span><span style="display:flex;"><span>        176.977µs       4.115µs      20.577µs     43  _partials/cover.html
+</span></span><span style="display:flex;"><span>         98.243µs       6.549µs      38.413µs     15  _partials/post_canonical.html
+</span></span><span style="display:flex;"><span>         74.928µs       4.683µs      13.435µs     16  _partials/translation_list.html
+</span></span><span style="display:flex;"><span>         66.122µs      33.061µs      46.554µs      2  alias.html
+</span></span><span style="display:flex;"><span>         11.791µs         786ns       1.905µs     15  _partials/comments.html
+</span></span><span style="display:flex;"><span>          5.445µs         907ns       1.618µs      6  _partials/extend_footer.html
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>                  │ EN 
+</span></span><span style="display:flex;"><span>──────────────────┼────
+</span></span><span style="display:flex;"><span> Pages            │ 27 
+</span></span><span style="display:flex;"><span> Paginator pages  │  2 
+</span></span><span style="display:flex;"><span> Non-page files   │  0 
+</span></span><span style="display:flex;"><span> Static files     │  1 
+</span></span><span style="display:flex;"><span> Processed images │  0 
+</span></span><span style="display:flex;"><span> Aliases          │  2 
+</span></span><span style="display:flex;"><span> Cleaned          │  0 
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span>Total in 505 ms
+</span></span></code></pre></div><p>As expected, the difference was not something that I would notice. After running both processes a few more times, Jekyll could be seen taking 500 to 520 milliseconds during each build, while Hugo took 480 to 500 milliseconds.</p>
+<p>However, given that&hellip;</p>
+<ul>
+<li>I have configured a custom theme on my Hugo project, and</li>
+<li>the Jekyll site was set up just enough to run properly&hellip;</li>
+</ul>
+<p>I felt it was a somewhat unfair way to compare their performance. The Ruby-based site generator was still technically slower (by about 4%), though, and I think I made a right choice overall.</p>
+<h2 id="reducing-costs">Reducing costs</h2>
+<p>Having <a href="https://standardnotes.com/plans" title="Plans | Standard Notes">a Productivity or Professional plan</a> at Standard Notes was required to enable custom domain integration with Listed (and it is not possible at all now). The Productivity plan, which is what I am currently using, costs $63 per year; since the custom domain integration was pretty much the only thing that kept me from unsubscribing, I could reduce that yearly cost to zero by relying on generous cloud service providers. As a result, I think the amount that I have saved can now be spent on other priorities in my life at the moment.</p>
+<p><del>But Backblaze just <a href="https://www.backblaze.com/blog/backblaze-pricing-and-product-updates/" title="Backblaze Pricing and Product Updates">increased their monthly storage price</a>!</del></p>
+<h1 id="finishing-up">Finishing up</h1>
+<p>The blog is now available at <a href="https://lyuk98.com/">https://lyuk98.com/</a> (and <a href="https://lyuk98.codeberg.page/">https://lyuk98.codeberg.page/</a>, but it redirects to the former anyway). The code is in <a href="https://codeberg.org/lyuk98/pages" title="lyuk98/pages: My personal website - Codeberg.org">my repository</a> at Codeberg, which is mirrored to <a href="https://github.com/lyuk98/pages" title="lyuk98/pages: My personal website - mirror of https://codeberg.org/lyuk98/pages">the GitHub one</a>.</p>
+<p><a href="https://listed.to/@lyuk98" title="이영욱 —">The Listed blog instance</a> is still live at the time of writing, but I am not sure if I will want to take it down at some point in the future. If it is no longer accessible, you know why.</p>
+<p>For now, though, I am glad that the migration turned out well.</p>
+]]></content:encoded></item></channel></rss>

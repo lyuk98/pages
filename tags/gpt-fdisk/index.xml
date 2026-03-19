@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>GPT Fdisk on 이영욱</title><link>https://lyuk98.com/tags/gpt-fdisk/</link><description>Recent content in GPT Fdisk on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Thu, 19 Mar 2026 16:38:20 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/gpt-fdisk/index.xml" rel="self" type="application/rss+xml"/><item><title>Using GPT fdisk to recover corrupted partition table</title><link>https://lyuk98.com/blog/2025/04/using-gpt-fdisk-to-recover-corrupted-partition-table/</link><pubDate>Sun, 13 Apr 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/04/using-gpt-fdisk-to-recover-corrupted-partition-table/</guid><description>I was not able to boot into Linux due to a corrupted partition table, which I tried to fix by using GPT fdisk.</description><content:encoded><![CDATA[<p>I used Windows for a few hours on my laptop, which dual boots Arch Linux and Windows 11, and rebooted into Linux. However, after a while of unusual waiting, it failed to do so. It would have been nice to read the error first, but having previously experienced a similar problem, which once occurred when I first installed Windows 11 on top of the existing Linux installation <s>thanks to anti-cheat software</s>, I felt it has something to do with a damaged partition table.</p>
+<h1 id="preparing-fedora">Preparing Fedora</h1>
+<p>On Windows, I used <a href="https://fedoraproject.org/workstation/download#fedora-media-writer" title="Fedora Workstation | The Fedora Project">Fedora Media Writer</a> to write Fedora 41 into a blank microSD card and boot into it.</p>
+<p><img alt="Fedora Media Writer on the page named &ldquo;Write Options&rdquo;. Three selections, which are &ldquo;Version&rdquo;, &ldquo;Hardware Architecture&rdquo;, and &ldquo;USB Drive&rdquo;, are set with values &ldquo;41&rdquo;, &ldquo;Intel/AMD 64bit&rdquo;, and &ldquo;SMI USB DISK (63.9 GB)&rdquo;, respectively. A checkbox with a label &ldquo;Delete download after writing&rdquo; is unchecked. Bottom row of the window has two buttons labelled &ldquo;Previous&rdquo; and &ldquo;Write&rdquo;." loading="lazy" src="https://images.lyuk98.com/c785dd37-f170-4f89-aa4c-ddd2d7b786c2.avif" title="Writing Fedora 41 into a microSD card"></p>
+<p>The device rebooted, and Fedora was up. I connected to the internet and installed GPT fdisk.</p>
+<pre tabindex="0"><code>liveuser@localhost-live:~$ sudo dnf install gdisk
+</code></pre><h1 id="gpt-fdisk-to-the-rescue">GPT fdisk to the rescue</h1>
+<p>With <code>gdisk</code> ready, it was time to see what went wrong.</p>
+<pre tabindex="0"><code>liveuser@localhost-live:~$ sudo gdisk /dev/nvme0n1
+GPT fdisk (gdisk) version 1.0.10
+
+Caution! After loading partitions, the CRC doesn&#39;t check out!
+Warning! Main partition table CRC mismatch! Loaded backup partition table
+instead of main partition table!
+
+Warning! One or more CRCs don&#39;t match. You should repair the disk!
+Main header: OK
+Backup header: OK
+Main partition table: ERROR
+Backup partition table: OK
+
+Partition table scan:
+  MBR: protective
+  BSD: not present
+  APM: not present
+  GPT: damaged
+
+****************************************************************************
+Caution: Found protective or hybrid MBR and corrupt GPT. Using GPT, but disk
+verification and recovery are STRONGLY recommended.
+****************************************************************************
+
+Command (? for help): 
+</code></pre><p>The output confirmed my suspicion: the partition table was damaged. Before doing anything further, I made sure that I know what I am doing.</p>
+<pre tabindex="0"><code>Command (? for help): ?
+b	back up GPT data to a file
+c	change a partition&#39;s name
+d	delete a partition
+i	show detailed information on a partition
+l	list known partition types
+n	add a new partition
+o	create a new empty GUID partition table (GPT)
+p	print the partition table
+q	quit without saving changes
+r	recovery and transformation options (experts only)
+s	sort partitions
+t	change a partition&#39;s type code
+v	verify disk
+w	write table to disk and exit
+x	extra functionality (experts only)
+?	print this menu
+
+Command (? for help): 
+</code></pre><p>Recovery from this problem was what I was looking for, so I chose <code>r</code>.</p>
+<pre tabindex="0"><code>Command (? for help): r
+
+Recovery/transformation command (? for help): 
+</code></pre><p><a href="https://web.archive.org/web/20250412173417/https%3A%2F%2Fwiki.archlinux.org%2Ftitle%2FGPT_fdisk#Recover_GPT_header" title="GPT fdisk - ArchWiki">The ArchWiki&rsquo;s guide</a> on recovery exists, but it only pertained to the recovery of headers. What I actually needed was the recovery of the partition table, though, so I first looked at available options.</p>
+<pre tabindex="0"><code>Recovery/transformation command (? for help): ?
+b	use backup GPT header (rebuilding main)
+c	load backup partition table from disk (rebuilding main)
+d	use main GPT header (rebuilding backup)
+e	load main partition table from disk (rebuilding backup)
+f	load MBR and build fresh GPT from it
+g	convert GPT into MBR and exit
+h	make hybrid MBR
+i	show detailed information on a partition
+l	load partition data from a backup file
+m	return to main menu
+o	print protective MBR data
+p	print the partition table
+q	quit without saving changes
+t	transform BSD disklabel partition
+v	verify disk
+w	write table to disk and exit
+x	extra functionality (experts only)
+?	print this menu
+
+Recovery/transformation command (? for help): 
+</code></pre><p>Upon reading, it was obvious that <code>c</code> is the operation I needed to do.</p>
+<pre tabindex="0"><code>Recovery/transformation command (? for help): c
+Warning! This will probably do weird things if you&#39;ve converted an MBR to
+GPT form and haven&#39;t yet saved the GPT! Proceed? (Y/N): y
+
+Recovery/transformation command (? for help): 
+</code></pre><p>With the changes made, it was time to actually write them into the storage.</p>
+<pre tabindex="0"><code>Recovery/transformation command (? for help): w
+
+Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
+PARTITIONS!!
+
+Do you want to proceed? (Y/N): y
+OK; writing new GUID partition table (GPT) to /dev/nvme0n1.
+The operation has completed successfully.
+liveuser@localhost-live:~$ 
+</code></pre><p>I then rebooted the system. Linux successfully booted up without any further action.</p>
+<h1 id="final-thoughts">Final thoughts</h1>
+<p>Now that this problem happened twice, I started wondering what messed up the partition table. Something could have happened during the installation of updates to Windows, but I was not able to find anything that supports this claim.</p>
+<p>Nevertheless, I decided to back up the partition table. I installed the command-line utility and successfully created the backup.</p>
+<pre tabindex="0"><code>[lyuk98@framework ~]$ sudo pacman -S gptfdisk
+[lyuk98@framework ~]$ sudo sgdisk --backup=/tmp/nvme0n1 /dev/nvme0n1
+The operation has completed successfully.
+</code></pre><p>With other problems in hand, I did not bother to take a deeper look into this matter. Perhaps I will, if/when this problem happens again one day.</p>
+]]></content:encoded></item></channel></rss>

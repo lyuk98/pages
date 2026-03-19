@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>PeerTube on 이영욱</title><link>https://lyuk98.com/tags/peertube/</link><description>Recent content in PeerTube on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Thu, 19 Mar 2026 16:38:20 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/peertube/index.xml" rel="self" type="application/rss+xml"/><item><title>Self-hosting PeerTube with Tailscale</title><link>https://lyuk98.com/blog/2025/03/self-hosting-peertube-with-tailscale/</link><pubDate>Thu, 27 Mar 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/03/self-hosting-peertube-with-tailscale/</guid><description>I tried self-hosting PeerTube in a Tailscale network.</description><content:encoded><![CDATA[<p>I have always wanted a dedicated space for my videos that are not necessarily meant to be shared. Even though I have stored them locally, I also wanted the convenience of accessing it from anywhere. That led me to self-hosting, with <a href="https://joinpeertube.org">PeerTube</a> chosen as a platform to host my videos. I also thought it could be a chance to learn new things.</p>
+<hr>
+<h1 id="preparing-the-hardware">Preparing the hardware</h1>
+<p>I brought a gifted Raspberry Pi 4 and paired it with a five-terabyte external hard drive. A USB hub with an external power supply for the storage was also considered, but I later decided not to use it. I knew I was in need of a serious upgrade to have a decent video streaming website, but I nevertheless decided to try it out.</p>
+<h1 id="preparing-the-operating-system">Preparing the operating system</h1>
+<h2 id="problem-with-raspberry-pi-os-and-debian">Problem with Raspberry Pi OS (and Debian)</h2>
+<p>As of the time of writing, the current version of Debian is 12 &ldquo;bookworm&rdquo;. I followed the steps below with Raspberry Pi OS, which is based on the current version of Debian, but later faced a problem where the version of Podman was not high enough to support Quadlet. I needed at least 4.4, and while there was a <a href="https://software.opensuse.org/download/package?package=podman&amp;project=home:alvistack">third-party repository</a> for recent versions of the software, It was only available for the <code>x86_64</code> variant. <a href="https://nixos.org/">Nix</a> was also considered, but I found its learning curve to be too steep. After trying to partially use repositories for Debian 13 &ldquo;trixie&rdquo; without success, I went back to square one.</p>
+<h2 id="note-on-using-ubuntu-2404">Note on using Ubuntu 24.04</h2>
+<p>Later in this post, I found out that at least Podman 5.0 is needed for my needs, which Ubuntu 24.04 does not offer, and I had to do a release upgrade. If anyone is trying to follow the steps I took, please use a distribution which offers Podman with versions 5.0 or above.</p>
+<h2 id="setting-up-ubuntu">Setting up Ubuntu</h2>
+<p>I decided to wipe everything and start afresh with Ubuntu Server 24.04. I opened Raspberry Pi Imager to write a fresh installation.</p>
+<p><img alt="image" loading="lazy" src="https://images.lyuk98.com/66039934-f8f1-491e-bf72-74f7dd574599.avif"></p>
+<p>I switched the device on and connected to it via SSH.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[lyuk98@framework ~]$ ssh pi@raspberrypi.local
+</span></span></code></pre></div><p>When the connection was successful, I first updated the system.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>pi@raspberrypi:~$ sudo apt update
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ sudo apt upgrade
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ sudo systemctl reboot
+</span></span></code></pre></div><h2 id="relocating-home">Relocating <code>/home</code></h2>
+<p>To allow a greater amount of storage for containers, I relocated <code>/home</code> to the external storage. I formatted the existing partition with Btrfs for transparent compression.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[lyuk98@framework ~]$ sudo mkfs.btrfs -f /dev/sdb1
+</span></span></code></pre></div><p>After the storage was ready, everything was copied from the existing home directory.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>pi@raspberrypi:~$ sudo mount /dev/sda1 /mnt
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ sudo cp -rp /home/* /mnt
+</span></span></code></pre></div><p>I then edited <code>/etc/fstab</code> to add the new mount point, followed by a reboot.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>pi@raspberrypi:~$ sudoedit /etc/fstab
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ tail -1 /etc/fstab
+</span></span><span style="display:flex;"><span>/dev/sda1 /home btrfs defaults,rw,compress=zstd 0 0
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ sudo systemctl reboot
+</span></span></code></pre></div><h1 id="setting-up-tailscale">Setting up Tailscale</h1>
+<p>Using an external service like <a href="https://tailscale.com/">Tailscale</a> for a fully self-hosted application initially did not make sense to me, but I was later amazed by its potential. I could achieve the convenience of accessing the service from anywhere, while still keeping my devices off of the internet.</p>
+<p>First, Tailscale&rsquo;s repository was downloaded.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>pi@raspberrypi:~$ curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/noble.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg &gt; /dev/null
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/noble.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
+</span></span></code></pre></div><p>Tailscale was then installed and started, <a href="https://tailscale.com/kb/1193/tailscale-ssh">with an SSH server running</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>pi@raspberrypi:~$ sudo apt update
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ sudo apt install tailscale
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ sudo tailscale up --ssh
+</span></span></code></pre></div><p>I wondered if the key should be placed in <code>/etc/apt/keyrings</code> instead, but I noticed that installing <code>tailscale</code> also installs its dependency <code>tailscale-archive-keyring</code>, effectively taking over what was manually downloaded.</p>
+<p>Tailscale was also set up on my personal computer.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[lyuk98@framework ~]$ sudo pacman -S tailscale
+</span></span><span style="display:flex;"><span>[lyuk98@framework ~]$ sudo systemctl enable --now tailscaled.service
+</span></span><span style="display:flex;"><span>[lyuk98@framework ~]$ sudo tailscale up
+</span></span></code></pre></div><p>With both devices up, SSH connections could now be made via tailnet. Since <a href="https://tailscale.com/kb/1082/firewall-ports">it is not needed</a> to open any ports, I set up Uncomplicated Firewall to block all incoming traffic. I, however, did allow SSH connections from local network just in case.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>pi@raspberrypi:~$ sudo ufw enable
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ sudo ufw default allow outgoing
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ sudo ufw default deny incoming
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ sudo ufw limit from 192.168.0.0/16 to any app OpenSSH
+</span></span></code></pre></div><h2 id="adding-tags-and-editing-access-rules">Adding tags and editing access rules</h2>
+<p>The default access control policy was enough for simply accessing Raspberry Pi via SSH, but I had to make some changes to accommodate web servers. Having no expiration date by default, I intended to use OAuth clients for deployed containers instead of auth keys. Using an OAuth client for my purpose required <code>auth_keys</code> scope to be defined and one or more tags to be assigned to it, however, so I edited the <a href="https://login.tailscale.com/admin/acls/file">access control rules</a> to do so.</p>
+<p>I first declared some tags with their owners. They were to be used by respective services later on.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Define the tags which can be applied to devices and by which users.
+</span></span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;tagOwners&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;tag:caddy&#34;</span><span style="color:#f92672">:</span>     [<span style="color:#e6db74">&#34;autogroup:admin&#34;</span>],
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;tag:ci&#34;</span><span style="color:#f92672">:</span>        [<span style="color:#e6db74">&#34;autogroup:admin&#34;</span>],
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;tag:peertube&#34;</span><span style="color:#f92672">:</span>  [<span style="color:#e6db74">&#34;autogroup:admin&#34;</span>],
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;tag:webserver&#34;</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;autogroup:admin&#34;</span>],
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>On top of new tags, several rules for Tailscale SSH were also defined.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Define users and devices that can use Tailscale SSH.
+</span></span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ssh&#34;</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Allow all users to SSH into their own devices in check mode.
+</span></span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Comment this section out if you want to define specific restrictions.
+</span></span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;action&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;check&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;src&#34;</span><span style="color:#f92672">:</span>    [<span style="color:#e6db74">&#34;autogroup:member&#34;</span>],
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;dst&#34;</span><span style="color:#f92672">:</span>    [<span style="color:#e6db74">&#34;autogroup:self&#34;</span>],
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;users&#34;</span><span style="color:#f92672">:</span>  [<span style="color:#e6db74">&#34;autogroup:nonroot&#34;</span>, <span style="color:#e6db74">&#34;root&#34;</span>],
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Allow administrators to access web servers in check mode.
+</span></span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Both privileged and unprivileged users are accessible.
+</span></span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;action&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;check&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;src&#34;</span><span style="color:#f92672">:</span>    [<span style="color:#e6db74">&#34;autogroup:admin&#34;</span>],
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;dst&#34;</span><span style="color:#f92672">:</span>    [<span style="color:#e6db74">&#34;tag:webserver&#34;</span>],
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;users&#34;</span><span style="color:#f92672">:</span>  [<span style="color:#e6db74">&#34;autogroup:nonroot&#34;</span>, <span style="color:#e6db74">&#34;root&#34;</span>],
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Allow CI/CD pipeline to access web servers.
+</span></span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Only non-root users are accessible.
+</span></span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;action&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;accept&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;src&#34;</span><span style="color:#f92672">:</span>    [<span style="color:#e6db74">&#34;tag:ci&#34;</span>],
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;dst&#34;</span><span style="color:#f92672">:</span>    [<span style="color:#e6db74">&#34;tag:webserver&#34;</span>],
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;users&#34;</span><span style="color:#f92672">:</span>  [<span style="color:#e6db74">&#34;autogroup:nonroot&#34;</span>],
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>With the tags in place, I tagged the Raspberry Pi as a web server by running <code>tailscale up</code> once more with an extra option. It was later to be accessed by runners for GitHub Actions with the tag <code>tag:ci</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>pi@raspberrypi:~$ sudo tailscale up --advertise-tags tag:webserver --ssh
+</span></span></code></pre></div><h1 id="setting-up-reverse-proxy-with-caddy">Setting up reverse proxy with Caddy</h1>
+<p>I wished to use my custom domain to access my PeerTube instance, but even after some time of searching, I could not fully understand how I can get HTTPS certificates for the domain. I then came across <a href="https://caddyserver.com/">Caddy</a>, which was mentioned at <a href="https://youtu.be/Vt4PDUXB_fg">Tailscale&rsquo;s own video</a> on how to achieve exactly what I wanted to do.</p>
+<h2 id="updating-dns-records">Updating DNS records</h2>
+<p>To enable HTTPS with Caddy, I had to enable API access from the domain registrar as <a href="https://youtu.be/Vt4PDUXB_fg">the aforementioned video</a> implied. I own my domain in Namecheap, but while I can do so from there, I had to whitelist IP addresses of who can access the API. It was not an option for me, so I looked for alternative solutions.</p>
+<p><a href="https://blog.gurucomputing.com.au/Reverse%20Proxies%20with%20Caddy/Adding%20Acme%20Certification/">A blog post</a>, as well as the previous video by Tailscale, used Cloudflare to manage their DNS records. I did not want to transfer my domain, but I later found <a href="https://www.reddit.com/r/selfhosted/comments/129rxhq/comment/jepsy82/">a middle ground</a>, where I can simply change the nameserver to Cloudflare&rsquo;s while keeping the domain with Namecheap.</p>
+<p>I went to <a href="https://dash.cloudflare.com/">Cloudflare dashboard</a> to connect my domain.</p>
+<p><img alt="image" loading="lazy" src="https://images.lyuk98.com/370c03a4-7240-4f0e-a395-1a507bf13275.avif"></p>
+<p>Choosing &ldquo;Quick scan for DNS records&rdquo; upon connection brought almost all the records from the domain. I made sure no records were incorrect or missing and <a href="https://www.namecheap.com/support/knowledgebase/article.aspx/767/10/how-to-change-dns-for-a-domain/">changed the nameserver</a>.</p>
+<p><img alt="image" loading="lazy" src="https://images.lyuk98.com/2527ab5a-9f92-4afa-b68e-f0edde907643.avif"></p>
+<p>An <a href="https://dash.cloudflare.com/profile/api-tokens">API token</a> was then created for use with Caddy later.</p>
+<p><img alt="image" loading="lazy" src="https://images.lyuk98.com/1ba4507d-13fc-4b80-8e82-0086005af57c.avif"></p>
+<p>I then added a CNAME record, using a wildcard to direct any matches to the Caddy server.</p>
+<p><img alt="image" loading="lazy" src="https://images.lyuk98.com/a9191b6b-2cfe-4727-82ee-3114bc3651ff.avif"></p>
+<h2 id="preparing-podman">Preparing Podman</h2>
+<p>Since I wanted to deploy Caddy in a containerised environment, I made sure Podman was installed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>pi@raspberrypi:~$ sudo apt install podman
+</span></span></code></pre></div><p>I then created a user specifically for Caddy.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>pi@raspberrypi:~$ sudo useradd -m -s /bin/bash caddy
+</span></span></code></pre></div><p>It was not necessary to add <code>subuid</code> and <code>subgid</code> ranges for the new user, as <code>/etc/subuid</code> and <code>/etc/subgid</code> were already modified upon user creation.</p>
+<p>To allow rootless containers to operate even after the user logs out, <code>loginctl enable-linger</code> was issued on the new user.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>caddy@raspberrypi:~$ loginctl enable-linger
+</span></span></code></pre></div><h2 id="defining-containers-with-quadlet">Defining containers with Quadlet</h2>
+<p>Since I used Podman, the idea of writing container definitions as systemd unit files was interesting to me. After <a href="https://www.redhat.com/en/blog/quadlet-podman">being introduced with it</a>, I decided to write Quadlet files and leverage systemd&rsquo;s service management.</p>
+<h3 id="preparing-workspace">Preparing workspace</h3>
+<p>I forked the <a href="https://github.com/caddyserver/caddy">upstream repository</a> and cloned the forked one, as I decided to write files there.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[lyuk98@framework ~]$ git clone https://github.com/lyuk98/caddy.git
+</span></span></code></pre></div><p>After entering the directory, I switched to a new branch <code>deployment</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[lyuk98@framework ~]$ cd caddy/
+</span></span><span style="display:flex;"><span>[lyuk98@framework caddy]$ git switch -c deployment v2.9.1
+</span></span></code></pre></div><p>Lastly, the directory to store Quadlet files was created.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[lyuk98@framework caddy]$ mkdir -p containers/systemd/
+</span></span></code></pre></div><p>I then went to repository&rsquo;s settings to add secrets. The following secrets were defined:</p>
+<ul>
+<li><code>CLOUDFLARE_API_TOKEN</code>: an API token created from the Cloudflare dashboard. It was to be used by Caddy later.</li>
+<li><code>TS_USER</code> and <code>TS_MACHINE</code>: destination user and machine from the tailnet. They are used as <code>ssh $TS_USER@$TS_MACHINE</code> to access the deployment target.</li>
+<li><code>TS_OAUTH_CLIENT_ID</code> and <code>TS_OAUTH_SECRET</code>: OAuth client ID and secret for the GitHub Actions runner. The client was created from <a href="https://login.tailscale.com/admin/settings/oauth">the tailnet settings</a>, with the scope of <code>auth_keys</code> and the tag <code>tag:ci</code> assigned.</li>
+<li><code>TS_AUTHKEY</code>: OAuth client secret for Caddy. The client was created with the scope of <code>auth_keys</code> and the tag of <code>tag:caddy</code>.</li>
+</ul>
+<p><img alt="image" loading="lazy" src="https://images.lyuk98.com/50ed5053-59ac-4011-89c2-7dde25959f34.avif"></p>
+<h3 id="writing-quadlet-files">Writing Quadlet files</h3>
+<p><a href="https://tailscale.com/kb/1282/docker">The documentation</a> on using Docker containers with Tailscale provided <a href="https://tailscale.com/kb/1282/docker#code-examples">an example</a> where Nginx uses Tailscale&rsquo;s existing network stack. I wanted to achieve the same with Caddy, so I first wrote <a href="https://github.com/lyuk98/caddy/blob/21dc9a4ac2844d09d8ad4530f1695bcb2bd9a1d6/containers/systemd/tailscaled.container">the container definition</a> for Tailscale at <code>containers/systemd/tailscaled.container</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[Unit]
+</span></span><span style="display:flex;"><span>PartOf=caddy.service
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[Container]
+</span></span><span style="display:flex;"><span>ContainerName=tailscaled
+</span></span><span style="display:flex;"><span>Image=docker.io/tailscale/tailscale:latest
+</span></span><span style="display:flex;"><span>EnvironmentFile=.env
+</span></span><span style="display:flex;"><span>Environment=TS_HOSTNAME=caddy
+</span></span><span style="display:flex;"><span>Environment=TS_EXTRA_ARGS=--advertise-tags=tag:caddy
+</span></span><span style="display:flex;"><span>Environment=TS_TAILSCALED_EXTRA_ARGS=--state=mem:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[Service]
+</span></span><span style="display:flex;"><span>Restart=always
+</span></span></code></pre></div><p>The container was to accept <code>.env</code> that GitHub Actions would write environment variables <code>CLOUDFLARE_API_TOKEN</code> and <code>TS_AUTHKEY</code> to. I also added <code>--state=mem:</code> so that the ephemeral node gets removed from the tailnet as soon as the container stops.</p>
+<p>Following <code>tailscaled.container</code>, I worked on <a href="https://github.com/lyuk98/caddy/blob/21dc9a4ac2844d09d8ad4530f1695bcb2bd9a1d6/containers/systemd/caddy.container">Caddy itself</a> at <code>containers/systemd/caddy.container</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[Unit]
+</span></span><span style="display:flex;"><span>Description=Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS
+</span></span><span style="display:flex;"><span>Requires=tailscaled.service
+</span></span><span style="display:flex;"><span>After=tailscaled.service
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[Container]
+</span></span><span style="display:flex;"><span>ContainerName=caddy
+</span></span><span style="display:flex;"><span>Image=quay.io/fariszr/caddy-dns:cloudflare
+</span></span><span style="display:flex;"><span>Network=container:tailscaled
+</span></span><span style="display:flex;"><span>EnvironmentFile=.env
+</span></span><span style="display:flex;"><span>Volume=%h/caddy/conf:/etc/caddy:Z
+</span></span><span style="display:flex;"><span>Volume=%h/caddy/data:/data
+</span></span><span style="display:flex;"><span>Volume=%h/caddy/config:/config
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[Service]
+</span></span><span style="display:flex;"><span>Restart=always
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[Install]
+</span></span><span style="display:flex;"><span>WantedBy=multi-user.target default.target
+</span></span></code></pre></div><p>Caddy offers <a href="https://hub.docker.com/_/caddy">Docker images</a> like several other services do. With the server&rsquo;s modular architecture, however, I had to separately include the necessary <a href="https://github.com/caddy-dns/cloudflare">DNS provider module</a>, which involves creating a custom build of Caddy with <code>xcaddy</code>. Fortunately, <a href="https://github.com/FarisZR/caddy-dns-OCI/">someone made images</a> with the module included, so all I had to do was to use one of their images instead of the official ones.</p>
+<h2 id="running-caddy">Running Caddy</h2>
+<p>I first set the environment variables, with their names matching the secrets&rsquo;, and saved some of them into a file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[lyuk98@framework caddy]$ echo &#34;TS_AUTHKEY=$TS_AUTHKEY&#34; &gt; containers/systemd/.env
+</span></span><span style="display:flex;"><span>[lyuk98@framework caddy]$ echo &#34;CLOUDFLARE_API_TOKEN=$CLOUDFLARE_API_TOKEN&#34; &gt;&gt; containers/systemd/.env
+</span></span></code></pre></div><p>A command was issued via SSH, ensuring necessary directories are present.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[lyuk98@framework caddy]$ ssh caddy@raspberrypi &#34;mkdir -p -- ~/caddy/conf ~/caddy/data ~/caddy/config ~/.config/containers/systemd&#34;
+</span></span></code></pre></div><p>The <code>Caddyfile</code> was then created, which only happens when the file does not exist.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[lyuk98@framework caddy]$ ssh caddy@raspberrypi &#34;test -f ~/caddy/conf/Caddyfile || touch ~/caddy/conf/Caddyfile&#34;
+</span></span></code></pre></div><p>Quadlet files, as well as <code>.env</code>, were copied to the server.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[lyuk98@framework caddy]$ scp -r containers/systemd/. caddy@raspberrypi:~/.config/containers/systemd/
+</span></span></code></pre></div><p>After issuing <code>systemctl --user reload-daemon</code>, the container was started with the generated unit.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[lyuk98@framework caddy]$ ssh caddy@raspberrypi &#34;systemctl --user daemon-reload&#34;
+</span></span><span style="display:flex;"><span>[lyuk98@framework caddy]$ ssh caddy@raspberrypi &#34;systemctl --user start caddy.service&#34;
+</span></span></code></pre></div><p>I edited <code>Caddyfile</code> to make use of the DNS module for Cloudflare.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>caddy@raspberrypi:~$ nano ~/caddy/conf/Caddyfile
+</span></span><span style="display:flex;"><span>caddy@raspberrypi:~$ head -6 ~/caddy/conf/Caddyfile
+</span></span><span style="display:flex;"><span>(cloudflare) {
+</span></span><span style="display:flex;"><span>	tls {
+</span></span><span style="display:flex;"><span>		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+</span></span><span style="display:flex;"><span>		resolvers 1.1.1.1 1.0.0.1
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>caddy@raspberrypi:~$ systemctl --user restart caddy.service
+</span></span></code></pre></div><h2 id="automating-deployment-with-github-actions">Automating deployment with GitHub Actions</h2>
+<p>To automatically issue commands above and deploy Caddy every time I push changes, I created <a href="https://github.com/lyuk98/caddy/blob/21dc9a4ac2844d09d8ad4530f1695bcb2bd9a1d6/.github/workflows/deploy.yml">a workflow</a> at <code>.github/workflows/deploy.yml</code>. As I pushed the commits, the runner automatically ran the script.</p>
+<p><img alt="image" loading="lazy" src="https://images.lyuk98.com/f62df93b-2eb3-40cd-8d4c-bb1d8328e329.avif"></p>
+<h1 id="deploying-peertube">Deploying PeerTube</h1>
+<p>With so much I have learned to reach this far, I was hopeful that deploying PeerTube will not be as hard (but it actually was).</p>
+<h2 id="preparing-the-repository">Preparing the repository</h2>
+<p>Just like what I did with Caddy, I forked the <a href="https://github.com/Chocobozzz/PeerTube">upstream repository</a> and set up the environment.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[lyuk98@framework ~]$ git clone https://github.com/lyuk98/PeerTube.git
+</span></span><span style="display:flex;"><span>[lyuk98@framework ~]$ cd PeerTube/
+</span></span><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ git switch -c deployment origin/master
+</span></span><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ mkdir -p containers/systemd/
+</span></span></code></pre></div><p>The following secrets were then added:</p>
+<ul>
+<li><code>POSTGRES_USER</code> and <code>POSTGRES_PASSWORD</code>: username and password of the PeerTube&rsquo;s PostgreSQL database.</li>
+<li><code>PEERTUBE_WEBSERVER_HOSTNAME</code>: domain name to access the service with, such as <code>peertube.tailnet.example.com</code>.</li>
+<li><code>PEERTUBE_SECRET</code>: a secret random value. One can be generated with <code>openssl rand -hex 32</code>.</li>
+<li><code>PEERTUBE_ADMIN_EMAIL</code>: email of the administrator account.</li>
+<li><code>TS_USER</code> and <code>TS_MACHINE</code>: destination user and machine from the tailnet.</li>
+<li><code>TS_OAUTH_CLIENT_ID</code> and <code>TS_OAUTH_SECRET</code>: OAuth client ID and secret for the GitHub Actions runner, with the tag <code>tag:ci</code>.</li>
+<li><code>TS_AUTHKEY</code>: OAuth client secret for PeerTube, having a tag of <code>tag:peertube</code>.</li>
+</ul>
+<p><img alt="image" loading="lazy" src="https://images.lyuk98.com/8ee75d33-9a80-4be6-acc2-df101dd97075.avif"></p>
+<h2 id="defining-containers">Defining containers</h2>
+<p>PeerTube provides <code>docker-compose.yml</code> for <a href="https://docs.joinpeertube.org/install/docker">Docker installation</a>, so I started from there. I studied the <a href="https://github.com/Chocobozzz/PeerTube/blob/ae7676f2093008a184557feeff24d90934224c9a/support/docker/production/docker-compose.yml">Compose file</a> and manually converted it as <a href="https://github.com/lyuk98/PeerTube/tree/f21055fd51504beee4738454a7879d1ec802b970/containers/systemd">Quadlet files</a>.</p>
+<p>I first created a pod <code>peertube.pod</code> to share the same network namespace among containers. It was to allow each container to reach others via <code>localhost</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[Unit]
+</span></span><span style="display:flex;"><span>Description=ActivityPub-federated video streaming platform
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[Pod]
+</span></span><span style="display:flex;"><span>PodName=peertube
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[Install]
+</span></span><span style="display:flex;"><span>WantedBy=multi-user.target default.target
+</span></span></code></pre></div><p>The Tailscale container <code>tailscaled.container</code> was then added to the pod. Since the host system supported the use of <code>/dev/net/tun</code>, I mounted it to the container, added <code>CAP_NET_ADMIN</code> capability, and disabled userspace networking. <code>PartOf</code> option was used to stop the container upon the pod&rsquo;s termination.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[Unit]
+</span></span><span style="display:flex;"><span>PartOf=peertube-pod.service
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[Container]
+</span></span><span style="display:flex;"><span>ContainerName=tailscaled
+</span></span><span style="display:flex;"><span>Image=docker.io/tailscale/tailscale:stable
+</span></span><span style="display:flex;"><span>Pod=peertube.pod
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AddCapability=CAP_NET_ADMIN
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>EnvironmentFile=.env
+</span></span><span style="display:flex;"><span>Environment=TS_HOSTNAME=peertube
+</span></span><span style="display:flex;"><span>Environment=TS_EXTRA_ARGS=--advertise-tags=tag:peertube
+</span></span><span style="display:flex;"><span>Environment=TS_TAILSCALED_EXTRA_ARGS=--state=mem:
+</span></span><span style="display:flex;"><span>Environment=TS_USERSPACE=false
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Volume=/dev/net/tun:/dev/net/tun
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[Service]
+</span></span><span style="display:flex;"><span>Restart=always
+</span></span></code></pre></div><p>Other containers and named volumes were created by closely following the <a href="https://github.com/Chocobozzz/PeerTube/blob/ae7676f2093008a184557feeff24d90934224c9a/support/docker/production/docker-compose.yml">Compose file</a>.</p>
+<p>Since Caddy was to serve traffic over HTTPS, <a href="https://github.com/lyuk98/PeerTube/commit/f21055fd51504beee4738454a7879d1ec802b970#diff-be9f96b9b1de67284047e610821493f9a5bec86bfcdf81a7d8d6e7904474c186">the Nginx configuration was edited</a> to remove anything pertaining to HTTPS.</p>
+<p><img alt="image" loading="lazy" src="https://images.lyuk98.com/1b28e687-4e0b-4ee9-82d6-1a83affbf5ec.avif"></p>
+<h2 id="running-peertube">Running PeerTube</h2>
+<p>I created a new user for PeerTube before running it on the server.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>pi@raspberrypi:~$ sudo useradd -m -s /bin/bash peertube
+</span></span><span style="display:flex;"><span>peertube@raspberrypi:~$ loginctl enable-linger
+</span></span></code></pre></div><p>I first set the environment variables like the secrets mentioned above. Using SSH, I then ensured necessary directories exist.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ CMDLINE=&#34;mkdir -p --&#34;
+</span></span><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ CMDLINE+=&#34; ~/docker-volume/nginx&#34;
+</span></span><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ CMDLINE+=&#34; ~/docker-volume/data&#34;
+</span></span><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ CMDLINE+=&#34; ~/docker-volume/certbot/conf&#34;
+</span></span><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ CMDLINE+=&#34; ~/docker-volume/config&#34;
+</span></span><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ CMDLINE+=&#34; ~/docker-volume/db&#34;
+</span></span><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ CMDLINE+=&#34; ~/docker-volume/redis&#34;
+</span></span><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ CMDLINE+=&#34; ~/docker-volume/opendkim/keys&#34;
+</span></span><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ CMDLINE+=&#34; ~/.config/containers/systemd&#34;
+</span></span><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ ssh $TS_USER@$TS_MACHINE &#34;$CMDLINE&#34;
+</span></span></code></pre></div><p>A file containing environment variables was created from <a href="https://github.com/lyuk98/PeerTube/blob/905641c1025d4a9e7d4a3ce736a11392f2de7bef/support/docker/production/.env">the template</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ sed \
+</span></span><span style="display:flex;"><span>    -e &#34;s/&lt;MY POSTGRES USERNAME&gt;/$POSTGRES_USER/g&#34; \
+</span></span><span style="display:flex;"><span>    -e &#34;s/&lt;MY POSTGRES PASSWORD&gt;/$POSTGRES_PASSWORD/g&#34; \
+</span></span><span style="display:flex;"><span>    -e &#34;s/&lt;MY DOMAIN&gt;/$PEERTUBE_WEBSERVER_HOSTNAME/g&#34; \
+</span></span><span style="display:flex;"><span>    -e &#34;s/&lt;MY PEERTUBE SECRET&gt;/$PEERTUBE_SECRET/g&#34; \
+</span></span><span style="display:flex;"><span>    -e &#34;s/&lt;MY EMAIL ADDRESS&gt;/$PEERTUBE_ADMIN_EMAIL/g&#34; \
+</span></span><span style="display:flex;"><span>    -e &#34;s/\$POSTGRES_USER/$POSTGRES_USER/g&#34; \
+</span></span><span style="display:flex;"><span>    -e &#34;s/\$POSTGRES_PASSWORD/$POSTGRES_PASSWORD/g&#34; \
+</span></span><span style="display:flex;"><span>    support/docker/production/.env \
+</span></span><span style="display:flex;"><span>    &gt; containers/systemd/.env
+</span></span><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ sed -i \
+</span></span><span style="display:flex;"><span>    -e &#34;s/#PEERTUBE_WEBSERVER_HTTPS=false/PEERTUBE_WEBSERVER_HTTPS=true/g&#34; \
+</span></span><span style="display:flex;"><span>    -e &#34;s/#PEERTUBE_WEBSERVER_PORT=9000/PEERTUBE_WEBSERVER_PORT=443/g&#34; \
+</span></span><span style="display:flex;"><span>    -e &#34;s/PEERTUBE_DB_HOSTNAME=postgres/PEERTUBE_DB_HOSTNAME=localhost/g&#34; \
+</span></span><span style="display:flex;"><span>    -e &#34;s/PEERTUBE_SMTP_HOSTNAME=postfix/PEERTUBE_SMTP_HOSTNAME=localhost/g&#34; \
+</span></span><span style="display:flex;"><span>    containers/systemd/.env
+</span></span><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ echo &#34;PEERTUBE_REDIS_HOSTNAME=localhost&#34; &gt;&gt; containers/systemd/.env
+</span></span><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ echo &#34;TS_AUTHKEY=$TS_AUTHKEY&#34; &gt;&gt; containers/systemd/.env
+</span></span></code></pre></div><p>Necessary files were then copied to the server and the pod was seemingly ready to be started.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ scp support/nginx/peertube $TS_USER@$TS_MACHINE:~/docker-volume/nginx/peertube
+</span></span><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ scp -r containers/systemd/. $TS_USER@$TS_MACHINE:~/.config/containers/systemd/
+</span></span><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ ssh $TS_USER@$TS_MACHINE &#34;systemctl --user daemon-reload&#34;
+</span></span></code></pre></div><p>I then started the pod, only to find out that it was not generated.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[lyuk98@framework PeerTube]$ ssh $TS_USER@$TS_MACHINE &#34;systemctl --user start peertube-pod.service&#34;
+</span></span><span style="display:flex;"><span>Failed to start peertube-pod.service: Unit peertube-pod.service not found.
+</span></span></code></pre></div><p>I looked through the system journal, and found that the <code>Pod</code> option in Quadlet files was not supported by the current version of Podman.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>peertube@raspberrypi:~$ journalctl --user | grep unsupported
+</span></span><span style="display:flex;"><span>Mar 27 20:26:08 raspberrypi systemd[168125]: quadlet-generator[168125]: converting &#34;peertube-postfix.container&#34;: unsupported key &#39;Pod&#39; in group &#39;Container&#39; in /home/peertube/.config/containers/systemd/peertube-postfix.container
+</span></span><span style="display:flex;"><span>Mar 27 20:26:08 raspberrypi systemd[168125]: converting &#34;peertube-postgres.container&#34;: unsupported key &#39;Pod&#39; in group &#39;Container&#39; in /home/peertube/.config/containers/systemd/peertube-postgres.container
+</span></span><span style="display:flex;"><span>Mar 27 20:26:08 raspberrypi systemd[168125]: converting &#34;peertube-redis.container&#34;: unsupported key &#39;Pod&#39; in group &#39;Container&#39; in /home/peertube/.config/containers/systemd/peertube-redis.container
+</span></span><span style="display:flex;"><span>Mar 27 20:26:08 raspberrypi systemd[168125]: converting &#34;peertube-server.container&#34;: unsupported key &#39;Pod&#39; in group &#39;Container&#39; in /home/peertube/.config/containers/systemd/peertube-server.container
+</span></span><span style="display:flex;"><span>Mar 27 20:26:08 raspberrypi systemd[168125]: converting &#34;peertube-webserver.container&#34;: unsupported key &#39;Pod&#39; in group &#39;Container&#39; in /home/peertube/.config/containers/systemd/peertube-webserver.container
+</span></span><span style="display:flex;"><span>Mar 27 20:26:08 raspberrypi systemd[168125]: converting &#34;tailscaled.container&#34;: unsupported key &#39;Pod&#39; in group &#39;Container&#39; in /home/peertube/.config/containers/systemd/tailscaled.container
+</span></span></code></pre></div><h2 id="upgrading-to-ubuntu-2410">Upgrading to Ubuntu 24.10</h2>
+<p><a href="https://github.com/containers/podman/issues/21371">Upon searching</a>, I realised that using pods from Quadlet files is only supported since Podman 5.0. Since Ubuntu 24.04 only came with Podman 4.9, I decided to <a href="https://help.ubuntu.com/community/OracularUpgrades/">do a release upgrade</a>, which would allow me to get Podman 5.0. Having wiped Raspberry Pi OS in the past, I did not want to bother setting everything up again.</p>
+<p>I first connected to the server via local network, not Tailscale.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[lyuk98@framework ~]$ ssh pi@raspberrypi.local
+</span></span></code></pre></div><p>Tailscale, which uses a third-party repository, was uninstalled prior to the upgrade.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>pi@raspberrypi:~$ sudo apt remove tailscale tailscale-archive-keyring
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ sudo rm /etc/apt/sources.list.d/tailscale.list
+</span></span></code></pre></div><p>I performed an update just in case. The file <code>/etc/update-manager/release-upgrades</code> was then edited to allow non-LTS upgrades. The release upgrade was performed afterwards, which took quite a while.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>pi@raspberrypi:~$ sudo apt update
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ sudo apt upgrade
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ sudoedit /etc/update-manager/release-upgrades
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ tail -1 /etc/update-manager/release-upgrades
+</span></span><span style="display:flex;"><span>Prompt=normal
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ sudo do-release-upgrade
+</span></span></code></pre></div><p>The system was restarted. I accessed the host to install Tailscale. With <code>tailscale up</code>, the daemon started again without any extra authentication needed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>pi@raspberrypi:~$ curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/oracular.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg &gt; /dev/null
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/oracular.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ sudo apt update
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ sudo apt install tailscale
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ sudo tailscale up --advertise-tags tag:webserver --ssh
+</span></span></code></pre></div><h2 id="running-peertube-continuation">Running PeerTube (continuation)</h2>
+<p>The PeerTube instance was already running without any further action, as a result of the system upgrade. Following <a href="https://docs.joinpeertube.org/install/docker#obtaining-your-automatically-generated-admin-credentials">the guide</a>, I grabbed the root password to log in to the newly-created instance.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>peertube@raspberrypi:~$ journalctl --user --pager-end --unit peertube-server.service | grep -A1 root
+</span></span><span style="display:flex;"><span>Mar 27 22:06:08 raspberrypi peertube-server[2900]: [peertube.tailnet.example.com:443] 2025-03-27 13:06:08.294 info: Username: root
+</span></span><span style="display:flex;"><span>Mar 27 22:06:08 raspberrypi peertube-server[2900]: [peertube.tailnet.example.com:443] 2025-03-27 13:06:08.295 info: User password: hogadokopeqiyose
+</span></span></code></pre></div><p>I allowed anyone to register, since it is only accessible to those with access to my tailnet, and created a new account for my videos.</p>
+<p><img alt="image" loading="lazy" src="https://images.lyuk98.com/1fa66f60-516d-4a8d-87a4-a4f6d4631452.avif"></p>
+<h2 id="deployment-with-github-actions">Deployment with GitHub Actions</h2>
+<p><a href="https://github.com/lyuk98/PeerTube/blob/905641c1025d4a9e7d4a3ce736a11392f2de7bef/.github/workflows/deploy.yml">The workflow file</a> was added to automate the task accomplished above.</p>
+<p><img alt="image" loading="lazy" src="https://images.lyuk98.com/0c24b443-7981-4271-9d6a-b1ce6f6d621a.avif"></p>
+<h2 id="further-configurations">Further configurations</h2>
+<p>I noticed messages from Caddy and Redis, each complaining about low buffer size and disabled memory overcommit, respectively.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>caddy@raspberrypi:~$ journalctl --user --pager-end --unit caddy.service | grep buffer
+</span></span><span style="display:flex;"><span>Mar 27 22:01:46 raspberrypi caddy[1979]: {&#34;level&#34;:&#34;info&#34;,&#34;ts&#34;:1743080506.7606997,&#34;msg&#34;:&#34;failed to sufficiently increase receive buffer size (was: 208 kiB, wanted: 7168 kiB, got: 416 kiB). See https://github.com/quic-go/quic-go/wiki/UDP-Buffer-Sizes for details.&#34;}
+</span></span><span style="display:flex;"><span>peertube@raspberrypi:~$ journalctl --user --pager-end --unit peertube-redis.service | grep overcommit
+</span></span><span style="display:flex;"><span>Mar 27 22:02:05 raspberrypi peertube-redis[2232]: 1:M 27 Mar 2025 13:02:05.257 # WARNING Memory overcommit must be enabled! Without it, a background save or replication may fail under low memory condition. Being disabled, it can can also cause failures without low memory condition, see https://github.com/jemalloc/jemalloc/issues/1328. To fix this issue add &#39;vm.overcommit_memory = 1&#39; to /etc/sysctl.conf and then reboot or run the command &#39;sysctl vm.overcommit_memory=1&#39; for this to take effect.
+</span></span></code></pre></div><p>The necessary configurations were added in <code>/etc/sysctl.d</code>, followed by <code>sysctl -p</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>pi@raspberrypi:~$ sudoedit /etc/sysctl.d/net-buffer-increase.conf
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ cat /etc/sysctl.d/net-buffer-increase.conf
+</span></span><span style="display:flex;"><span>net.core.rmem_max=2500000
+</span></span><span style="display:flex;"><span>net.core.wmem_max=2500000
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ sudoedit /etc/sysctl.d/memory-overcommit.conf
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ cat /etc/sysctl.d/memory-overcommit.conf
+</span></span><span style="display:flex;"><span>vm.overcommit_memory=1
+</span></span><span style="display:flex;"><span>pi@raspberrypi:~$ sudo sysctl -p
+</span></span></code></pre></div><hr>
+<h1 id="finishing-up">Finishing up</h1>
+<p>The two-week-long journey to get PeerTube running on a Raspberry Pi with Tailscale was (of course) not without problems. I realised the importance of using distributions with proper versions of packages, and it was also an opportunity to learn a few things about networking in containers.</p>
+<p>I was glad that I could to stick to rootless containers until the end. Despite the problems, I felt the steps I have taken for this achievement brought me an important piece of knowledge in the case I ever deploy something in an unprivileged environment in the future.</p>
+<p>Some improvements could definitely be made with this setup. I had the following in mind:</p>
+<ul>
+<li>The hardware could surely be upgraded to host this kind of service.</li>
+<li>More aspects of this deployment could be automated, including the operating system itself.</li>
+<li>Caddy could have outright replaced Nginx and become a part of the pod.</li>
+<li>Tailscale clients for the containers did not have to be ephemeral, since their states could be saved externally.</li>
+</ul>
+<p>I may revisit this setup for improvements, but I am satisfied with it for now.</p>
+]]></content:encoded></item></channel></rss>

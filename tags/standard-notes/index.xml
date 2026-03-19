@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Standard Notes on 이영욱</title><link>https://lyuk98.com/tags/standard-notes/</link><description>Recent content in Standard Notes on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Thu, 19 Mar 2026 16:38:20 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/standard-notes/index.xml" rel="self" type="application/rss+xml"/><item><title>Getting started with Listed</title><link>https://lyuk98.com/blog/2025/03/getting-started-with-listed/</link><pubDate>Tue, 11 Mar 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/03/getting-started-with-listed/</guid><description>&lt;p&gt;Hello to whoever is reading the first post of this blog! Neither writing nor showing my work to public is within my comfort zone, but it is what I aim to overcome, starting with this post.&lt;/p&gt;
+&lt;h1 id="my-introduction-to-standard-notes-and-listed"&gt;My introduction to Standard Notes and Listed&lt;/h1&gt;
+&lt;p&gt;I have been an everyday user of Proton&amp;rsquo;s products, and I was introduced to Standard Notes when &lt;a href="https://proton.me/blog/proton-standard-notes-join-forces"&gt;they announced that they are &amp;ldquo;joining forces&amp;rdquo;&lt;/a&gt;. My needs for personal note-taking were already satisfied with basic products like Google Keep, but having used Notion for team projects in the past, I was convinced to try it out.&lt;/p&gt;</description><content:encoded><![CDATA[<p>Hello to whoever is reading the first post of this blog! Neither writing nor showing my work to public is within my comfort zone, but it is what I aim to overcome, starting with this post.</p>
+<h1 id="my-introduction-to-standard-notes-and-listed">My introduction to Standard Notes and Listed</h1>
+<p>I have been an everyday user of Proton&rsquo;s products, and I was introduced to Standard Notes when <a href="https://proton.me/blog/proton-standard-notes-join-forces">they announced that they are &ldquo;joining forces&rdquo;</a>. My needs for personal note-taking were already satisfied with basic products like Google Keep, but having used Notion for team projects in the past, I was convinced to try it out.</p>
+<p>While getting used to the new service, I discovered Listed blogging platform. I have previously been advised to write my technical experiences to keep records, and it seemed like a good place to do so.</p>
+<h1 id="setting-up-the-blog">Setting up the blog</h1>
+<p>Creating a blog was easy, as I simply had to navigate to preferences for Standard Notes and create a new author under &ldquo;Listed&rdquo; section.</p>
+<p><img alt="image" loading="lazy" src="https://images.lyuk98.com/5e68a288-1de3-44c0-8df1-97c0e4a1815d.avif"></p>
+<p>I then enabled custom CSS to use fonts other than what Listed uses by default. Following <a href="https://standardnotes.com/help/66/how-do-i-change-the-colors-fonts-and-general-layout-of-my-listed-blog">the guide</a>, I wrote and published a note with a little bit of CSS.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span><span style="color:#f92672">---</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metatype</span><span style="color:#f92672">:</span> <span style="color:#f92672">css</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* Import the fonts */</span>
+</span></span><span style="display:flex;"><span>@<span style="color:#66d9ef">import</span> <span style="color:#f92672">url</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://rsms.me/inter/inter.css&#34;</span><span style="color:#f92672">)</span>;
+</span></span><span style="display:flex;"><span>@<span style="color:#66d9ef">import</span> <span style="color:#f92672">url</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css&#34;</span><span style="color:#f92672">)</span>;
+</span></span><span style="display:flex;"><span>@<span style="color:#66d9ef">import</span> <span style="color:#f92672">url</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css&#34;</span><span style="color:#f92672">)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* Declare the font family */</span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">h1</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">h2</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">h3</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">h4</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">h5</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">body</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">font-family</span>: Inter, <span style="color:#e6db74">&#39;Pretendard&#39;</span>, <span style="color:#66d9ef">sans-serif</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">font-feature-settings</span>: <span style="color:#e6db74">&#39;liga&#39;</span> <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;calt&#39;</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">/* fix for Chrome */</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>@<span style="color:#66d9ef">supports</span> <span style="color:#f92672">(</span><span style="color:#f92672">font-variation-settings</span><span style="color:#f92672">:</span> <span style="color:#f92672">normal</span><span style="color:#f92672">)</span> {
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">h1</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">h2</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">h3</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">h4</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">h5</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">body</span> { <span style="color:#66d9ef">font-family</span>: InterVariable, <span style="color:#e6db74">&#39;Pretendard Variable&#39;</span>, <span style="color:#66d9ef">sans-serif</span>; }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>I looked around to find an image-hosting service for embedding images in posts. After taking a look at recommendations <a href="https://notes.colfer.net/44029/how-to-add-images-to-your-listed-to-blog-post">a guide</a> provided, I decided to use <a href="https://horizon.pics/">Horizon</a>.</p>
+<h1 id="to-do">To do</h1>
+<h2 id="using-a-custom-domain">Using a custom domain</h2>
+<p>My domain did not link to a proper web page during years of its usage, so I wished to use it to access my blog. However, for reasons unknown to me, I kept getting emails that the integration was unsuccessful.</p>
+<blockquote>
+<p>Hi there, your Listed domain settings were not configured properly. Please make sure you have an A record pointing to <strong>18.205.249.107</strong>, then <strong>submit your domain request again via your author settings</strong>. You&rsquo;ll know you have it configured correctly if when you visit your custom domain, it shows an <em>Invalid Certificate error</em>.</p>
+</blockquote>
+<p>With my personality, I was hesitant to ask for help, and the problem remains unsolved for almost about a year. I recently came across <a href="https://www.reddit.com/r/StandardNotes/comments/1j46kwg/listedto_custom_domains/">a post on Reddit</a>, where one user claimed disabling DNSSEC helped them; I then immediately visited my domain name provider to switch it off, but the problem still persisted.</p>
+<h1 id="wrapping-up">Wrapping up&hellip;</h1>
+<p>I am with hopes that I will stay committed to keep this blog updated for the foreseeable future. I am simply hoping for now, but time will tell&hellip;</p>
+]]></content:encoded></item></channel></rss>
