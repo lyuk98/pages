@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Google Cloud Platform on 이영욱</title><link>https://lyuk98.com/tags/google-cloud-platform/</link><description>Recent content in Google Cloud Platform on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Thu, 19 Mar 2026 16:38:20 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/google-cloud-platform/index.xml" rel="self" type="application/rss+xml"/><item><title>Using custom domain with Listed</title><link>https://lyuk98.com/blog/2025/04/using-custom-domain-with-listed/</link><pubDate>Mon, 21 Apr 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/04/using-custom-domain-with-listed/</guid><description>I wanted to use a custom domain for my blog. It was supposed to be easy, but the steps I took to solve the problem during the integration were far more than what I have initially expected.</description><content:encoded><![CDATA[<p>Since around September 2025, Listed <a href="https://github.com/standardnotes/listed/pull/302" title="chore: remove new custom domain from settings by antsgar · Pull Request #302 · standardnotes/listed">no longer accepts</a> new requests for custom domains. The information below is therefore no longer relevant, but nevertheless kept as a record of what I have been through to make it work back then.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Google Cloud Platform on 이영욱</title><link>https://lyuk98.com/tags/google-cloud-platform/</link><description>Recent content in Google Cloud Platform on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Fri, 20 Mar 2026 22:43:36 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/google-cloud-platform/index.xml" rel="self" type="application/rss+xml"/><item><title>Using custom domain with Listed</title><link>https://lyuk98.com/blog/2025/04/using-custom-domain-with-listed/</link><pubDate>Mon, 21 Apr 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/04/using-custom-domain-with-listed/</guid><description>I wanted to use a custom domain for my blog. It was supposed to be easy, but the steps I took to solve the problem during the integration were far more than what I have initially expected.</description><content:encoded><![CDATA[<p>Since around September 2025, Listed <a href="https://github.com/standardnotes/listed/pull/302" title="chore: remove new custom domain from settings by antsgar · Pull Request #302 · standardnotes/listed">no longer accepts</a> new requests for custom domains. The information below is therefore no longer relevant, but nevertheless kept as a record of what I have been through to make it work back then.</p>
 <hr>
 <blockquote>
 <p>Custom domains are available for Standard Notes members with an active Productivity or Professional <a href="https://standardnotes.com/plans">plan</a>. Domains include an HTTPS certificate, and require only a simple DNS record on your end.</p>
@@ -9,33 +9,6 @@
 <p>I then went to my blog&rsquo;s settings page and filled up the form for custom domain.</p>
 <p><img alt="A section of the blog&rsquo;s settings titled Custom domain. There are two blank fields which are labelled &ldquo;Standard Notes account email address&rdquo; and &ldquo;Your domain&rdquo;, respectively. The Submit button is disabled. The description is as follows: &ldquo;Custom domains are available for Standard Notes members with an active Productivity or Professional plan. Domains include an HTTPS certificate, and require only a simple DNS record on your end. Before submitting this form, please create an A record with your DNS provider with value 18.205.249.107.&rdquo;" loading="lazy" src="https://images.lyuk98.com/ff626e70-e35d-45b6-b9e1-6d8701d4f657.avif" title="Submitting a custom domain request"></p>
 <p>The request for a custom domain was made. After a while, however, I received a disappointing email.</p>
-<hr>
-<h1 id="table-of-contents">Table of contents</h1>
-<ol>
-<li>The problem</li>
-<li>Reading the source
-<ol>
-<li>Listed</li>
-<li><code>rails-letsencrypt</code></li>
-<li>Acme::Client
-<ol>
-<li>Setting up a client</li>
-<li>Creating an order with the client</li>
-<li>Accessing the HTTP-01 challenge</li>
-<li>Completing the challenge</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>What actually went wrong?
-<ol>
-<li>Running Certbot</li>
-<li>Self-hosting Listed for debugging</li>
-<li>Testing against the root domain</li>
-</ol>
-</li>
-<li>The unsatisfying resolution</li>
-</ol>
 <hr>
 <h1 id="the-problem">The problem</h1>
 <blockquote>

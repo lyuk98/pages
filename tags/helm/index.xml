@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Helm on 이영욱</title><link>https://lyuk98.com/tags/helm/</link><description>Recent content in Helm on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Thu, 19 Mar 2026 16:38:20 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/helm/index.xml" rel="self" type="application/rss+xml"/><item><title>Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux</title><link>https://lyuk98.com/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/</link><pubDate>Thu, 26 Feb 2026 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/</guid><description>&lt;p&gt;This is part of series &lt;em&gt;Building a homelab&lt;/em&gt;, where I document my journey to build my own homelab with Kubernetes.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Helm on 이영욱</title><link>https://lyuk98.com/tags/helm/</link><description>Recent content in Helm on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Fri, 20 Mar 2026 22:43:36 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/helm/index.xml" rel="self" type="application/rss+xml"/><item><title>Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux</title><link>https://lyuk98.com/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/</link><pubDate>Thu, 26 Feb 2026 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/</guid><description>&lt;p&gt;This is part of series &lt;em&gt;Building a homelab&lt;/em&gt;, where I document my journey to build my own homelab with Kubernetes.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Creating a Kubernetes cluster with Talos Linux&lt;/li&gt;
 &lt;/ol&gt;
@@ -11,62 +11,6 @@
 <hr>
 <p>Up until now, I have had some experiences with self-hosting services. However, as I learned more, I could see ways to make my setup better.</p>
 <p>While learning about <a href="https://kubernetes.io/" title="Kubernetes">Kubernetes</a>, I thought it could be used to host everything that I have self-hosted so far. If I could get it right, it would allow me to manage all the services while also reducing costs.</p>
-<h1 id="table-of-contents">Table of contents</h1>
-<ol>
-<li>The plan
-<ol>
-<li>Running Kubernetes with Talos Linux</li>
-<li>Operating hybrid clusters with Tailscale</li>
-<li>Declarative cluster provisioning with OpenTofu</li>
-</ol>
-</li>
-<li>Addressing potential hardware issues
-<ol>
-<li>The thermal issue</li>
-<li>The display problem</li>
-</ol>
-</li>
-<li>Preparing infrastructure
-<ol>
-<li>Granting access to Tailscale</li>
-<li>Preparing state storage with Backblaze B2</li>
-<li>Preparing Cloudflare</li>
-</ol>
-</li>
-<li>Writing configurations
-<ol>
-<li>Backend and provider configurations</li>
-<li>Tailscale</li>
-<li>Talos Linux
-<ol>
-<li>Cluster-wide resources</li>
-<li>Control plane-specific resources</li>
-<li>Host-specific resources</li>
-<li>Back to cluster-wide resources</li>
-</ol>
-</li>
-<li>Cloudflare
-<ol>
-<li>Waiting for DNS propagation</li>
-</ol>
-</li>
-<li>Helm</li>
-</ol>
-</li>
-<li>Applying configurations
-<ol>
-<li>Preparing the host</li>
-<li>Running OpenTofu</li>
-</ol>
-</li>
-<li>Post-installation configuration
-<ol>
-<li>Accessing the cluster</li>
-<li>Upgrading Talos Linux</li>
-</ol>
-</li>
-<li>Conclusion</li>
-</ol>
 <h1 id="the-plan">The plan</h1>
 <p>The goal is to build a homelab, if it was not obvious from the title. A Kubernetes cluster is to be set up, where all the services I am currently hosting will reside.</p>
 <p>My current set of hosts using NixOS is described in the following topology (using <a href="https://github.com/oddlama/nix-topology" title="oddlama/nix-topology: 🍁 Generate infrastructure and network diagrams directly from your NixOS configurations">nix-topology</a>):</p>
@@ -1269,7 +1213,97 @@ To further debug and diagnose cluster problems, use &#39;kubectl cluster-info du
 <pre tabindex="0"><code>[nix-shell:~/opentofu-kubernetes]$ tofu graph | dot -Tsvg &gt; ~/graph.svg
 </code></pre><p><img alt="A visual representation of my OpenTofu configuration" loading="lazy" src="https://images.lyuk98.com/6681ee58-bdbc-4abe-9191-409f7d5e2c64.svg"></p>
 <p>As I expected, it was (to me) quite a mess. To see what mattered to me, I wrote a graph by myself, containing only resources and data sources, using <a href="https://mermaid.ai/open-source/" title="Mermaid | Diagramming and charting tool">Mermaid</a>.</p>
-<p><img alt="A visual representation of my OpenTofu configuration" loading="lazy" src="https://images.lyuk98.com/8d0e8507-b337-4ffc-98a9-7c81badcdf8a.svg"></p>
+<pre class="mermaid">
+  flowchart BT
+  %% Entity declaration
+
+  %% cloudflare.tf
+  data.cloudflare_zone.default([data.cloudflare_zone.default])
+  time_sleep.dns_ready
+  terraform_data.dns_ready
+  cloudflare_dns_record.xps13_a
+  cloudflare_dns_record.xps13_aaaa
+
+  %% helm.tf
+  helm_release.cilium
+  helm_release.tailscale_operator
+
+  %% tailscale.tf
+  tailscale_oauth_client.kubernetes_operator
+  data.tailscale_device.kubernetes_operator([data.tailscale_device.kubernetes_operator])
+  tailscale_oauth_client.xps13
+  data.tailscale_device.xps13([data.tailscale_device.xps13])
+
+  %% talos-controlplane.tf
+  data.talos_machine_configuration.controlplane([data.talos_machine_configuration.controlplane])
+
+  %% talos-xps13.tf
+  talos_machine_configuration_apply.xps13
+  talos_machine_bootstrap.xps13
+  random_password.talos_encryption_passphrase_xps13
+  talos_image_factory_schematic.xps13
+  data.talos_image_factory_urls.xps13([data.talos_image_factory_urls.xps13])
+
+  %% talos.tf
+  talos_machine_secrets.kubernetes
+  data.talos_cluster_health.kubernetes([data.talos_cluster_health.kubernetes])
+  data.talos_client_configuration.kubernetes([data.talos_client_configuration.kubernetes])
+  talos_cluster_kubeconfig.kubernetes
+  local_sensitive_file.talosconfig
+  local_sensitive_file.kubeconfig
+
+  %% Relation declaration
+
+  %% cloudflare.tf
+  time_sleep.dns_ready-- content --&gt;cloudflare_dns_record.xps13_a
+  time_sleep.dns_ready-- content --&gt;cloudflare_dns_record.xps13_aaaa
+  terraform_data.dns_ready-- triggers_replace --&gt;time_sleep.dns_ready
+  cloudflare_dns_record.xps13_a-- addresses --&gt;data.tailscale_device.xps13
+  cloudflare_dns_record.xps13_aaaa-- addresses --&gt;data.tailscale_device.xps13
+
+  %% helm.tf
+  helm_release.cilium-- depends_on --&gt;talos_cluster_kubeconfig.kubernetes
+  helm_release.tailscale_operator-- depends_on --&gt;helm_release.cilium
+  helm_release.tailscale_operator-- id --&gt;tailscale_oauth_client.kubernetes_operator
+  helm_release.tailscale_operator-- key --&gt;tailscale_oauth_client.kubernetes_operator
+
+  %% tailscale.tf
+  data.tailscale_device.kubernetes_operator-- depends_on --&gt;helm_release.tailscale_operator
+  data.tailscale_device.xps13-- depends_on --&gt;talos_machine_configuration_apply.xps13
+
+  %% talos-controlplane.tf
+  data.talos_machine_configuration.controlplane-- name --&gt;data.cloudflare_zone.default
+  data.talos_machine_configuration.controlplane-- machine_secrets --&gt;talos_machine_secrets.kubernetes
+
+  %% talos-xps13.tf
+  talos_machine_configuration_apply.xps13-- client_configuration --&gt;talos_machine_secrets.kubernetes
+  talos_machine_configuration_apply.xps13-- machine_configuration --&gt;data.talos_machine_configuration.controlplane
+  talos_machine_configuration_apply.xps13-- urls --&gt;data.talos_image_factory_urls.xps13
+  talos_machine_configuration_apply.xps13-- key --&gt;tailscale_oauth_client.xps13
+  talos_machine_configuration_apply.xps13-- tags --&gt;tailscale_oauth_client.xps13
+  talos_machine_configuration_apply.xps13-- result --&gt;random_password.talos_encryption_passphrase_xps13
+  talos_machine_bootstrap.xps13-- depends_on --&gt;data.tailscale_device.xps13
+  talos_machine_bootstrap.xps13-- replace_triggered_by --&gt;talos_machine_configuration_apply.xps13
+  talos_machine_bootstrap.xps13-- client_configuration --&gt;talos_machine_secrets.kubernetes
+  data.talos_image_factory_urls.xps13-- id --&gt;talos_image_factory_schematic.xps13
+
+  %% talos.tf
+  data.talos_cluster_health.kubernetes-- depends_on --&gt;helm_release.tailscale_operator
+  data.talos_cluster_health.kubernetes-- client_configuration --&gt;talos_machine_secrets.kubernetes
+  data.talos_cluster_health.kubernetes-- content --&gt;cloudflare_dns_record.xps13_a
+  data.talos_cluster_health.kubernetes-- content --&gt;cloudflare_dns_record.xps13_aaaa
+  data.talos_client_configuration.kubernetes-- client_configuration --&gt;talos_machine_secrets.kubernetes
+  data.talos_client_configuration.kubernetes-- content --&gt;cloudflare_dns_record.xps13_a
+  data.talos_client_configuration.kubernetes-- content --&gt;cloudflare_dns_record.xps13_aaaa
+  talos_cluster_kubeconfig.kubernetes-- depends_on --&gt;terraform_data.dns_ready
+  talos_cluster_kubeconfig.kubernetes-- replace_triggered_by --&gt;talos_machine_secrets.kubernetes
+  talos_cluster_kubeconfig.kubernetes-- client_configuration --&gt;talos_machine_secrets.kubernetes
+  talos_cluster_kubeconfig.kubernetes-- content --&gt;cloudflare_dns_record.xps13_a
+  talos_cluster_kubeconfig.kubernetes-- content --&gt;cloudflare_dns_record.xps13_aaaa
+  local_sensitive_file.talosconfig-- talos_config --&gt;data.talos_client_configuration.kubernetes
+  local_sensitive_file.kubeconfig-- kubeconfig_raw --&gt;talos_cluster_kubeconfig.kubernetes
+</pre>
+
 <hr>
 <p>This project undertook some major changes before becoming what it is now. Because my desired setup was quite uncommon, I sometimes had to modify and adapt people&rsquo;s solutions online to fit my specific setup.</p>
 <p>It was exhausting at times, and I got worried about no longer being able to commit to it (with life getting in the way), but I am happy to be able to achieve my goal without giving up my desire of building declarative systems.</p>

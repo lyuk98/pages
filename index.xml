@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>이영욱</title><link>https://lyuk98.com/</link><description>Recent content on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Thu, 19 Mar 2026 16:38:20 +0900</lastBuildDate><atom:link href="https://lyuk98.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Migrating to Codeberg Pages</title><link>https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/</link><pubDate>Thu, 19 Mar 2026 15:36:17 +0900</pubDate><guid>https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/</guid><description>For various reaons, I migrated to Codeberg Pages for my blog.</description><content:encoded><![CDATA[<p>If anyone is wondering, I started my writing journey with <a href="https://listed.to/" title="Listed — Welcome to your new public journal.">Listed</a> blogging platform by <a href="https://standardnotes.com/" title="Standard Notes | End-To-End Encrypted Notes App">Standard Notes</a>. I think it had served me well, but for reasons I will soon mention, I ultimately decided to find a new home.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>이영욱</title><link>https://lyuk98.com/</link><description>Recent content on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Fri, 20 Mar 2026 22:43:36 +0900</lastBuildDate><atom:link href="https://lyuk98.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Migrating to Codeberg Pages</title><link>https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/</link><pubDate>Thu, 19 Mar 2026 15:36:17 +0900</pubDate><guid>https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/</guid><description>For various reaons, I migrated to Codeberg Pages for my blog.</description><content:encoded><![CDATA[<p>If anyone is wondering, I started my writing journey with <a href="https://listed.to/" title="Listed — Welcome to your new public journal.">Listed</a> blogging platform by <a href="https://standardnotes.com/" title="Standard Notes | End-To-End Encrypted Notes App">Standard Notes</a>. I think it had served me well, but for reasons I will soon mention, I ultimately decided to find a new home.</p>
 <h1 id="why-the-switch">Why the switch?</h1>
 <p>Just about three and a half months ago, I wrote the following while <a href="/blog/2025/12/improving-listeds-code-legibility-in-dark-theme/" title="Improving Listed&#39;s code legibility in dark theme">working on improving my code snippets&rsquo; legibility</a> on the blogging platform:</p>
 <blockquote>
@@ -635,62 +635,6 @@ www.lyuk98.com
 <hr>
 <p>Up until now, I have had some experiences with self-hosting services. However, as I learned more, I could see ways to make my setup better.</p>
 <p>While learning about <a href="https://kubernetes.io/" title="Kubernetes">Kubernetes</a>, I thought it could be used to host everything that I have self-hosted so far. If I could get it right, it would allow me to manage all the services while also reducing costs.</p>
-<h1 id="table-of-contents">Table of contents</h1>
-<ol>
-<li>The plan
-<ol>
-<li>Running Kubernetes with Talos Linux</li>
-<li>Operating hybrid clusters with Tailscale</li>
-<li>Declarative cluster provisioning with OpenTofu</li>
-</ol>
-</li>
-<li>Addressing potential hardware issues
-<ol>
-<li>The thermal issue</li>
-<li>The display problem</li>
-</ol>
-</li>
-<li>Preparing infrastructure
-<ol>
-<li>Granting access to Tailscale</li>
-<li>Preparing state storage with Backblaze B2</li>
-<li>Preparing Cloudflare</li>
-</ol>
-</li>
-<li>Writing configurations
-<ol>
-<li>Backend and provider configurations</li>
-<li>Tailscale</li>
-<li>Talos Linux
-<ol>
-<li>Cluster-wide resources</li>
-<li>Control plane-specific resources</li>
-<li>Host-specific resources</li>
-<li>Back to cluster-wide resources</li>
-</ol>
-</li>
-<li>Cloudflare
-<ol>
-<li>Waiting for DNS propagation</li>
-</ol>
-</li>
-<li>Helm</li>
-</ol>
-</li>
-<li>Applying configurations
-<ol>
-<li>Preparing the host</li>
-<li>Running OpenTofu</li>
-</ol>
-</li>
-<li>Post-installation configuration
-<ol>
-<li>Accessing the cluster</li>
-<li>Upgrading Talos Linux</li>
-</ol>
-</li>
-<li>Conclusion</li>
-</ol>
 <h1 id="the-plan">The plan</h1>
 <p>The goal is to build a homelab, if it was not obvious from the title. A Kubernetes cluster is to be set up, where all the services I am currently hosting will reside.</p>
 <p>My current set of hosts using NixOS is described in the following topology (using <a href="https://github.com/oddlama/nix-topology" title="oddlama/nix-topology: 🍁 Generate infrastructure and network diagrams directly from your NixOS configurations">nix-topology</a>):</p>
@@ -1893,7 +1837,97 @@ To further debug and diagnose cluster problems, use &#39;kubectl cluster-info du
 <pre tabindex="0"><code>[nix-shell:~/opentofu-kubernetes]$ tofu graph | dot -Tsvg &gt; ~/graph.svg
 </code></pre><p><img alt="A visual representation of my OpenTofu configuration" loading="lazy" src="https://images.lyuk98.com/6681ee58-bdbc-4abe-9191-409f7d5e2c64.svg"></p>
 <p>As I expected, it was (to me) quite a mess. To see what mattered to me, I wrote a graph by myself, containing only resources and data sources, using <a href="https://mermaid.ai/open-source/" title="Mermaid | Diagramming and charting tool">Mermaid</a>.</p>
-<p><img alt="A visual representation of my OpenTofu configuration" loading="lazy" src="https://images.lyuk98.com/8d0e8507-b337-4ffc-98a9-7c81badcdf8a.svg"></p>
+<pre class="mermaid">
+  flowchart BT
+  %% Entity declaration
+
+  %% cloudflare.tf
+  data.cloudflare_zone.default([data.cloudflare_zone.default])
+  time_sleep.dns_ready
+  terraform_data.dns_ready
+  cloudflare_dns_record.xps13_a
+  cloudflare_dns_record.xps13_aaaa
+
+  %% helm.tf
+  helm_release.cilium
+  helm_release.tailscale_operator
+
+  %% tailscale.tf
+  tailscale_oauth_client.kubernetes_operator
+  data.tailscale_device.kubernetes_operator([data.tailscale_device.kubernetes_operator])
+  tailscale_oauth_client.xps13
+  data.tailscale_device.xps13([data.tailscale_device.xps13])
+
+  %% talos-controlplane.tf
+  data.talos_machine_configuration.controlplane([data.talos_machine_configuration.controlplane])
+
+  %% talos-xps13.tf
+  talos_machine_configuration_apply.xps13
+  talos_machine_bootstrap.xps13
+  random_password.talos_encryption_passphrase_xps13
+  talos_image_factory_schematic.xps13
+  data.talos_image_factory_urls.xps13([data.talos_image_factory_urls.xps13])
+
+  %% talos.tf
+  talos_machine_secrets.kubernetes
+  data.talos_cluster_health.kubernetes([data.talos_cluster_health.kubernetes])
+  data.talos_client_configuration.kubernetes([data.talos_client_configuration.kubernetes])
+  talos_cluster_kubeconfig.kubernetes
+  local_sensitive_file.talosconfig
+  local_sensitive_file.kubeconfig
+
+  %% Relation declaration
+
+  %% cloudflare.tf
+  time_sleep.dns_ready-- content --&gt;cloudflare_dns_record.xps13_a
+  time_sleep.dns_ready-- content --&gt;cloudflare_dns_record.xps13_aaaa
+  terraform_data.dns_ready-- triggers_replace --&gt;time_sleep.dns_ready
+  cloudflare_dns_record.xps13_a-- addresses --&gt;data.tailscale_device.xps13
+  cloudflare_dns_record.xps13_aaaa-- addresses --&gt;data.tailscale_device.xps13
+
+  %% helm.tf
+  helm_release.cilium-- depends_on --&gt;talos_cluster_kubeconfig.kubernetes
+  helm_release.tailscale_operator-- depends_on --&gt;helm_release.cilium
+  helm_release.tailscale_operator-- id --&gt;tailscale_oauth_client.kubernetes_operator
+  helm_release.tailscale_operator-- key --&gt;tailscale_oauth_client.kubernetes_operator
+
+  %% tailscale.tf
+  data.tailscale_device.kubernetes_operator-- depends_on --&gt;helm_release.tailscale_operator
+  data.tailscale_device.xps13-- depends_on --&gt;talos_machine_configuration_apply.xps13
+
+  %% talos-controlplane.tf
+  data.talos_machine_configuration.controlplane-- name --&gt;data.cloudflare_zone.default
+  data.talos_machine_configuration.controlplane-- machine_secrets --&gt;talos_machine_secrets.kubernetes
+
+  %% talos-xps13.tf
+  talos_machine_configuration_apply.xps13-- client_configuration --&gt;talos_machine_secrets.kubernetes
+  talos_machine_configuration_apply.xps13-- machine_configuration --&gt;data.talos_machine_configuration.controlplane
+  talos_machine_configuration_apply.xps13-- urls --&gt;data.talos_image_factory_urls.xps13
+  talos_machine_configuration_apply.xps13-- key --&gt;tailscale_oauth_client.xps13
+  talos_machine_configuration_apply.xps13-- tags --&gt;tailscale_oauth_client.xps13
+  talos_machine_configuration_apply.xps13-- result --&gt;random_password.talos_encryption_passphrase_xps13
+  talos_machine_bootstrap.xps13-- depends_on --&gt;data.tailscale_device.xps13
+  talos_machine_bootstrap.xps13-- replace_triggered_by --&gt;talos_machine_configuration_apply.xps13
+  talos_machine_bootstrap.xps13-- client_configuration --&gt;talos_machine_secrets.kubernetes
+  data.talos_image_factory_urls.xps13-- id --&gt;talos_image_factory_schematic.xps13
+
+  %% talos.tf
+  data.talos_cluster_health.kubernetes-- depends_on --&gt;helm_release.tailscale_operator
+  data.talos_cluster_health.kubernetes-- client_configuration --&gt;talos_machine_secrets.kubernetes
+  data.talos_cluster_health.kubernetes-- content --&gt;cloudflare_dns_record.xps13_a
+  data.talos_cluster_health.kubernetes-- content --&gt;cloudflare_dns_record.xps13_aaaa
+  data.talos_client_configuration.kubernetes-- client_configuration --&gt;talos_machine_secrets.kubernetes
+  data.talos_client_configuration.kubernetes-- content --&gt;cloudflare_dns_record.xps13_a
+  data.talos_client_configuration.kubernetes-- content --&gt;cloudflare_dns_record.xps13_aaaa
+  talos_cluster_kubeconfig.kubernetes-- depends_on --&gt;terraform_data.dns_ready
+  talos_cluster_kubeconfig.kubernetes-- replace_triggered_by --&gt;talos_machine_secrets.kubernetes
+  talos_cluster_kubeconfig.kubernetes-- client_configuration --&gt;talos_machine_secrets.kubernetes
+  talos_cluster_kubeconfig.kubernetes-- content --&gt;cloudflare_dns_record.xps13_a
+  talos_cluster_kubeconfig.kubernetes-- content --&gt;cloudflare_dns_record.xps13_aaaa
+  local_sensitive_file.talosconfig-- talos_config --&gt;data.talos_client_configuration.kubernetes
+  local_sensitive_file.kubeconfig-- kubeconfig_raw --&gt;talos_cluster_kubeconfig.kubernetes
+</pre>
+
 <hr>
 <p>This project undertook some major changes before becoming what it is now. Because my desired setup was quite uncommon, I sometimes had to modify and adapt people&rsquo;s solutions online to fit my specific setup.</p>
 <p>It was exhausting at times, and I got worried about no longer being able to commit to it (with life getting in the way), but I am happy to be able to achieve my goal without giving up my desire of building declarative systems.</p>
@@ -6485,93 +6519,6 @@ interface &#39;wl_surface&#39; has no event 2
 ]]></content:encoded></item><item><title>Hosting Ente with Terraform, Vault, and NixOS</title><link>https://lyuk98.com/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/</link><pubDate>Sun, 28 Sep 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/</guid><description>Ente, the private photo storage service, was self-hosted in a hard way using declarative methods of resource management.</description><content:encoded><![CDATA[<p><img alt="Logo of Ente" loading="lazy" src="https://images.lyuk98.com/0998d5a9-bafe-4aa2-be99-d49144204337.avif"></p>
 <p><a href="https://ente.io/" title="Ente Photos: Store and share your photos with absolute privacy">Ente</a> is a platform to host photos that uses end-to-end encryption to store its data.</p>
 <p>I have more than a decade of photos saved with <a href="https://www.google.com/photos/about/" title="Google Photos: Edit, organise, search and back up your photos">Google Photos</a>, but I wanted to keep them in a place that is designed to be private. The problem, however, was that the collection grew to a few terabytes over the years, and putting them on a privacy-respecting image platform was either very expensive or outright impossible. To work around the problem, I decided to self-host Ente.</p>
-<h1 id="table-of-contents">Table of contents</h1>
-<ol>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#the-plan">The plan</a>
-<ol>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#the-plan-infrastructure">The infrastructure</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#the-plan-code">Using code for almost everything</a></li>
-</ol>
-</li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#vault">Setting up secret management with Vault</a>
-<ol>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#vault-host">Hosting Vault</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#vault-nixos">Preparing NixOS configurations</a>
-<ol>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#vault-nixos-sops">Encrypting secrets with Sops</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#vault-nixos-tailscale">Setting up Tailscale</a></li>
-</ol>
-</li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#vault-custom-image">Creating a custom image</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#vault-create-droplet">Creating a Droplet with the image</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#vault-run">Running Vault</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#vault-postinstall">Post-installation configuration</a></li>
-</ol>
-</li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#bootstrap-imperative">Bootstrapping (the imperative part)</a>
-<ol>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#bootstrap-imperative-vault">Enabling Vault&rsquo;s capabilities</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#bootstrap-imperative-b2">Enabling access to Backblaze B2</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#bootstrap-imperative-github">Configuring OpenID Connect for GitHub Actions</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#bootstrap-imperative-aws-auth">Setting up Vault&rsquo;s AWS authentication method</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#bootstrap-imperative-aws-role">Creating a policy and a role for AWS authentication</a></li>
-</ol>
-</li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#bootstrap-declarative">Bootstrapping (the declarative part)</a>
-<ol>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#bootstrap-declarative-terraform">Preparing Terraform configurations</a>
-<ol>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#bootstrap-declarative-terraform-aws">Bootstrapping Amazon Web Services</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#bootstrap-declarative-terraform-b2">Bootstrapping Backblaze B2</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#bootstrap-declarative-terraform-vault">Bootstrapping Vault</a></li>
-</ol>
-</li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#bootstrap-declarative-github">Deploying with GitHub Actions</a></li>
-</ol>
-</li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-imperative">Deploying Ente (the imperative part)</a>
-<ol>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-imperative-cloudflare">Preparing Cloudflare</a>
-<ol>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-imperative-cloudflare-token">Creating an API token</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-imperative-cloudflare-cert">Creating an origin certificate</a></li>
-</ol>
-</li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-imperative-tailscale">Creating an OAuth client at Tailscale</a></li>
-</ol>
-</li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-declarative">Deploying Ente (the declarative part)</a>
-<ol>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-declarative-terraform">Writing Terraform configurations</a>
-<ol>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-declarative-terraform-tailscale">Tailscale</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-declarative-terraform-b2">Backblaze B2</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-declarative-terraform-vault">Vault</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-declarative-terraform-aws">Amazon Web Services</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-declarative-terraform-cloudflare">Cloudflare</a></li>
-</ol>
-</li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-declarative-nixos">Writing NixOS configurations</a>
-<ol>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-declarative-nixos-disko">Modifying the disko configuration</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-declarative-nixos-vault">Accessing secrets with Vault</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-declarative-nixos-tailscale">Connecting to the tailnet</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-declarative-nixos-museum">Configuring Ente</a></li>
-</ol>
-</li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-declarative-github">The GitHub Actions workflow</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#ente-declarative-deployment">The manual deployment</a></li>
-</ol>
-</li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#postinstall">Post-installation configurations</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#finishing-up">Finishing up</a>
-<ol>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#finishing-up-opentofu">A note on OpenTofu (and OpenBao)</a></li>
-<li><a href="/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/#finishing-up-updates">Keeping instances up to date</a></li>
-</ol>
-</li>
-</ol>
-<p>Note that following the links above, even though they point to the same page, still performs a full page load (at least at the time of writing). I suspect it has something to do with how this blogging platform was implemented, but I have not looked deeper into it.</p>
 <h1 id="the-plan">The plan</h1>
 <h2 id="the-plan-infrastructure">The infrastructure</h2>
 <p>Unlike the <a href="https://lyuk98.com/60610/self-hosting-peertube-with-tailscale" title="Self-hosting PeerTube with Tailscale">PeerTube instance I self-hosted</a>, which is only reachable via <a href="https://tailscale.com/" title="Tailscale · Best VPN Service for Secure Networks">Tailscale</a>, I wanted my image platform to be accessible via the internet (because Android <a href="https://tailscale.com/kb/1105/other-vpns" title="Can I use Tailscale alongside other VPNs? · Tailscale Docs">cannot connect to Tailscale and my VPN service simultaneously</a>). The easiest way for me to expose a service to the internet was by using a cloud provider, which I eventually ended up doing.</p>
@@ -9074,33 +9021,6 @@ these 407 derivations will be built:
 <p>I then went to my blog&rsquo;s settings page and filled up the form for custom domain.</p>
 <p><img alt="A section of the blog&rsquo;s settings titled Custom domain. There are two blank fields which are labelled &ldquo;Standard Notes account email address&rdquo; and &ldquo;Your domain&rdquo;, respectively. The Submit button is disabled. The description is as follows: &ldquo;Custom domains are available for Standard Notes members with an active Productivity or Professional plan. Domains include an HTTPS certificate, and require only a simple DNS record on your end. Before submitting this form, please create an A record with your DNS provider with value 18.205.249.107.&rdquo;" loading="lazy" src="https://images.lyuk98.com/ff626e70-e35d-45b6-b9e1-6d8701d4f657.avif" title="Submitting a custom domain request"></p>
 <p>The request for a custom domain was made. After a while, however, I received a disappointing email.</p>
-<hr>
-<h1 id="table-of-contents">Table of contents</h1>
-<ol>
-<li>The problem</li>
-<li>Reading the source
-<ol>
-<li>Listed</li>
-<li><code>rails-letsencrypt</code></li>
-<li>Acme::Client
-<ol>
-<li>Setting up a client</li>
-<li>Creating an order with the client</li>
-<li>Accessing the HTTP-01 challenge</li>
-<li>Completing the challenge</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>What actually went wrong?
-<ol>
-<li>Running Certbot</li>
-<li>Self-hosting Listed for debugging</li>
-<li>Testing against the root domain</li>
-</ol>
-</li>
-<li>The unsatisfying resolution</li>
-</ol>
 <hr>
 <h1 id="the-problem">The problem</h1>
 <blockquote>
