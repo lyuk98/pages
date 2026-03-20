@@ -122,7 +122,7 @@ params:
       url: https://github.com/lyuk98
     - name: gitlab
       title: GitLab
-      url: https://github.com/lyuk98
+      url: https://gitlab.com/lyuk98
     - name: gitea
       title: Codeberg
       url: https://codeberg.org/lyuk98
