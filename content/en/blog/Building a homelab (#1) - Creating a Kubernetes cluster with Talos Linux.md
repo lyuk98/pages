@@ -1516,7 +1516,96 @@ I ended up creating way more resources than I initially imagined, which was some
 
 As I expected, it was (to me) quite a mess. To see what mattered to me, I wrote a graph by myself, containing only resources and data sources, using [Mermaid](https://mermaid.ai/open-source/ "Mermaid | Diagramming and charting tool").
 
-![A visual representation of my OpenTofu configuration](https://images.lyuk98.com/8d0e8507-b337-4ffc-98a9-7c81badcdf8a.svg)
+```mermaid
+flowchart BT
+  %% Entity declaration
+
+  %% cloudflare.tf
+  data.cloudflare_zone.default([data.cloudflare_zone.default])
+  time_sleep.dns_ready
+  terraform_data.dns_ready
+  cloudflare_dns_record.xps13_a
+  cloudflare_dns_record.xps13_aaaa
+
+  %% helm.tf
+  helm_release.cilium
+  helm_release.tailscale_operator
+
+  %% tailscale.tf
+  tailscale_oauth_client.kubernetes_operator
+  data.tailscale_device.kubernetes_operator([data.tailscale_device.kubernetes_operator])
+  tailscale_oauth_client.xps13
+  data.tailscale_device.xps13([data.tailscale_device.xps13])
+
+  %% talos-controlplane.tf
+  data.talos_machine_configuration.controlplane([data.talos_machine_configuration.controlplane])
+
+  %% talos-xps13.tf
+  talos_machine_configuration_apply.xps13
+  talos_machine_bootstrap.xps13
+  random_password.talos_encryption_passphrase_xps13
+  talos_image_factory_schematic.xps13
+  data.talos_image_factory_urls.xps13([data.talos_image_factory_urls.xps13])
+
+  %% talos.tf
+  talos_machine_secrets.kubernetes
+  data.talos_cluster_health.kubernetes([data.talos_cluster_health.kubernetes])
+  data.talos_client_configuration.kubernetes([data.talos_client_configuration.kubernetes])
+  talos_cluster_kubeconfig.kubernetes
+  local_sensitive_file.talosconfig
+  local_sensitive_file.kubeconfig
+
+  %% Relation declaration
+
+  %% cloudflare.tf
+  time_sleep.dns_ready-- content -->cloudflare_dns_record.xps13_a
+  time_sleep.dns_ready-- content -->cloudflare_dns_record.xps13_aaaa
+  terraform_data.dns_ready-- triggers_replace -->time_sleep.dns_ready
+  cloudflare_dns_record.xps13_a-- addresses -->data.tailscale_device.xps13
+  cloudflare_dns_record.xps13_aaaa-- addresses -->data.tailscale_device.xps13
+
+  %% helm.tf
+  helm_release.cilium-- depends_on -->talos_cluster_kubeconfig.kubernetes
+  helm_release.tailscale_operator-- depends_on -->helm_release.cilium
+  helm_release.tailscale_operator-- id -->tailscale_oauth_client.kubernetes_operator
+  helm_release.tailscale_operator-- key -->tailscale_oauth_client.kubernetes_operator
+
+  %% tailscale.tf
+  data.tailscale_device.kubernetes_operator-- depends_on -->helm_release.tailscale_operator
+  data.tailscale_device.xps13-- depends_on -->talos_machine_configuration_apply.xps13
+
+  %% talos-controlplane.tf
+  data.talos_machine_configuration.controlplane-- name -->data.cloudflare_zone.default
+  data.talos_machine_configuration.controlplane-- machine_secrets -->talos_machine_secrets.kubernetes
+
+  %% talos-xps13.tf
+  talos_machine_configuration_apply.xps13-- client_configuration -->talos_machine_secrets.kubernetes
+  talos_machine_configuration_apply.xps13-- machine_configuration -->data.talos_machine_configuration.controlplane
+  talos_machine_configuration_apply.xps13-- urls -->data.talos_image_factory_urls.xps13
+  talos_machine_configuration_apply.xps13-- key -->tailscale_oauth_client.xps13
+  talos_machine_configuration_apply.xps13-- tags -->tailscale_oauth_client.xps13
+  talos_machine_configuration_apply.xps13-- result -->random_password.talos_encryption_passphrase_xps13
+  talos_machine_bootstrap.xps13-- depends_on -->data.tailscale_device.xps13
+  talos_machine_bootstrap.xps13-- replace_triggered_by -->talos_machine_configuration_apply.xps13
+  talos_machine_bootstrap.xps13-- client_configuration -->talos_machine_secrets.kubernetes
+  data.talos_image_factory_urls.xps13-- id -->talos_image_factory_schematic.xps13
+
+  %% talos.tf
+  data.talos_cluster_health.kubernetes-- depends_on -->helm_release.tailscale_operator
+  data.talos_cluster_health.kubernetes-- client_configuration -->talos_machine_secrets.kubernetes
+  data.talos_cluster_health.kubernetes-- content -->cloudflare_dns_record.xps13_a
+  data.talos_cluster_health.kubernetes-- content -->cloudflare_dns_record.xps13_aaaa
+  data.talos_client_configuration.kubernetes-- client_configuration -->talos_machine_secrets.kubernetes
+  data.talos_client_configuration.kubernetes-- content -->cloudflare_dns_record.xps13_a
+  data.talos_client_configuration.kubernetes-- content -->cloudflare_dns_record.xps13_aaaa
+  talos_cluster_kubeconfig.kubernetes-- depends_on -->terraform_data.dns_ready
+  talos_cluster_kubeconfig.kubernetes-- replace_triggered_by -->talos_machine_secrets.kubernetes
+  talos_cluster_kubeconfig.kubernetes-- client_configuration -->talos_machine_secrets.kubernetes
+  talos_cluster_kubeconfig.kubernetes-- content -->cloudflare_dns_record.xps13_a
+  talos_cluster_kubeconfig.kubernetes-- content -->cloudflare_dns_record.xps13_aaaa
+  local_sensitive_file.talosconfig-- talos_config -->data.talos_client_configuration.kubernetes
+  local_sensitive_file.kubeconfig-- kubeconfig_raw -->talos_cluster_kubeconfig.kubernetes
+```
 
 ---
 
