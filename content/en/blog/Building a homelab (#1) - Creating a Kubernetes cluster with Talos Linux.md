@@ -7,6 +7,7 @@ tags:
   - OpenTofu
   - Tailscale
   - Talos Linux
+tocopen: true
 date: '2026-02-26'
 title: Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux
 slug: building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux
@@ -21,38 +22,6 @@ This is part of series *Building a homelab*, where I document my journey to buil
 Up until now, I have had some experiences with self-hosting services. However, as I learned more, I could see ways to make my setup better.
 
 While learning about [Kubernetes](https://kubernetes.io/ "Kubernetes"), I thought it could be used to host everything that I have self-hosted so far. If I could get it right, it would allow me to manage all the services while also reducing costs.
-
-# Table of contents
-
-1. The plan
-	1. Running Kubernetes with Talos Linux
-	2. Operating hybrid clusters with Tailscale
-	3. Declarative cluster provisioning with OpenTofu
-2. Addressing potential hardware issues
-	1. The thermal issue
-	2. The display problem
-3. Preparing infrastructure
-	1. Granting access to Tailscale
-	2. Preparing state storage with Backblaze B2
-	3. Preparing Cloudflare
-4. Writing configurations
-	1. Backend and provider configurations
-	2. Tailscale
-	3. Talos Linux
-		1. Cluster-wide resources
-		2. Control plane-specific resources
-		3. Host-specific resources
-		4. Back to cluster-wide resources
-	4. Cloudflare
-		1. Waiting for DNS propagation
-	5. Helm
-5. Applying configurations
-	1. Preparing the host
-	2. Running OpenTofu
-6. Post-installation configuration
-	1. Accessing the cluster
-	2. Upgrading Talos Linux
-7. Conclusion
 
 # The plan
 

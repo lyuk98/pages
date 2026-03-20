@@ -11,6 +11,7 @@ tags:
   - SOPS
   - Tailscale
   - Terraform
+tocopen: true
 date: '2025-09-28'
 title: Hosting Ente with Terraform, Vault, and NixOS
 description: Ente, the private photo storage service, was self-hosted in a hard way using declarative methods of resource management.
@@ -21,58 +22,6 @@ description: Ente, the private photo storage service, was self-hosted in a hard 
 [Ente](https://ente.io/ "Ente Photos: Store and share your photos with absolute privacy") is a platform to host photos that uses end-to-end encryption to store its data.
 
 I have more than a decade of photos saved with [Google Photos](https://www.google.com/photos/about/ "Google Photos: Edit, organise, search and back up your photos"), but I wanted to keep them in a place that is designed to be private. The problem, however, was that the collection grew to a few terabytes over the years, and putting them on a privacy-respecting image platform was either very expensive or outright impossible. To work around the problem, I decided to self-host Ente.
-
-<h1 id="table-of-contents">Table of contents</h1>
-
-1. [The plan](#the-plan)
-	1. [The infrastructure](#the-plan-infrastructure)
-	2. [Using code for almost everything](#the-plan-code)
-2. [Setting up secret management with Vault](#vault)
-	1. [Hosting Vault](#vault-host)
-	2. [Preparing NixOS configurations](#vault-nixos)
-		1. [Encrypting secrets with Sops](#vault-nixos-sops)
-		2. [Setting up Tailscale](#vault-nixos-tailscale)
-	3. [Creating a custom image](#vault-custom-image)
-	4. [Creating a Droplet with the image](#vault-create-droplet)
-	5. [Running Vault](#vault-run)
-	6. [Post-installation configuration](#vault-postinstall)
-3. [Bootstrapping (the imperative part)](#bootstrap-imperative)
-	1. [Enabling Vault's capabilities](#bootstrap-imperative-vault)
-	2. [Enabling access to Backblaze B2](#bootstrap-imperative-b2)
-	3. [Configuring OpenID Connect for GitHub Actions](#bootstrap-imperative-github)
-	4. [Setting up Vault's AWS authentication method](#bootstrap-imperative-aws-auth)
-	5. [Creating a policy and a role for AWS authentication](#bootstrap-imperative-aws-role)
-4. [Bootstrapping (the declarative part)](#bootstrap-declarative)
-	1. [Preparing Terraform configurations](#bootstrap-declarative-terraform)
-		1. [Bootstrapping Amazon Web Services](#bootstrap-declarative-terraform-aws)
-		2. [Bootstrapping Backblaze B2](#bootstrap-declarative-terraform-b2)
-		3. [Bootstrapping Vault](#bootstrap-declarative-terraform-vault)
-	2. [Deploying with GitHub Actions](#bootstrap-declarative-github)
-5. [Deploying Ente (the imperative part)](#ente-imperative)
-	1. [Preparing Cloudflare](#ente-imperative-cloudflare)
-		1. [Creating an API token](#ente-imperative-cloudflare-token)
-		2. [Creating an origin certificate](#ente-imperative-cloudflare-cert)
-	2. [Creating an OAuth client at Tailscale](#ente-imperative-tailscale)
-6. [Deploying Ente (the declarative part)](#ente-declarative)
-	1. [Writing Terraform configurations](#ente-declarative-terraform)
-		1. [Tailscale](#ente-declarative-terraform-tailscale)
-		2. [Backblaze B2](#ente-declarative-terraform-b2)
-		3. [Vault](#ente-declarative-terraform-vault)
-		4. [Amazon Web Services](#ente-declarative-terraform-aws)
-		5. [Cloudflare](#ente-declarative-terraform-cloudflare)
-	2. [Writing NixOS configurations](#ente-declarative-nixos)
-		1. [Modifying the disko configuration](#ente-declarative-nixos-disko)
-		2. [Accessing secrets with Vault](#ente-declarative-nixos-vault)
-		3. [Connecting to the tailnet](#ente-declarative-nixos-tailscale)
-		4. [Configuring Ente](#ente-declarative-nixos-museum)
-	3. [The GitHub Actions workflow](#ente-declarative-github)
-	4. [The manual deployment](#ente-declarative-deployment)
-7. [Post-installation configurations](#postinstall)
-8. [Finishing up](#finishing-up)
-	1. [A note on OpenTofu (and OpenBao)](#finishing-up-opentofu)
-	2. [Keeping instances up to date](#finishing-up-updates)
-
-Note that following the links above, even though they point to the same page, still performs a full page load (at least at the time of writing). I suspect it has something to do with how this blogging platform was implemented, but I have not looked deeper into it.
 
 <h1 id="the-plan">The plan</h1>
 

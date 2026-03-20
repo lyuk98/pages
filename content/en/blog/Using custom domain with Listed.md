@@ -4,6 +4,7 @@ tags:
   - Docker
   - Google Cloud Platform
   - Listed
+tocopen: true
 date: '2025-04-21'
 title: Using custom domain with Listed
 description: I wanted to use a custom domain for my blog. It was supposed to be easy, but the steps I took to solve the problem during the integration were far more than what I have initially expected.
@@ -26,25 +27,6 @@ I then went to my blog's settings page and filled up the form for custom domain.
 ![A section of the blog's settings titled Custom domain. There are two blank fields which are labelled "Standard Notes account email address" and "Your domain", respectively. The Submit button is disabled. The description is as follows: "Custom domains are available for Standard Notes members with an active Productivity or Professional plan. Domains include an HTTPS certificate, and require only a simple DNS record on your end. Before submitting this form, please create an A record with your DNS provider with value 18.205.249.107."](https://images.lyuk98.com/ff626e70-e35d-45b6-b9e1-6d8701d4f657.avif "Submitting a custom domain request")
 
 The request for a custom domain was made. After a while, however, I received a disappointing email.
-
----
-
-# Table of contents
-
-1. The problem
-2. Reading the source
-	1. Listed
-	2. `rails-letsencrypt`
-	3. Acme::Client
-		1. Setting up a client
-		2. Creating an order with the client
-		3. Accessing the HTTP-01 challenge
-		4. Completing the challenge
-3. What actually went wrong?
-	1. Running Certbot
-	2. Self-hosting Listed for debugging
-	3. Testing against the root domain
-4. The unsatisfying resolution
 
 ---
 
