@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Codeberg Pages on 이영욱</title><link>https://lyuk98.com/tags/codeberg-pages/</link><description>Recent content in Codeberg Pages on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Thu, 19 Mar 2026 15:36:17 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/codeberg-pages/index.xml" rel="self" type="application/rss+xml"/><item><title>Migrating to Codeberg Pages</title><link>https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/</link><pubDate>Thu, 19 Mar 2026 15:36:17 +0900</pubDate><guid>https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/</guid><description>For various reaons, I migrated to Codeberg Pages for my blog.</description><content:encoded><![CDATA[<p>If anyone is wondering, I started my writing journey with <a href="https://listed.to/" title="Listed — Welcome to your new public journal.">Listed</a> blogging platform by <a href="https://standardnotes.com/" title="Standard Notes | End-To-End Encrypted Notes App">Standard Notes</a>. I think it had served me well, but for reasons I will soon mention, I ultimately decided to find a new home.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Codeberg Pages on 이영욱</title>
+    <link>https://lyuk98.com/tags/codeberg-pages/</link>
+    <description>Recent content in Codeberg Pages on 이영욱</description>
+    <image>
+      <title>이영욱</title>
+      <url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url>
+      <link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>This work is marked CC0 1.0 Universal</copyright>
+    <lastBuildDate>Thu, 19 Mar 2026 15:36:17 +0900</lastBuildDate>
+    <atom:link href="https://lyuk98.com/tags/codeberg-pages/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Migrating to Codeberg Pages</title>
+      <link>https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/</link>
+      <pubDate>Thu, 19 Mar 2026 15:36:17 +0900</pubDate>
+      <guid>https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/</guid>
+      <description>For various reaons, I migrated to Codeberg Pages for my blog.</description>
+      <content:encoded><![CDATA[<p>If anyone is wondering, I started my writing journey with <a href="https://listed.to/" title="Listed — Welcome to your new public journal.">Listed</a> blogging platform by <a href="https://standardnotes.com/" title="Standard Notes | End-To-End Encrypted Notes App">Standard Notes</a>. I think it had served me well, but for reasons I will soon mention, I ultimately decided to find a new home.</p>
 <h1 id="why-the-switch">Why the switch?</h1>
 <p>Just about three and a half months ago, I wrote the following while <a href="/blog/2025/12/improving-listeds-code-legibility-in-dark-theme/" title="Improving Listed&#39;s code legibility in dark theme">working on improving my code snippets&rsquo; legibility</a> on the blogging platform:</p>
 <blockquote>
@@ -500,4 +522,7 @@ www.lyuk98.com
 <p>The blog is now available at <a href="https://lyuk98.com/">https://lyuk98.com/</a> (and <a href="https://lyuk98.codeberg.page/">https://lyuk98.codeberg.page/</a>, but it redirects to the former anyway). The code is in <a href="https://codeberg.org/lyuk98/pages" title="lyuk98/pages: My personal website - Codeberg.org">my repository</a> at Codeberg, which is mirrored to <a href="https://github.com/lyuk98/pages" title="lyuk98/pages: My personal website - mirror of https://codeberg.org/lyuk98/pages">the GitHub one</a>.</p>
 <p><a href="https://listed.to/@lyuk98" title="이영욱 —">The Listed blog instance</a> is still live at the time of writing, but I am not sure if I will want to take it down at some point in the future. If it is no longer accessible, you know why.</p>
 <p>For now, though, I am glad that the migration turned out well.</p>
-]]></content:encoded></item></channel></rss>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

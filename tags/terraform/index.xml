@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Terraform on 이영욱</title><link>https://lyuk98.com/tags/terraform/</link><description>Recent content in Terraform on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Fri, 20 Mar 2026 22:43:36 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/terraform/index.xml" rel="self" type="application/rss+xml"/><item><title>Hosting Ente with Terraform, Vault, and NixOS</title><link>https://lyuk98.com/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/</link><pubDate>Sun, 28 Sep 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/</guid><description>Ente, the private photo storage service, was self-hosted in a hard way using declarative methods of resource management.</description><content:encoded><![CDATA[<p><img alt="Logo of Ente" loading="lazy" src="https://images.lyuk98.com/0998d5a9-bafe-4aa2-be99-d49144204337.avif"></p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Terraform on 이영욱</title>
+    <link>https://lyuk98.com/tags/terraform/</link>
+    <description>Recent content in Terraform on 이영욱</description>
+    <image>
+      <title>이영욱</title>
+      <url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url>
+      <link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>This work is marked CC0 1.0 Universal</copyright>
+    <lastBuildDate>Fri, 20 Mar 2026 22:43:36 +0900</lastBuildDate>
+    <atom:link href="https://lyuk98.com/tags/terraform/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hosting Ente with Terraform, Vault, and NixOS</title>
+      <link>https://lyuk98.com/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/</link>
+      <pubDate>Sun, 28 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/</guid>
+      <description>Ente, the private photo storage service, was self-hosted in a hard way using declarative methods of resource management.</description>
+      <content:encoded><![CDATA[<p><img alt="Logo of Ente" loading="lazy" src="https://images.lyuk98.com/0998d5a9-bafe-4aa2-be99-d49144204337.avif"></p>
 <p><a href="https://ente.io/" title="Ente Photos: Store and share your photos with absolute privacy">Ente</a> is a platform to host photos that uses end-to-end encryption to store its data.</p>
 <p>I have more than a decade of photos saved with <a href="https://www.google.com/photos/about/" title="Google Photos: Edit, organise, search and back up your photos">Google Photos</a>, but I wanted to keep them in a place that is designed to be private. The problem, however, was that the collection grew to a few terabytes over the years, and putting them on a privacy-respecting image platform was either very expensive or outright impossible. To work around the problem, I decided to self-host Ente.</p>
 <h1 id="the-plan">The plan</h1>
@@ -1971,4 +1993,7 @@ endpoint:
 <h2 id="finishing-up-updates">Keeping instances up to date</h2>
 <p>With Vault and Museum, there are now <a href="https://github.com/lyuk98/nixos-config/blob/4ddfa37239908404f776d502b2b4436b430b07f4/flake.nix#L131-L150" title="nixos-config/flake.nix at 4ddfa37239908404f776d502b2b4436b430b07f4 · lyuk98/nixos-config">three NixOS hosts</a> that I manage declaratively. All of them need to stay up to date, and though I can manually do it for now, I thought it would be a natural thing to consider automating such a process. A project I came across, <a href="https://github.com/nlewo/comin" title="nlewo/comin: GitOps For NixOS Machines">comin</a>, apparently achieves the goal, but I could not find a way to offload configuration builds to a faster machine during the limited time I took to learn about the project.</p>
 <p>However, an interesting <a href="https://github.com/nlewo/comin/tree/b8ab3eccbc3acf171b9ea377e88b8194f81c579d#features" title="nlewo/comin at b8ab3eccbc3acf171b9ea377e88b8194f81c579d">feature</a> it mentioned was &ldquo;Prometheus metrics&rdquo;. I had no practical experience with it, but integrating it seemed like a nice idea on paper. If I am motivated enough, I may be working on it in the future.</p>
-]]></content:encoded></item></channel></rss>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

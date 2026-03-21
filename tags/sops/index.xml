@@ -1,11 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>SOPS on 이영욱</title><link>https://lyuk98.com/tags/sops/</link><description>Recent content in SOPS on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Fri, 20 Mar 2026 22:43:36 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/sops/index.xml" rel="self" type="application/rss+xml"/><item><title>Building a project (#3) - Attempting to run Kubernetes and OpenStack</title><link>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</link><pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</guid><description>&lt;p&gt;This is a part of series &lt;em&gt;Building a project&lt;/em&gt;, where I try to make something using &lt;a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack"&gt;OpenStack&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>SOPS on 이영욱</title>
+    <link>https://lyuk98.com/tags/sops/</link>
+    <description>Recent content in SOPS on 이영욱</description>
+    <image>
+      <title>이영욱</title>
+      <url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url>
+      <link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>This work is marked CC0 1.0 Universal</copyright>
+    <lastBuildDate>Fri, 20 Mar 2026 22:43:36 +0900</lastBuildDate>
+    <atom:link href="https://lyuk98.com/tags/sops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a project (#3) - Attempting to run Kubernetes and OpenStack</title>
+      <link>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</link>
+      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</guid>
+      <description>&lt;p&gt;This is a part of series &lt;em&gt;Building a project&lt;/em&gt;, where I try to make something using &lt;a href=&#34;https://www.openstack.org/&#34; title=&#34;Open Source Cloud Computing Infrastructure - OpenStack&#34;&gt;OpenStack&lt;/a&gt;.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;a href="https://lyuk98.com/60219/building-a-project-1-learning-about-openstack" title="Building a project (#1) - Learning about OpenStack"&gt;Learning about OpenStack&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://lyuk98.com/66893/building-a-project-2-preparing-a-server" title="Building a project (#2) - Preparing a server"&gt;Preparing a server&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://lyuk98.com/60219/building-a-project-1-learning-about-openstack&#34; title=&#34;Building a project (#1) - Learning about OpenStack&#34;&gt;Learning about OpenStack&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://lyuk98.com/66893/building-a-project-2-preparing-a-server&#34; title=&#34;Building a project (#2) - Preparing a server&#34;&gt;Preparing a server&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Attempting to run Kubernetes and OpenStack&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
-&lt;p&gt;With my server ready, I was excited to get Kubernetes running. Following a guide I came across online, I added a few lines of configuration and applied it right away.&lt;/p&gt;</description><content:encoded><![CDATA[<p>This is a part of series <em>Building a project</em>, where I try to make something using <a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack">OpenStack</a>.</p>
+&lt;p&gt;With my server ready, I was excited to get Kubernetes running. Following a guide I came across online, I added a few lines of configuration and applied it right away.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>This is a part of series <em>Building a project</em>, where I try to make something using <a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack">OpenStack</a>.</p>
 <ol>
 <li><a href="https://lyuk98.com/60219/building-a-project-1-learning-about-openstack" title="Building a project (#1) - Learning about OpenStack">Learning about OpenStack</a></li>
 <li><a href="https://lyuk98.com/66893/building-a-project-2-preparing-a-server" title="Building a project (#2) - Preparing a server">Preparing a server</a></li>
@@ -1121,7 +1143,15 @@ ts-proxies-2              1/1     Running   0          53s
 <p>At this point, I have run into several issues that would not have happened if I chose to follow others&rsquo; setup. That in itself was not a problem to me, but as I learned more about what I tried to deploy, it was clear to me that deploying OpenStack is best done with <a href="https://www.reddit.com/r/homelab/comments/tsxumz/my_modest_homelab_with_openstack/" title="My modest homelab with Openstack : r/homelab">pretty large computing resources</a>, which I simply do not have.</p>
 <p>Another thing was that I could not find a personal use case for the cloud computing infrastructure outside&hellip; running Kubernetes. To me, who is not really running a production service, it looked like an additional complexity to maintain.</p>
 <p>As a result, I decided to focus on other things for now, likely starting with Kubernetes. If I ever happen to learn OpenStack, either by personal choice or out of desperation, I may continue working on this again.</p>
-]]></content:encoded></item><item><title>Building a project (#2) - Preparing a server</title><link>https://lyuk98.com/blog/2025/11/building-a-project-2-preparing-a-server/</link><pubDate>Wed, 05 Nov 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/11/building-a-project-2-preparing-a-server/</guid><description>As an effort to host OpenStack, I prepared a device to run the service with.</description><content:encoded><![CDATA[<p>This is a part of series <em>Building a project</em>, where I try to make something using <a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack">OpenStack</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Building a project (#2) - Preparing a server</title>
+      <link>https://lyuk98.com/blog/2025/11/building-a-project-2-preparing-a-server/</link>
+      <pubDate>Wed, 05 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/11/building-a-project-2-preparing-a-server/</guid>
+      <description>As an effort to host OpenStack, I prepared a device to run the service with.</description>
+      <content:encoded><![CDATA[<p>This is a part of series <em>Building a project</em>, where I try to make something using <a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack">OpenStack</a>.</p>
 <ol>
 <li><a href="https://lyuk98.com/60219/building-a-project-1-learning-about-openstack" title="Building a project (#1) - Learning about OpenStack">Learning about OpenStack</a></li>
 <li>Preparing a server</li>
@@ -1490,7 +1520,15 @@ Verifying file database and EFI images in /boot...
 <p>I did not remove the battery itself. The cover was reattached right away.</p>
 <h1 id="the-next-step">The next step</h1>
 <p>With the server ready, the next step would be to run Kubernetes. I have not figured out how to run OpenStack on top of it yet, but I probably will as I work on it.</p>
-]]></content:encoded></item><item><title>Hosting Ente with Terraform, Vault, and NixOS</title><link>https://lyuk98.com/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/</link><pubDate>Sun, 28 Sep 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/</guid><description>Ente, the private photo storage service, was self-hosted in a hard way using declarative methods of resource management.</description><content:encoded><![CDATA[<p><img alt="Logo of Ente" loading="lazy" src="https://images.lyuk98.com/0998d5a9-bafe-4aa2-be99-d49144204337.avif"></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Hosting Ente with Terraform, Vault, and NixOS</title>
+      <link>https://lyuk98.com/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/</link>
+      <pubDate>Sun, 28 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/</guid>
+      <description>Ente, the private photo storage service, was self-hosted in a hard way using declarative methods of resource management.</description>
+      <content:encoded><![CDATA[<p><img alt="Logo of Ente" loading="lazy" src="https://images.lyuk98.com/0998d5a9-bafe-4aa2-be99-d49144204337.avif"></p>
 <p><a href="https://ente.io/" title="Ente Photos: Store and share your photos with absolute privacy">Ente</a> is a platform to host photos that uses end-to-end encryption to store its data.</p>
 <p>I have more than a decade of photos saved with <a href="https://www.google.com/photos/about/" title="Google Photos: Edit, organise, search and back up your photos">Google Photos</a>, but I wanted to keep them in a place that is designed to be private. The problem, however, was that the collection grew to a few terabytes over the years, and putting them on a privacy-respecting image platform was either very expensive or outright impossible. To work around the problem, I decided to self-host Ente.</p>
 <h1 id="the-plan">The plan</h1>
@@ -3463,7 +3501,15 @@ endpoint:
 <h2 id="finishing-up-updates">Keeping instances up to date</h2>
 <p>With Vault and Museum, there are now <a href="https://github.com/lyuk98/nixos-config/blob/4ddfa37239908404f776d502b2b4436b430b07f4/flake.nix#L131-L150" title="nixos-config/flake.nix at 4ddfa37239908404f776d502b2b4436b430b07f4 · lyuk98/nixos-config">three NixOS hosts</a> that I manage declaratively. All of them need to stay up to date, and though I can manually do it for now, I thought it would be a natural thing to consider automating such a process. A project I came across, <a href="https://github.com/nlewo/comin" title="nlewo/comin: GitOps For NixOS Machines">comin</a>, apparently achieves the goal, but I could not find a way to offload configuration builds to a faster machine during the limited time I took to learn about the project.</p>
 <p>However, an interesting <a href="https://github.com/nlewo/comin/tree/b8ab3eccbc3acf171b9ea377e88b8194f81c579d#features" title="nlewo/comin at b8ab3eccbc3acf171b9ea377e88b8194f81c579d">feature</a> it mentioned was &ldquo;Prometheus metrics&rdquo;. I had no practical experience with it, but integrating it seemed like a nice idea on paper. If I am motivated enough, I may be working on it in the future.</p>
-]]></content:encoded></item><item><title>Switching from Arch Linux to NixOS</title><link>https://lyuk98.com/blog/2025/05/switching-from-arch-linux-to-nixos/</link><pubDate>Fri, 16 May 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/05/switching-from-arch-linux-to-nixos/</guid><description>The switch to NixOS involved learning a whole new language. It may not be everyone&amp;#39;s cup of tea, but I personally enjoyed the journey I took to get it running.</description><content:encoded><![CDATA[<blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Switching from Arch Linux to NixOS</title>
+      <link>https://lyuk98.com/blog/2025/05/switching-from-arch-linux-to-nixos/</link>
+      <pubDate>Fri, 16 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/05/switching-from-arch-linux-to-nixos/</guid>
+      <description>The switch to NixOS involved learning a whole new language. It may not be everyone&amp;#39;s cup of tea, but I personally enjoyed the journey I took to get it running.</description>
+      <content:encoded><![CDATA[<blockquote>
 <p>I use Arch btw</p>
 </blockquote>
 <p>Not any more.</p>
@@ -3984,4 +4030,7 @@ these 407 derivations will be built:
 <p>There are still many parts (mostly in Home Manager configurations) that I could not declaratively manage just yet. On top of that, even though I continued using Flatpak, it does not seem to fit well with the declarative nature of this system. Considering those concerns, the next step would be switching from Flatpak to Nixpkgs.</p>
 <p>Switching to NixOS on my Raspberry Pi, <a href="https://lyuk98.com/60610/self-hosting-peertube-with-tailscale" title="Self-hosting PeerTube with Tailscale">which currently hosts PeerTube</a>, is also something I plan to do in the future. It could be an opportunity to apply something new, such as declarative partitioning with <a href="https://github.com/nix-community/disko" title="nix-community/disko: Declarative disk partitioning and formatting using nix [maintainers=Lassulus Enzime iFreilicht Mic92 phaer]">disko</a>.</p>
 <p><a href="https://github.com/lyuk98/nixos-config" title="lyuk98/nixos-config: NixOS Configurations">The repository</a> will continue to be maintained as long as I keep using NixOS. If I know more about Nix than I do now, it will probably look much more different than how it does at the time of writing.</p>
-]]></content:encoded></item></channel></rss>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

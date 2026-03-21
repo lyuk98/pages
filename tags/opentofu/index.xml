@@ -1,10 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>OpenTofu on 이영욱</title><link>https://lyuk98.com/tags/opentofu/</link><description>Recent content in OpenTofu on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Fri, 20 Mar 2026 22:43:36 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/opentofu/index.xml" rel="self" type="application/rss+xml"/><item><title>Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux</title><link>https://lyuk98.com/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/</link><pubDate>Thu, 26 Feb 2026 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/</guid><description>&lt;p&gt;This is part of series &lt;em&gt;Building a homelab&lt;/em&gt;, where I document my journey to build my own homelab with Kubernetes.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>OpenTofu on 이영욱</title>
+    <link>https://lyuk98.com/tags/opentofu/</link>
+    <description>Recent content in OpenTofu on 이영욱</description>
+    <image>
+      <title>이영욱</title>
+      <url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url>
+      <link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>This work is marked CC0 1.0 Universal</copyright>
+    <lastBuildDate>Fri, 20 Mar 2026 22:43:36 +0900</lastBuildDate>
+    <atom:link href="https://lyuk98.com/tags/opentofu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux</title>
+      <link>https://lyuk98.com/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/</link>
+      <pubDate>Thu, 26 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/</guid>
+      <description>&lt;p&gt;This is part of series &lt;em&gt;Building a homelab&lt;/em&gt;, where I document my journey to build my own homelab with Kubernetes.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Creating a Kubernetes cluster with Talos Linux&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
 &lt;p&gt;Up until now, I have had some experiences with self-hosting services. However, as I learned more, I could see ways to make my setup better.&lt;/p&gt;
-&lt;p&gt;While learning about &lt;a href="https://kubernetes.io/" title="Kubernetes"&gt;Kubernetes&lt;/a&gt;, I thought it could be used to host everything that I have self-hosted so far. If I could get it right, it would allow me to manage all the services while also reducing costs.&lt;/p&gt;</description><content:encoded><![CDATA[<p>This is part of series <em>Building a homelab</em>, where I document my journey to build my own homelab with Kubernetes.</p>
+&lt;p&gt;While learning about &lt;a href=&#34;https://kubernetes.io/&#34; title=&#34;Kubernetes&#34;&gt;Kubernetes&lt;/a&gt;, I thought it could be used to host everything that I have self-hosted so far. If I could get it right, it would allow me to manage all the services while also reducing costs.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>This is part of series <em>Building a homelab</em>, where I document my journey to build my own homelab with Kubernetes.</p>
 <ol>
 <li>Creating a Kubernetes cluster with Talos Linux</li>
 </ol>
@@ -1308,4 +1330,7 @@ To further debug and diagnose cluster problems, use &#39;kubectl cluster-info du
 <p>This project undertook some major changes before becoming what it is now. Because my desired setup was quite uncommon, I sometimes had to modify and adapt people&rsquo;s solutions online to fit my specific setup.</p>
 <p>It was exhausting at times, and I got worried about no longer being able to commit to it (with life getting in the way), but I am happy to be able to achieve my goal without giving up my desire of building declarative systems.</p>
 <p>The next step for me, with the Kubernetes cluster now in operation, would be to finally migrate my existing self-hosted services to the container orchestration system. I do not plan to take the easy way, though; even if it means having to learn a lot more, I would like to do what I think is right.</p>
-]]></content:encoded></item></channel></rss>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

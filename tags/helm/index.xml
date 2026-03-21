@@ -1,10 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Helm on 이영욱</title><link>https://lyuk98.com/tags/helm/</link><description>Recent content in Helm on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Fri, 20 Mar 2026 22:43:36 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/helm/index.xml" rel="self" type="application/rss+xml"/><item><title>Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux</title><link>https://lyuk98.com/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/</link><pubDate>Thu, 26 Feb 2026 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/</guid><description>&lt;p&gt;This is part of series &lt;em&gt;Building a homelab&lt;/em&gt;, where I document my journey to build my own homelab with Kubernetes.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Helm on 이영욱</title>
+    <link>https://lyuk98.com/tags/helm/</link>
+    <description>Recent content in Helm on 이영욱</description>
+    <image>
+      <title>이영욱</title>
+      <url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url>
+      <link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>This work is marked CC0 1.0 Universal</copyright>
+    <lastBuildDate>Fri, 20 Mar 2026 22:43:36 +0900</lastBuildDate>
+    <atom:link href="https://lyuk98.com/tags/helm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux</title>
+      <link>https://lyuk98.com/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/</link>
+      <pubDate>Thu, 26 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/</guid>
+      <description>&lt;p&gt;This is part of series &lt;em&gt;Building a homelab&lt;/em&gt;, where I document my journey to build my own homelab with Kubernetes.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Creating a Kubernetes cluster with Talos Linux&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
 &lt;p&gt;Up until now, I have had some experiences with self-hosting services. However, as I learned more, I could see ways to make my setup better.&lt;/p&gt;
-&lt;p&gt;While learning about &lt;a href="https://kubernetes.io/" title="Kubernetes"&gt;Kubernetes&lt;/a&gt;, I thought it could be used to host everything that I have self-hosted so far. If I could get it right, it would allow me to manage all the services while also reducing costs.&lt;/p&gt;</description><content:encoded><![CDATA[<p>This is part of series <em>Building a homelab</em>, where I document my journey to build my own homelab with Kubernetes.</p>
+&lt;p&gt;While learning about &lt;a href=&#34;https://kubernetes.io/&#34; title=&#34;Kubernetes&#34;&gt;Kubernetes&lt;/a&gt;, I thought it could be used to host everything that I have self-hosted so far. If I could get it right, it would allow me to manage all the services while also reducing costs.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>This is part of series <em>Building a homelab</em>, where I document my journey to build my own homelab with Kubernetes.</p>
 <ol>
 <li>Creating a Kubernetes cluster with Talos Linux</li>
 </ol>
@@ -1308,14 +1330,22 @@ To further debug and diagnose cluster problems, use &#39;kubectl cluster-info du
 <p>This project undertook some major changes before becoming what it is now. Because my desired setup was quite uncommon, I sometimes had to modify and adapt people&rsquo;s solutions online to fit my specific setup.</p>
 <p>It was exhausting at times, and I got worried about no longer being able to commit to it (with life getting in the way), but I am happy to be able to achieve my goal without giving up my desire of building declarative systems.</p>
 <p>The next step for me, with the Kubernetes cluster now in operation, would be to finally migrate my existing self-hosted services to the container orchestration system. I do not plan to take the easy way, though; even if it means having to learn a lot more, I would like to do what I think is right.</p>
-]]></content:encoded></item><item><title>Building a project (#3) - Attempting to run Kubernetes and OpenStack</title><link>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</link><pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</guid><description>&lt;p&gt;This is a part of series &lt;em&gt;Building a project&lt;/em&gt;, where I try to make something using &lt;a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack"&gt;OpenStack&lt;/a&gt;.&lt;/p&gt;
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Building a project (#3) - Attempting to run Kubernetes and OpenStack</title>
+      <link>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</link>
+      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</guid>
+      <description>&lt;p&gt;This is a part of series &lt;em&gt;Building a project&lt;/em&gt;, where I try to make something using &lt;a href=&#34;https://www.openstack.org/&#34; title=&#34;Open Source Cloud Computing Infrastructure - OpenStack&#34;&gt;OpenStack&lt;/a&gt;.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;a href="https://lyuk98.com/60219/building-a-project-1-learning-about-openstack" title="Building a project (#1) - Learning about OpenStack"&gt;Learning about OpenStack&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://lyuk98.com/66893/building-a-project-2-preparing-a-server" title="Building a project (#2) - Preparing a server"&gt;Preparing a server&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://lyuk98.com/60219/building-a-project-1-learning-about-openstack&#34; title=&#34;Building a project (#1) - Learning about OpenStack&#34;&gt;Learning about OpenStack&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://lyuk98.com/66893/building-a-project-2-preparing-a-server&#34; title=&#34;Building a project (#2) - Preparing a server&#34;&gt;Preparing a server&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Attempting to run Kubernetes and OpenStack&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
-&lt;p&gt;With my server ready, I was excited to get Kubernetes running. Following a guide I came across online, I added a few lines of configuration and applied it right away.&lt;/p&gt;</description><content:encoded><![CDATA[<p>This is a part of series <em>Building a project</em>, where I try to make something using <a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack">OpenStack</a>.</p>
+&lt;p&gt;With my server ready, I was excited to get Kubernetes running. Following a guide I came across online, I added a few lines of configuration and applied it right away.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>This is a part of series <em>Building a project</em>, where I try to make something using <a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack">OpenStack</a>.</p>
 <ol>
 <li><a href="https://lyuk98.com/60219/building-a-project-1-learning-about-openstack" title="Building a project (#1) - Learning about OpenStack">Learning about OpenStack</a></li>
 <li><a href="https://lyuk98.com/66893/building-a-project-2-preparing-a-server" title="Building a project (#2) - Preparing a server">Preparing a server</a></li>
@@ -2431,4 +2461,7 @@ ts-proxies-2              1/1     Running   0          53s
 <p>At this point, I have run into several issues that would not have happened if I chose to follow others&rsquo; setup. That in itself was not a problem to me, but as I learned more about what I tried to deploy, it was clear to me that deploying OpenStack is best done with <a href="https://www.reddit.com/r/homelab/comments/tsxumz/my_modest_homelab_with_openstack/" title="My modest homelab with Openstack : r/homelab">pretty large computing resources</a>, which I simply do not have.</p>
 <p>Another thing was that I could not find a personal use case for the cloud computing infrastructure outside&hellip; running Kubernetes. To me, who is not really running a production service, it looked like an additional complexity to maintain.</p>
 <p>As a result, I decided to focus on other things for now, likely starting with Kubernetes. If I ever happen to learn OpenStack, either by personal choice or out of desperation, I may continue working on this again.</p>
-]]></content:encoded></item></channel></rss>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

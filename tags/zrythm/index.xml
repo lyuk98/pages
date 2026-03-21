@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Zrythm on 이영욱</title><link>https://lyuk98.com/tags/zrythm/</link><description>Recent content in Zrythm on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Thu, 19 Mar 2026 16:38:20 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/zrythm/index.xml" rel="self" type="application/rss+xml"/><item><title>Using Zrythm for audio production</title><link>https://lyuk98.com/blog/2025/12/using-zrythm-for-audio-production/</link><pubDate>Thu, 25 Dec 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/12/using-zrythm-for-audio-production/</guid><description>I gave Zrythm a try for recording music before the end of this year.</description><content:encoded><![CDATA[<p>Sometimes, I like to record music and videos that will be left as pieces of memory to reminisce about. I am neither a professional music producer nor a content creator, but I have managed to learn just enough to do what I wanted.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Zrythm on 이영욱</title>
+    <link>https://lyuk98.com/tags/zrythm/</link>
+    <description>Recent content in Zrythm on 이영욱</description>
+    <image>
+      <title>이영욱</title>
+      <url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url>
+      <link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>This work is marked CC0 1.0 Universal</copyright>
+    <lastBuildDate>Thu, 19 Mar 2026 16:38:20 +0900</lastBuildDate>
+    <atom:link href="https://lyuk98.com/tags/zrythm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using Zrythm for audio production</title>
+      <link>https://lyuk98.com/blog/2025/12/using-zrythm-for-audio-production/</link>
+      <pubDate>Thu, 25 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/12/using-zrythm-for-audio-production/</guid>
+      <description>I gave Zrythm a try for recording music before the end of this year.</description>
+      <content:encoded><![CDATA[<p>Sometimes, I like to record music and videos that will be left as pieces of memory to reminisce about. I am neither a professional music producer nor a content creator, but I have managed to learn just enough to do what I wanted.</p>
 <p>As I worked on another one before finishing this year, I wanted to try a new tool. As one could guess from the title, I gave <a href="https://www.zrythm.org/" title="Zrythm - Digital Audio Workstation">Zrythm</a> a shot.</p>
 <hr>
 <h1 id="switching-to-zrythm">Switching to Zrythm</h1>
@@ -223,4 +245,7 @@
 </table>
 <p>Fortunately, the developers already <a href="https://mastodon.social/@zrythm/115535332863583356" title="Zrythm DAW: \&#34;Tempo &amp; time signature automat…\&#34; - Mastodon">made a better implementation</a> for their upcoming major release.</p>
 <p>After dealing with some limitations, I will stick to Ardour in the time being. However, when the <a href="https://forum.zrythm.org/t/some-updates-on-v1-release-and-v2-development" title="Some updates on v1 release (and v2 development) - News - Zrythm Forum">promised v2</a> becomes available, I may give it another shot.</p>
-]]></content:encoded></item></channel></rss>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

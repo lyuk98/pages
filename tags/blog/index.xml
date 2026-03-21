@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Blog on 이영욱</title><link>https://lyuk98.com/tags/blog/</link><description>Recent content in Blog on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Fri, 20 Mar 2026 22:43:36 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Migrating to Codeberg Pages</title><link>https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/</link><pubDate>Thu, 19 Mar 2026 15:36:17 +0900</pubDate><guid>https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/</guid><description>For various reaons, I migrated to Codeberg Pages for my blog.</description><content:encoded><![CDATA[<p>If anyone is wondering, I started my writing journey with <a href="https://listed.to/" title="Listed — Welcome to your new public journal.">Listed</a> blogging platform by <a href="https://standardnotes.com/" title="Standard Notes | End-To-End Encrypted Notes App">Standard Notes</a>. I think it had served me well, but for reasons I will soon mention, I ultimately decided to find a new home.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Blog on 이영욱</title>
+    <link>https://lyuk98.com/tags/blog/</link>
+    <description>Recent content in Blog on 이영욱</description>
+    <image>
+      <title>이영욱</title>
+      <url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url>
+      <link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>This work is marked CC0 1.0 Universal</copyright>
+    <lastBuildDate>Fri, 20 Mar 2026 22:43:36 +0900</lastBuildDate>
+    <atom:link href="https://lyuk98.com/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Migrating to Codeberg Pages</title>
+      <link>https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/</link>
+      <pubDate>Thu, 19 Mar 2026 15:36:17 +0900</pubDate>
+      <guid>https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/</guid>
+      <description>For various reaons, I migrated to Codeberg Pages for my blog.</description>
+      <content:encoded><![CDATA[<p>If anyone is wondering, I started my writing journey with <a href="https://listed.to/" title="Listed — Welcome to your new public journal.">Listed</a> blogging platform by <a href="https://standardnotes.com/" title="Standard Notes | End-To-End Encrypted Notes App">Standard Notes</a>. I think it had served me well, but for reasons I will soon mention, I ultimately decided to find a new home.</p>
 <h1 id="why-the-switch">Why the switch?</h1>
 <p>Just about three and a half months ago, I wrote the following while <a href="/blog/2025/12/improving-listeds-code-legibility-in-dark-theme/" title="Improving Listed&#39;s code legibility in dark theme">working on improving my code snippets&rsquo; legibility</a> on the blogging platform:</p>
 <blockquote>
@@ -500,8 +522,16 @@ www.lyuk98.com
 <p>The blog is now available at <a href="https://lyuk98.com/">https://lyuk98.com/</a> (and <a href="https://lyuk98.codeberg.page/">https://lyuk98.codeberg.page/</a>, but it redirects to the former anyway). The code is in <a href="https://codeberg.org/lyuk98/pages" title="lyuk98/pages: My personal website - Codeberg.org">my repository</a> at Codeberg, which is mirrored to <a href="https://github.com/lyuk98/pages" title="lyuk98/pages: My personal website - mirror of https://codeberg.org/lyuk98/pages">the GitHub one</a>.</p>
 <p><a href="https://listed.to/@lyuk98" title="이영욱 —">The Listed blog instance</a> is still live at the time of writing, but I am not sure if I will want to take it down at some point in the future. If it is no longer accessible, you know why.</p>
 <p>For now, though, I am glad that the migration turned out well.</p>
-]]></content:encoded></item><item><title>Improving Listed's code legibility in dark theme</title><link>https://lyuk98.com/blog/2025/12/improving-listeds-code-legibility-in-dark-theme/</link><pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/12/improving-listeds-code-legibility-in-dark-theme/</guid><description>&lt;p&gt;It has been some time since I started writing on &lt;a href="https://listed.to/" title="Listed — Welcome to your new public journal."&gt;Listed&lt;/a&gt;. Although the development around the blogging platform seems to be slow-paced (which I feel is an understatement) and some note-taking services like &lt;a href="https://anytype.io/" title="The Everything App"&gt;Anytype&lt;/a&gt; also offer &lt;a href="https://doc.anytype.io/anytype-docs/getting-started/web-publishing" title="Publish | Anytype Docs"&gt;publication of notes&lt;/a&gt;, I have yet to find a compelling reason nor devote my time for migration.&lt;/p&gt;
-&lt;p&gt;That said, there is one thing I do want to see an improvement to.&lt;/p&gt;</description><content:encoded><![CDATA[<p>It has been some time since I started writing on <a href="https://listed.to/" title="Listed — Welcome to your new public journal.">Listed</a>. Although the development around the blogging platform seems to be slow-paced (which I feel is an understatement) and some note-taking services like <a href="https://anytype.io/" title="The Everything App">Anytype</a> also offer <a href="https://doc.anytype.io/anytype-docs/getting-started/web-publishing" title="Publish | Anytype Docs">publication of notes</a>, I have yet to find a compelling reason nor devote my time for migration.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Improving Listed&#39;s code legibility in dark theme</title>
+      <link>https://lyuk98.com/blog/2025/12/improving-listeds-code-legibility-in-dark-theme/</link>
+      <pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/12/improving-listeds-code-legibility-in-dark-theme/</guid>
+      <description>&lt;p&gt;It has been some time since I started writing on &lt;a href=&#34;https://listed.to/&#34; title=&#34;Listed — Welcome to your new public journal.&#34;&gt;Listed&lt;/a&gt;. Although the development around the blogging platform seems to be slow-paced (which I feel is an understatement) and some note-taking services like &lt;a href=&#34;https://anytype.io/&#34; title=&#34;The Everything App&#34;&gt;Anytype&lt;/a&gt; also offer &lt;a href=&#34;https://doc.anytype.io/anytype-docs/getting-started/web-publishing&#34; title=&#34;Publish | Anytype Docs&#34;&gt;publication of notes&lt;/a&gt;, I have yet to find a compelling reason nor devote my time for migration.&lt;/p&gt;
+&lt;p&gt;That said, there is one thing I do want to see an improvement to.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>It has been some time since I started writing on <a href="https://listed.to/" title="Listed — Welcome to your new public journal.">Listed</a>. Although the development around the blogging platform seems to be slow-paced (which I feel is an understatement) and some note-taking services like <a href="https://anytype.io/" title="The Everything App">Anytype</a> also offer <a href="https://doc.anytype.io/anytype-docs/getting-started/web-publishing" title="Publish | Anytype Docs">publication of notes</a>, I have yet to find a compelling reason nor devote my time for migration.</p>
 <p>That said, there is one thing I do want to see an improvement to.</p>
 <h1 id="the-problem">The problem</h1>
 <p>Listed supports dark theme, which is not something I see in every blogging platforms I come across. However, I include a lot of code snippets, and switching to dark theme meant significant parts of the post become less legible.</p>
@@ -1572,7 +1602,15 @@ www.lyuk98.com
 </table>
 <p>It was one less reason for switching the note-taking service. However, it was not a proper solution; the developers could implement a much more permanent one.</p>
 <p>Anyway, I was glad that this problem is finally over with.</p>
-]]></content:encoded></item><item><title>Using custom domain with Listed</title><link>https://lyuk98.com/blog/2025/04/using-custom-domain-with-listed/</link><pubDate>Mon, 21 Apr 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/04/using-custom-domain-with-listed/</guid><description>I wanted to use a custom domain for my blog. It was supposed to be easy, but the steps I took to solve the problem during the integration were far more than what I have initially expected.</description><content:encoded><![CDATA[<p>Since around September 2025, Listed <a href="https://github.com/standardnotes/listed/pull/302" title="chore: remove new custom domain from settings by antsgar · Pull Request #302 · standardnotes/listed">no longer accepts</a> new requests for custom domains. The information below is therefore no longer relevant, but nevertheless kept as a record of what I have been through to make it work back then.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Using custom domain with Listed</title>
+      <link>https://lyuk98.com/blog/2025/04/using-custom-domain-with-listed/</link>
+      <pubDate>Mon, 21 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/04/using-custom-domain-with-listed/</guid>
+      <description>I wanted to use a custom domain for my blog. It was supposed to be easy, but the steps I took to solve the problem during the integration were far more than what I have initially expected.</description>
+      <content:encoded><![CDATA[<p>Since around September 2025, Listed <a href="https://github.com/standardnotes/listed/pull/302" title="chore: remove new custom domain from settings by antsgar · Pull Request #302 · standardnotes/listed">no longer accepts</a> new requests for custom domains. The information below is therefore no longer relevant, but nevertheless kept as a record of what I have been through to make it work back then.</p>
 <hr>
 <blockquote>
 <p>Custom domains are available for Standard Notes members with an active Productivity or Professional <a href="https://standardnotes.com/plans">plan</a>. Domains include an HTTPS certificate, and require only a simple DNS record on your end.</p>
@@ -3548,9 +3586,17 @@ Tasks: TOP =&gt; ssl:renew
 </blockquote>
 <p>While it was the end of a problem that have bothered me for over a year, not knowing exactly why the integration worked this time was not very satisfying. Nevertheless, I was glad that this problem was done with.</p>
 <p>Will I ever come back to this problem to figure out exactly what went wrong? Probably, if renewing a certificate for my domain ever fails. However, that is still a while away, so I will be focusing on other things for now.</p>
-]]></content:encoded></item><item><title>Getting started with Listed</title><link>https://lyuk98.com/blog/2025/03/getting-started-with-listed/</link><pubDate>Tue, 11 Mar 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/03/getting-started-with-listed/</guid><description>&lt;p&gt;Hello to whoever is reading the first post of this blog! Neither writing nor showing my work to public is within my comfort zone, but it is what I aim to overcome, starting with this post.&lt;/p&gt;
-&lt;h1 id="my-introduction-to-standard-notes-and-listed"&gt;My introduction to Standard Notes and Listed&lt;/h1&gt;
-&lt;p&gt;I have been an everyday user of Proton&amp;rsquo;s products, and I was introduced to Standard Notes when &lt;a href="https://proton.me/blog/proton-standard-notes-join-forces"&gt;they announced that they are &amp;ldquo;joining forces&amp;rdquo;&lt;/a&gt;. My needs for personal note-taking were already satisfied with basic products like Google Keep, but having used Notion for team projects in the past, I was convinced to try it out.&lt;/p&gt;</description><content:encoded><![CDATA[<p>Hello to whoever is reading the first post of this blog! Neither writing nor showing my work to public is within my comfort zone, but it is what I aim to overcome, starting with this post.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Getting started with Listed</title>
+      <link>https://lyuk98.com/blog/2025/03/getting-started-with-listed/</link>
+      <pubDate>Tue, 11 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/03/getting-started-with-listed/</guid>
+      <description>&lt;p&gt;Hello to whoever is reading the first post of this blog! Neither writing nor showing my work to public is within my comfort zone, but it is what I aim to overcome, starting with this post.&lt;/p&gt;
+&lt;h1 id=&#34;my-introduction-to-standard-notes-and-listed&#34;&gt;My introduction to Standard Notes and Listed&lt;/h1&gt;
+&lt;p&gt;I have been an everyday user of Proton&amp;rsquo;s products, and I was introduced to Standard Notes when &lt;a href=&#34;https://proton.me/blog/proton-standard-notes-join-forces&#34;&gt;they announced that they are &amp;ldquo;joining forces&amp;rdquo;&lt;/a&gt;. My needs for personal note-taking were already satisfied with basic products like Google Keep, but having used Notion for team projects in the past, I was convinced to try it out.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>Hello to whoever is reading the first post of this blog! Neither writing nor showing my work to public is within my comfort zone, but it is what I aim to overcome, starting with this post.</p>
 <h1 id="my-introduction-to-standard-notes-and-listed">My introduction to Standard Notes and Listed</h1>
 <p>I have been an everyday user of Proton&rsquo;s products, and I was introduced to Standard Notes when <a href="https://proton.me/blog/proton-standard-notes-join-forces">they announced that they are &ldquo;joining forces&rdquo;</a>. My needs for personal note-taking were already satisfied with basic products like Google Keep, but having used Notion for team projects in the past, I was convinced to try it out.</p>
 <p>While getting used to the new service, I discovered Listed blogging platform. I have previously been advised to write my technical experiences to keep records, and it seemed like a good place to do so.</p>
@@ -3595,4 +3641,7 @@ Tasks: TOP =&gt; ssl:renew
 <p>With my personality, I was hesitant to ask for help, and the problem remains unsolved for almost about a year. I recently came across <a href="https://www.reddit.com/r/StandardNotes/comments/1j46kwg/listedto_custom_domains/">a post on Reddit</a>, where one user claimed disabling DNSSEC helped them; I then immediately visited my domain name provider to switch it off, but the problem still persisted.</p>
 <h1 id="wrapping-up">Wrapping up&hellip;</h1>
 <p>I am with hopes that I will stay committed to keep this blog updated for the foreseeable future. I am simply hoping for now, but time will tell&hellip;</p>
-]]></content:encoded></item></channel></rss>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

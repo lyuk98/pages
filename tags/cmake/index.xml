@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>CMake on 이영욱</title><link>https://lyuk98.com/tags/cmake/</link><description>Recent content in CMake on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Thu, 19 Mar 2026 16:38:20 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/cmake/index.xml" rel="self" type="application/rss+xml"/><item><title>Building obscure packages with Nix</title><link>https://lyuk98.com/blog/2025/10/building-obscure-packages-with-nix/</link><pubDate>Tue, 28 Oct 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/10/building-obscure-packages-with-nix/</guid><description>It is understandable that not every software on the internet is available on any given Linux distribution, but it is sometimes disappointing when something I have been looking for is missing.</description><content:encoded><![CDATA[<p>It is understandable that not every software on the internet is available on any given Linux distribution, but it is sometimes disappointing when something I have been looking for is missing.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>CMake on 이영욱</title>
+    <link>https://lyuk98.com/tags/cmake/</link>
+    <description>Recent content in CMake on 이영욱</description>
+    <image>
+      <title>이영욱</title>
+      <url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url>
+      <link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>This work is marked CC0 1.0 Universal</copyright>
+    <lastBuildDate>Thu, 19 Mar 2026 16:38:20 +0900</lastBuildDate>
+    <atom:link href="https://lyuk98.com/tags/cmake/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building obscure packages with Nix</title>
+      <link>https://lyuk98.com/blog/2025/10/building-obscure-packages-with-nix/</link>
+      <pubDate>Tue, 28 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/10/building-obscure-packages-with-nix/</guid>
+      <description>It is understandable that not every software on the internet is available on any given Linux distribution, but it is sometimes disappointing when something I have been looking for is missing.</description>
+      <content:encoded><![CDATA[<p>It is understandable that not every software on the internet is available on any given Linux distribution, but it is sometimes disappointing when something I have been looking for is missing.</p>
 <h1 id="introduction">Introduction</h1>
 <p>When Arch Linux was my daily driver, <a href="https://flatpak.org/" title="Flatpak—the future of application distribution">Flatpak</a> (with <a href="https://flathub.org" title="Flathub - Apps for Linux">Flathub</a>) and <a href="https://aur.archlinux.org/" title="AUR (en) - Home">Arch User Repository (AUR)</a> provided enough packages to satisfy my needs. However, I have since <a href="https://lyuk98.com/62055/switching-from-arch-linux-to-nixos" title="Switching from Arch Linux to NixOS">switched to NixOS</a> and almost ditched Flatpak from my system. Even still, there were two things I could try:</p>
 <ol>
@@ -1793,4 +1815,7 @@ interface &#39;wl_surface&#39; has no event 2
 </span></span></code></pre></div></blockquote>
 <p>Even before properly knowing about Nix and NixOS, I have seen people saying that they have a high learning curve. I am in the process of making them my second nature, and I think I am doing pretty good about it so far; however, I still felt a problem like this could deter potential contributors into the Nix ecosystem.</p>
 <p>Despite the shortcomings, however, I do not think I can go back to other Linux distributions (not for now, at least). Declarative management of resources for a whole operating system is something I did not know I needed, and the deterministic nature of derivations makes me a little more confident that changes to the system will not affect the application.</p>
-]]></content:encoded></item></channel></rss>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

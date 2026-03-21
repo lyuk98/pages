@@ -1,11 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Nix on 이영욱</title><link>https://lyuk98.com/tags/nix/</link><description>Recent content in Nix on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Thu, 19 Mar 2026 16:38:20 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/nix/index.xml" rel="self" type="application/rss+xml"/><item><title>Building a project (#3) - Attempting to run Kubernetes and OpenStack</title><link>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</link><pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</guid><description>&lt;p&gt;This is a part of series &lt;em&gt;Building a project&lt;/em&gt;, where I try to make something using &lt;a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack"&gt;OpenStack&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Nix on 이영욱</title>
+    <link>https://lyuk98.com/tags/nix/</link>
+    <description>Recent content in Nix on 이영욱</description>
+    <image>
+      <title>이영욱</title>
+      <url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url>
+      <link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>This work is marked CC0 1.0 Universal</copyright>
+    <lastBuildDate>Thu, 19 Mar 2026 16:38:20 +0900</lastBuildDate>
+    <atom:link href="https://lyuk98.com/tags/nix/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a project (#3) - Attempting to run Kubernetes and OpenStack</title>
+      <link>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</link>
+      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</guid>
+      <description>&lt;p&gt;This is a part of series &lt;em&gt;Building a project&lt;/em&gt;, where I try to make something using &lt;a href=&#34;https://www.openstack.org/&#34; title=&#34;Open Source Cloud Computing Infrastructure - OpenStack&#34;&gt;OpenStack&lt;/a&gt;.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;a href="https://lyuk98.com/60219/building-a-project-1-learning-about-openstack" title="Building a project (#1) - Learning about OpenStack"&gt;Learning about OpenStack&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://lyuk98.com/66893/building-a-project-2-preparing-a-server" title="Building a project (#2) - Preparing a server"&gt;Preparing a server&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://lyuk98.com/60219/building-a-project-1-learning-about-openstack&#34; title=&#34;Building a project (#1) - Learning about OpenStack&#34;&gt;Learning about OpenStack&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://lyuk98.com/66893/building-a-project-2-preparing-a-server&#34; title=&#34;Building a project (#2) - Preparing a server&#34;&gt;Preparing a server&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Attempting to run Kubernetes and OpenStack&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
-&lt;p&gt;With my server ready, I was excited to get Kubernetes running. Following a guide I came across online, I added a few lines of configuration and applied it right away.&lt;/p&gt;</description><content:encoded><![CDATA[<p>This is a part of series <em>Building a project</em>, where I try to make something using <a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack">OpenStack</a>.</p>
+&lt;p&gt;With my server ready, I was excited to get Kubernetes running. Following a guide I came across online, I added a few lines of configuration and applied it right away.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>This is a part of series <em>Building a project</em>, where I try to make something using <a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack">OpenStack</a>.</p>
 <ol>
 <li><a href="https://lyuk98.com/60219/building-a-project-1-learning-about-openstack" title="Building a project (#1) - Learning about OpenStack">Learning about OpenStack</a></li>
 <li><a href="https://lyuk98.com/66893/building-a-project-2-preparing-a-server" title="Building a project (#2) - Preparing a server">Preparing a server</a></li>
@@ -1121,7 +1143,15 @@ ts-proxies-2              1/1     Running   0          53s
 <p>At this point, I have run into several issues that would not have happened if I chose to follow others&rsquo; setup. That in itself was not a problem to me, but as I learned more about what I tried to deploy, it was clear to me that deploying OpenStack is best done with <a href="https://www.reddit.com/r/homelab/comments/tsxumz/my_modest_homelab_with_openstack/" title="My modest homelab with Openstack : r/homelab">pretty large computing resources</a>, which I simply do not have.</p>
 <p>Another thing was that I could not find a personal use case for the cloud computing infrastructure outside&hellip; running Kubernetes. To me, who is not really running a production service, it looked like an additional complexity to maintain.</p>
 <p>As a result, I decided to focus on other things for now, likely starting with Kubernetes. If I ever happen to learn OpenStack, either by personal choice or out of desperation, I may continue working on this again.</p>
-]]></content:encoded></item><item><title>Building obscure packages with Nix</title><link>https://lyuk98.com/blog/2025/10/building-obscure-packages-with-nix/</link><pubDate>Tue, 28 Oct 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/10/building-obscure-packages-with-nix/</guid><description>It is understandable that not every software on the internet is available on any given Linux distribution, but it is sometimes disappointing when something I have been looking for is missing.</description><content:encoded><![CDATA[<p>It is understandable that not every software on the internet is available on any given Linux distribution, but it is sometimes disappointing when something I have been looking for is missing.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Building obscure packages with Nix</title>
+      <link>https://lyuk98.com/blog/2025/10/building-obscure-packages-with-nix/</link>
+      <pubDate>Tue, 28 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/10/building-obscure-packages-with-nix/</guid>
+      <description>It is understandable that not every software on the internet is available on any given Linux distribution, but it is sometimes disappointing when something I have been looking for is missing.</description>
+      <content:encoded><![CDATA[<p>It is understandable that not every software on the internet is available on any given Linux distribution, but it is sometimes disappointing when something I have been looking for is missing.</p>
 <h1 id="introduction">Introduction</h1>
 <p>When Arch Linux was my daily driver, <a href="https://flatpak.org/" title="Flatpak—the future of application distribution">Flatpak</a> (with <a href="https://flathub.org" title="Flathub - Apps for Linux">Flathub</a>) and <a href="https://aur.archlinux.org/" title="AUR (en) - Home">Arch User Repository (AUR)</a> provided enough packages to satisfy my needs. However, I have since <a href="https://lyuk98.com/62055/switching-from-arch-linux-to-nixos" title="Switching from Arch Linux to NixOS">switched to NixOS</a> and almost ditched Flatpak from my system. Even still, there were two things I could try:</p>
 <ol>
@@ -2916,7 +2946,15 @@ interface &#39;wl_surface&#39; has no event 2
 </span></span></code></pre></div></blockquote>
 <p>Even before properly knowing about Nix and NixOS, I have seen people saying that they have a high learning curve. I am in the process of making them my second nature, and I think I am doing pretty good about it so far; however, I still felt a problem like this could deter potential contributors into the Nix ecosystem.</p>
 <p>Despite the shortcomings, however, I do not think I can go back to other Linux distributions (not for now, at least). Declarative management of resources for a whole operating system is something I did not know I needed, and the deterministic nature of derivations makes me a little more confident that changes to the system will not affect the application.</p>
-]]></content:encoded></item><item><title>Switching from Arch Linux to NixOS</title><link>https://lyuk98.com/blog/2025/05/switching-from-arch-linux-to-nixos/</link><pubDate>Fri, 16 May 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/05/switching-from-arch-linux-to-nixos/</guid><description>The switch to NixOS involved learning a whole new language. It may not be everyone&amp;#39;s cup of tea, but I personally enjoyed the journey I took to get it running.</description><content:encoded><![CDATA[<blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Switching from Arch Linux to NixOS</title>
+      <link>https://lyuk98.com/blog/2025/05/switching-from-arch-linux-to-nixos/</link>
+      <pubDate>Fri, 16 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/05/switching-from-arch-linux-to-nixos/</guid>
+      <description>The switch to NixOS involved learning a whole new language. It may not be everyone&amp;#39;s cup of tea, but I personally enjoyed the journey I took to get it running.</description>
+      <content:encoded><![CDATA[<blockquote>
 <p>I use Arch btw</p>
 </blockquote>
 <p>Not any more.</p>
@@ -3437,4 +3475,7 @@ these 407 derivations will be built:
 <p>There are still many parts (mostly in Home Manager configurations) that I could not declaratively manage just yet. On top of that, even though I continued using Flatpak, it does not seem to fit well with the declarative nature of this system. Considering those concerns, the next step would be switching from Flatpak to Nixpkgs.</p>
 <p>Switching to NixOS on my Raspberry Pi, <a href="https://lyuk98.com/60610/self-hosting-peertube-with-tailscale" title="Self-hosting PeerTube with Tailscale">which currently hosts PeerTube</a>, is also something I plan to do in the future. It could be an opportunity to apply something new, such as declarative partitioning with <a href="https://github.com/nix-community/disko" title="nix-community/disko: Declarative disk partitioning and formatting using nix [maintainers=Lassulus Enzime iFreilicht Mic92 phaer]">disko</a>.</p>
 <p><a href="https://github.com/lyuk98/nixos-config" title="lyuk98/nixos-config: NixOS Configurations">The repository</a> will continue to be maintained as long as I keep using NixOS. If I know more about Nix than I do now, it will probably look much more different than how it does at the time of writing.</p>
-]]></content:encoded></item></channel></rss>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

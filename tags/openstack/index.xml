@@ -1,11 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>OpenStack on 이영욱</title><link>https://lyuk98.com/tags/openstack/</link><description>Recent content in OpenStack on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Thu, 19 Mar 2026 16:38:20 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/openstack/index.xml" rel="self" type="application/rss+xml"/><item><title>Building a project (#3) - Attempting to run Kubernetes and OpenStack</title><link>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</link><pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</guid><description>&lt;p&gt;This is a part of series &lt;em&gt;Building a project&lt;/em&gt;, where I try to make something using &lt;a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack"&gt;OpenStack&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>OpenStack on 이영욱</title>
+    <link>https://lyuk98.com/tags/openstack/</link>
+    <description>Recent content in OpenStack on 이영욱</description>
+    <image>
+      <title>이영욱</title>
+      <url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url>
+      <link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>This work is marked CC0 1.0 Universal</copyright>
+    <lastBuildDate>Thu, 19 Mar 2026 16:38:20 +0900</lastBuildDate>
+    <atom:link href="https://lyuk98.com/tags/openstack/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a project (#3) - Attempting to run Kubernetes and OpenStack</title>
+      <link>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</link>
+      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</guid>
+      <description>&lt;p&gt;This is a part of series &lt;em&gt;Building a project&lt;/em&gt;, where I try to make something using &lt;a href=&#34;https://www.openstack.org/&#34; title=&#34;Open Source Cloud Computing Infrastructure - OpenStack&#34;&gt;OpenStack&lt;/a&gt;.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;a href="https://lyuk98.com/60219/building-a-project-1-learning-about-openstack" title="Building a project (#1) - Learning about OpenStack"&gt;Learning about OpenStack&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://lyuk98.com/66893/building-a-project-2-preparing-a-server" title="Building a project (#2) - Preparing a server"&gt;Preparing a server&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://lyuk98.com/60219/building-a-project-1-learning-about-openstack&#34; title=&#34;Building a project (#1) - Learning about OpenStack&#34;&gt;Learning about OpenStack&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://lyuk98.com/66893/building-a-project-2-preparing-a-server&#34; title=&#34;Building a project (#2) - Preparing a server&#34;&gt;Preparing a server&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Attempting to run Kubernetes and OpenStack&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
-&lt;p&gt;With my server ready, I was excited to get Kubernetes running. Following a guide I came across online, I added a few lines of configuration and applied it right away.&lt;/p&gt;</description><content:encoded><![CDATA[<p>This is a part of series <em>Building a project</em>, where I try to make something using <a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack">OpenStack</a>.</p>
+&lt;p&gt;With my server ready, I was excited to get Kubernetes running. Following a guide I came across online, I added a few lines of configuration and applied it right away.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>This is a part of series <em>Building a project</em>, where I try to make something using <a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack">OpenStack</a>.</p>
 <ol>
 <li><a href="https://lyuk98.com/60219/building-a-project-1-learning-about-openstack" title="Building a project (#1) - Learning about OpenStack">Learning about OpenStack</a></li>
 <li><a href="https://lyuk98.com/66893/building-a-project-2-preparing-a-server" title="Building a project (#2) - Preparing a server">Preparing a server</a></li>
@@ -1121,20 +1143,28 @@ ts-proxies-2              1/1     Running   0          53s
 <p>At this point, I have run into several issues that would not have happened if I chose to follow others&rsquo; setup. That in itself was not a problem to me, but as I learned more about what I tried to deploy, it was clear to me that deploying OpenStack is best done with <a href="https://www.reddit.com/r/homelab/comments/tsxumz/my_modest_homelab_with_openstack/" title="My modest homelab with Openstack : r/homelab">pretty large computing resources</a>, which I simply do not have.</p>
 <p>Another thing was that I could not find a personal use case for the cloud computing infrastructure outside&hellip; running Kubernetes. To me, who is not really running a production service, it looked like an additional complexity to maintain.</p>
 <p>As a result, I decided to focus on other things for now, likely starting with Kubernetes. If I ever happen to learn OpenStack, either by personal choice or out of desperation, I may continue working on this again.</p>
-]]></content:encoded></item><item><title>Building a project (#1) - Learning about OpenStack</title><link>https://lyuk98.com/blog/2025/03/building-a-project-1-learning-about-openstack/</link><pubDate>Tue, 11 Mar 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/03/building-a-project-1-learning-about-openstack/</guid><description>&lt;p&gt;This is a part of series &lt;em&gt;Building a project&lt;/em&gt;, where I try to make something using &lt;a href="https://www.openstack.org/"&gt;OpenStack&lt;/a&gt;.&lt;/p&gt;
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Building a project (#1) - Learning about OpenStack</title>
+      <link>https://lyuk98.com/blog/2025/03/building-a-project-1-learning-about-openstack/</link>
+      <pubDate>Tue, 11 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/03/building-a-project-1-learning-about-openstack/</guid>
+      <description>&lt;p&gt;This is a part of series &lt;em&gt;Building a project&lt;/em&gt;, where I try to make something using &lt;a href=&#34;https://www.openstack.org/&#34;&gt;OpenStack&lt;/a&gt;.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Learning about OpenStack&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href="https://lyuk98.com/66893/building-a-project-2-preparing-a-server"&gt;Preparing a server&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://lyuk98.com/66893/building-a-project-2-preparing-a-server&#34;&gt;Preparing a server&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href="https://lyuk98.com/67660/building-a-project-3-attempting-to-run-kubernetes-and-openstack"&gt;Attempting to run Kubernetes and OpenStack&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://lyuk98.com/67660/building-a-project-3-attempting-to-run-kubernetes-and-openstack&#34;&gt;Attempting to run Kubernetes and OpenStack&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
-&lt;p&gt;With a suggestion that I should work on a project to improve my skill set, I decided to join my partner in creating one together. I have recently decided to dive into the world of cloud computing, but I lacked knowledge in just about everything. I was still eager to present myself with challenges, however, so I jumped right in.&lt;/p&gt;</description><content:encoded><![CDATA[<p>This is a part of series <em>Building a project</em>, where I try to make something using <a href="https://www.openstack.org/">OpenStack</a>.</p>
+&lt;p&gt;With a suggestion that I should work on a project to improve my skill set, I decided to join my partner in creating one together. I have recently decided to dive into the world of cloud computing, but I lacked knowledge in just about everything. I was still eager to present myself with challenges, however, so I jumped right in.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>This is a part of series <em>Building a project</em>, where I try to make something using <a href="https://www.openstack.org/">OpenStack</a>.</p>
 <ol>
 <li>
 <p>Learning about OpenStack</p>
@@ -1237,4 +1267,7 @@ ts-proxies-2              1/1     Running   0          53s
 <p>After taking a brief and high-level look at OpenStack, I could somehow see what it aims to do. I felt deploying one could be feasible, but at the same time, I still had a lot to learn.</p>
 <p>Looking at <a href="https://opendev.org/openstack/">OpenStack&rsquo;s source</a>, it was obvious that a lot of Python was used. I personally do not mind what programming languages to use (maybe except Java), so it was not a big concern to me.</p>
 <p>I intend to try running OpenStack next time, but I will have to go back to learning if I get stuck.</p>
-]]></content:encoded></item></channel></rss>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

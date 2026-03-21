@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Blogs on 이영욱</title><link>https://lyuk98.com/blog/</link><description>Recent content in Blogs on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Fri, 20 Mar 2026 22:43:36 +0900</lastBuildDate><atom:link href="https://lyuk98.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Migrating to Codeberg Pages</title><link>https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/</link><pubDate>Thu, 19 Mar 2026 15:36:17 +0900</pubDate><guid>https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/</guid><description>For various reaons, I migrated to Codeberg Pages for my blog.</description><content:encoded><![CDATA[<p>If anyone is wondering, I started my writing journey with <a href="https://listed.to/" title="Listed — Welcome to your new public journal.">Listed</a> blogging platform by <a href="https://standardnotes.com/" title="Standard Notes | End-To-End Encrypted Notes App">Standard Notes</a>. I think it had served me well, but for reasons I will soon mention, I ultimately decided to find a new home.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Blogs on 이영욱</title>
+    <link>https://lyuk98.com/blog/</link>
+    <description>Recent content in Blogs on 이영욱</description>
+    <image>
+      <title>이영욱</title>
+      <url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url>
+      <link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>This work is marked CC0 1.0 Universal</copyright>
+    <lastBuildDate>Fri, 20 Mar 2026 22:43:36 +0900</lastBuildDate>
+    <atom:link href="https://lyuk98.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Migrating to Codeberg Pages</title>
+      <link>https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/</link>
+      <pubDate>Thu, 19 Mar 2026 15:36:17 +0900</pubDate>
+      <guid>https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/</guid>
+      <description>For various reaons, I migrated to Codeberg Pages for my blog.</description>
+      <content:encoded><![CDATA[<p>If anyone is wondering, I started my writing journey with <a href="https://listed.to/" title="Listed — Welcome to your new public journal.">Listed</a> blogging platform by <a href="https://standardnotes.com/" title="Standard Notes | End-To-End Encrypted Notes App">Standard Notes</a>. I think it had served me well, but for reasons I will soon mention, I ultimately decided to find a new home.</p>
 <h1 id="why-the-switch">Why the switch?</h1>
 <p>Just about three and a half months ago, I wrote the following while <a href="/blog/2025/12/improving-listeds-code-legibility-in-dark-theme/" title="Improving Listed&#39;s code legibility in dark theme">working on improving my code snippets&rsquo; legibility</a> on the blogging platform:</p>
 <blockquote>
@@ -500,13 +522,21 @@ www.lyuk98.com
 <p>The blog is now available at <a href="https://lyuk98.com/">https://lyuk98.com/</a> (and <a href="https://lyuk98.codeberg.page/">https://lyuk98.codeberg.page/</a>, but it redirects to the former anyway). The code is in <a href="https://codeberg.org/lyuk98/pages" title="lyuk98/pages: My personal website - Codeberg.org">my repository</a> at Codeberg, which is mirrored to <a href="https://github.com/lyuk98/pages" title="lyuk98/pages: My personal website - mirror of https://codeberg.org/lyuk98/pages">the GitHub one</a>.</p>
 <p><a href="https://listed.to/@lyuk98" title="이영욱 —">The Listed blog instance</a> is still live at the time of writing, but I am not sure if I will want to take it down at some point in the future. If it is no longer accessible, you know why.</p>
 <p>For now, though, I am glad that the migration turned out well.</p>
-]]></content:encoded></item><item><title>Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux</title><link>https://lyuk98.com/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/</link><pubDate>Thu, 26 Feb 2026 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/</guid><description>&lt;p&gt;This is part of series &lt;em&gt;Building a homelab&lt;/em&gt;, where I document my journey to build my own homelab with Kubernetes.&lt;/p&gt;
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux</title>
+      <link>https://lyuk98.com/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/</link>
+      <pubDate>Thu, 26 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/</guid>
+      <description>&lt;p&gt;This is part of series &lt;em&gt;Building a homelab&lt;/em&gt;, where I document my journey to build my own homelab with Kubernetes.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Creating a Kubernetes cluster with Talos Linux&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
 &lt;p&gt;Up until now, I have had some experiences with self-hosting services. However, as I learned more, I could see ways to make my setup better.&lt;/p&gt;
-&lt;p&gt;While learning about &lt;a href="https://kubernetes.io/" title="Kubernetes"&gt;Kubernetes&lt;/a&gt;, I thought it could be used to host everything that I have self-hosted so far. If I could get it right, it would allow me to manage all the services while also reducing costs.&lt;/p&gt;</description><content:encoded><![CDATA[<p>This is part of series <em>Building a homelab</em>, where I document my journey to build my own homelab with Kubernetes.</p>
+&lt;p&gt;While learning about &lt;a href=&#34;https://kubernetes.io/&#34; title=&#34;Kubernetes&#34;&gt;Kubernetes&lt;/a&gt;, I thought it could be used to host everything that I have self-hosted so far. If I could get it right, it would allow me to manage all the services while also reducing costs.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>This is part of series <em>Building a homelab</em>, where I document my journey to build my own homelab with Kubernetes.</p>
 <ol>
 <li>Creating a Kubernetes cluster with Talos Linux</li>
 </ol>
@@ -1810,7 +1840,15 @@ To further debug and diagnose cluster problems, use &#39;kubectl cluster-info du
 <p>This project undertook some major changes before becoming what it is now. Because my desired setup was quite uncommon, I sometimes had to modify and adapt people&rsquo;s solutions online to fit my specific setup.</p>
 <p>It was exhausting at times, and I got worried about no longer being able to commit to it (with life getting in the way), but I am happy to be able to achieve my goal without giving up my desire of building declarative systems.</p>
 <p>The next step for me, with the Kubernetes cluster now in operation, would be to finally migrate my existing self-hosted services to the container orchestration system. I do not plan to take the easy way, though; even if it means having to learn a lot more, I would like to do what I think is right.</p>
-]]></content:encoded></item><item><title>Using Zrythm for audio production</title><link>https://lyuk98.com/blog/2025/12/using-zrythm-for-audio-production/</link><pubDate>Thu, 25 Dec 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/12/using-zrythm-for-audio-production/</guid><description>I gave Zrythm a try for recording music before the end of this year.</description><content:encoded><![CDATA[<p>Sometimes, I like to record music and videos that will be left as pieces of memory to reminisce about. I am neither a professional music producer nor a content creator, but I have managed to learn just enough to do what I wanted.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Using Zrythm for audio production</title>
+      <link>https://lyuk98.com/blog/2025/12/using-zrythm-for-audio-production/</link>
+      <pubDate>Thu, 25 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/12/using-zrythm-for-audio-production/</guid>
+      <description>I gave Zrythm a try for recording music before the end of this year.</description>
+      <content:encoded><![CDATA[<p>Sometimes, I like to record music and videos that will be left as pieces of memory to reminisce about. I am neither a professional music producer nor a content creator, but I have managed to learn just enough to do what I wanted.</p>
 <p>As I worked on another one before finishing this year, I wanted to try a new tool. As one could guess from the title, I gave <a href="https://www.zrythm.org/" title="Zrythm - Digital Audio Workstation">Zrythm</a> a shot.</p>
 <hr>
 <h1 id="switching-to-zrythm">Switching to Zrythm</h1>
@@ -2035,8 +2073,16 @@ To further debug and diagnose cluster problems, use &#39;kubectl cluster-info du
 </table>
 <p>Fortunately, the developers already <a href="https://mastodon.social/@zrythm/115535332863583356" title="Zrythm DAW: \&#34;Tempo &amp; time signature automat…\&#34; - Mastodon">made a better implementation</a> for their upcoming major release.</p>
 <p>After dealing with some limitations, I will stick to Ardour in the time being. However, when the <a href="https://forum.zrythm.org/t/some-updates-on-v1-release-and-v2-development" title="Some updates on v1 release (and v2 development) - News - Zrythm Forum">promised v2</a> becomes available, I may give it another shot.</p>
-]]></content:encoded></item><item><title>Improving Listed's code legibility in dark theme</title><link>https://lyuk98.com/blog/2025/12/improving-listeds-code-legibility-in-dark-theme/</link><pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/12/improving-listeds-code-legibility-in-dark-theme/</guid><description>&lt;p&gt;It has been some time since I started writing on &lt;a href="https://listed.to/" title="Listed — Welcome to your new public journal."&gt;Listed&lt;/a&gt;. Although the development around the blogging platform seems to be slow-paced (which I feel is an understatement) and some note-taking services like &lt;a href="https://anytype.io/" title="The Everything App"&gt;Anytype&lt;/a&gt; also offer &lt;a href="https://doc.anytype.io/anytype-docs/getting-started/web-publishing" title="Publish | Anytype Docs"&gt;publication of notes&lt;/a&gt;, I have yet to find a compelling reason nor devote my time for migration.&lt;/p&gt;
-&lt;p&gt;That said, there is one thing I do want to see an improvement to.&lt;/p&gt;</description><content:encoded><![CDATA[<p>It has been some time since I started writing on <a href="https://listed.to/" title="Listed — Welcome to your new public journal.">Listed</a>. Although the development around the blogging platform seems to be slow-paced (which I feel is an understatement) and some note-taking services like <a href="https://anytype.io/" title="The Everything App">Anytype</a> also offer <a href="https://doc.anytype.io/anytype-docs/getting-started/web-publishing" title="Publish | Anytype Docs">publication of notes</a>, I have yet to find a compelling reason nor devote my time for migration.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Improving Listed&#39;s code legibility in dark theme</title>
+      <link>https://lyuk98.com/blog/2025/12/improving-listeds-code-legibility-in-dark-theme/</link>
+      <pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/12/improving-listeds-code-legibility-in-dark-theme/</guid>
+      <description>&lt;p&gt;It has been some time since I started writing on &lt;a href=&#34;https://listed.to/&#34; title=&#34;Listed — Welcome to your new public journal.&#34;&gt;Listed&lt;/a&gt;. Although the development around the blogging platform seems to be slow-paced (which I feel is an understatement) and some note-taking services like &lt;a href=&#34;https://anytype.io/&#34; title=&#34;The Everything App&#34;&gt;Anytype&lt;/a&gt; also offer &lt;a href=&#34;https://doc.anytype.io/anytype-docs/getting-started/web-publishing&#34; title=&#34;Publish | Anytype Docs&#34;&gt;publication of notes&lt;/a&gt;, I have yet to find a compelling reason nor devote my time for migration.&lt;/p&gt;
+&lt;p&gt;That said, there is one thing I do want to see an improvement to.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>It has been some time since I started writing on <a href="https://listed.to/" title="Listed — Welcome to your new public journal.">Listed</a>. Although the development around the blogging platform seems to be slow-paced (which I feel is an understatement) and some note-taking services like <a href="https://anytype.io/" title="The Everything App">Anytype</a> also offer <a href="https://doc.anytype.io/anytype-docs/getting-started/web-publishing" title="Publish | Anytype Docs">publication of notes</a>, I have yet to find a compelling reason nor devote my time for migration.</p>
 <p>That said, there is one thing I do want to see an improvement to.</p>
 <h1 id="the-problem">The problem</h1>
 <p>Listed supports dark theme, which is not something I see in every blogging platforms I come across. However, I include a lot of code snippets, and switching to dark theme meant significant parts of the post become less legible.</p>
@@ -3107,14 +3153,22 @@ To further debug and diagnose cluster problems, use &#39;kubectl cluster-info du
 </table>
 <p>It was one less reason for switching the note-taking service. However, it was not a proper solution; the developers could implement a much more permanent one.</p>
 <p>Anyway, I was glad that this problem is finally over with.</p>
-]]></content:encoded></item><item><title>Building a project (#3) - Attempting to run Kubernetes and OpenStack</title><link>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</link><pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</guid><description>&lt;p&gt;This is a part of series &lt;em&gt;Building a project&lt;/em&gt;, where I try to make something using &lt;a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack"&gt;OpenStack&lt;/a&gt;.&lt;/p&gt;
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Building a project (#3) - Attempting to run Kubernetes and OpenStack</title>
+      <link>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</link>
+      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/12/building-a-project-3-attempting-to-run-kubernetes-and-openstack/</guid>
+      <description>&lt;p&gt;This is a part of series &lt;em&gt;Building a project&lt;/em&gt;, where I try to make something using &lt;a href=&#34;https://www.openstack.org/&#34; title=&#34;Open Source Cloud Computing Infrastructure - OpenStack&#34;&gt;OpenStack&lt;/a&gt;.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;a href="https://lyuk98.com/60219/building-a-project-1-learning-about-openstack" title="Building a project (#1) - Learning about OpenStack"&gt;Learning about OpenStack&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://lyuk98.com/66893/building-a-project-2-preparing-a-server" title="Building a project (#2) - Preparing a server"&gt;Preparing a server&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://lyuk98.com/60219/building-a-project-1-learning-about-openstack&#34; title=&#34;Building a project (#1) - Learning about OpenStack&#34;&gt;Learning about OpenStack&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://lyuk98.com/66893/building-a-project-2-preparing-a-server&#34; title=&#34;Building a project (#2) - Preparing a server&#34;&gt;Preparing a server&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Attempting to run Kubernetes and OpenStack&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
-&lt;p&gt;With my server ready, I was excited to get Kubernetes running. Following a guide I came across online, I added a few lines of configuration and applied it right away.&lt;/p&gt;</description><content:encoded><![CDATA[<p>This is a part of series <em>Building a project</em>, where I try to make something using <a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack">OpenStack</a>.</p>
+&lt;p&gt;With my server ready, I was excited to get Kubernetes running. Following a guide I came across online, I added a few lines of configuration and applied it right away.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>This is a part of series <em>Building a project</em>, where I try to make something using <a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack">OpenStack</a>.</p>
 <ol>
 <li><a href="https://lyuk98.com/60219/building-a-project-1-learning-about-openstack" title="Building a project (#1) - Learning about OpenStack">Learning about OpenStack</a></li>
 <li><a href="https://lyuk98.com/66893/building-a-project-2-preparing-a-server" title="Building a project (#2) - Preparing a server">Preparing a server</a></li>
@@ -4230,7 +4284,15 @@ ts-proxies-2              1/1     Running   0          53s
 <p>At this point, I have run into several issues that would not have happened if I chose to follow others&rsquo; setup. That in itself was not a problem to me, but as I learned more about what I tried to deploy, it was clear to me that deploying OpenStack is best done with <a href="https://www.reddit.com/r/homelab/comments/tsxumz/my_modest_homelab_with_openstack/" title="My modest homelab with Openstack : r/homelab">pretty large computing resources</a>, which I simply do not have.</p>
 <p>Another thing was that I could not find a personal use case for the cloud computing infrastructure outside&hellip; running Kubernetes. To me, who is not really running a production service, it looked like an additional complexity to maintain.</p>
 <p>As a result, I decided to focus on other things for now, likely starting with Kubernetes. If I ever happen to learn OpenStack, either by personal choice or out of desperation, I may continue working on this again.</p>
-]]></content:encoded></item><item><title>Building a project (#2) - Preparing a server</title><link>https://lyuk98.com/blog/2025/11/building-a-project-2-preparing-a-server/</link><pubDate>Wed, 05 Nov 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/11/building-a-project-2-preparing-a-server/</guid><description>As an effort to host OpenStack, I prepared a device to run the service with.</description><content:encoded><![CDATA[<p>This is a part of series <em>Building a project</em>, where I try to make something using <a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack">OpenStack</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Building a project (#2) - Preparing a server</title>
+      <link>https://lyuk98.com/blog/2025/11/building-a-project-2-preparing-a-server/</link>
+      <pubDate>Wed, 05 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/11/building-a-project-2-preparing-a-server/</guid>
+      <description>As an effort to host OpenStack, I prepared a device to run the service with.</description>
+      <content:encoded><![CDATA[<p>This is a part of series <em>Building a project</em>, where I try to make something using <a href="https://www.openstack.org/" title="Open Source Cloud Computing Infrastructure - OpenStack">OpenStack</a>.</p>
 <ol>
 <li><a href="https://lyuk98.com/60219/building-a-project-1-learning-about-openstack" title="Building a project (#1) - Learning about OpenStack">Learning about OpenStack</a></li>
 <li>Preparing a server</li>
@@ -4599,7 +4661,15 @@ Verifying file database and EFI images in /boot...
 <p>I did not remove the battery itself. The cover was reattached right away.</p>
 <h1 id="the-next-step">The next step</h1>
 <p>With the server ready, the next step would be to run Kubernetes. I have not figured out how to run OpenStack on top of it yet, but I probably will as I work on it.</p>
-]]></content:encoded></item><item><title>Building obscure packages with Nix</title><link>https://lyuk98.com/blog/2025/10/building-obscure-packages-with-nix/</link><pubDate>Tue, 28 Oct 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/10/building-obscure-packages-with-nix/</guid><description>It is understandable that not every software on the internet is available on any given Linux distribution, but it is sometimes disappointing when something I have been looking for is missing.</description><content:encoded><![CDATA[<p>It is understandable that not every software on the internet is available on any given Linux distribution, but it is sometimes disappointing when something I have been looking for is missing.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Building obscure packages with Nix</title>
+      <link>https://lyuk98.com/blog/2025/10/building-obscure-packages-with-nix/</link>
+      <pubDate>Tue, 28 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/10/building-obscure-packages-with-nix/</guid>
+      <description>It is understandable that not every software on the internet is available on any given Linux distribution, but it is sometimes disappointing when something I have been looking for is missing.</description>
+      <content:encoded><![CDATA[<p>It is understandable that not every software on the internet is available on any given Linux distribution, but it is sometimes disappointing when something I have been looking for is missing.</p>
 <h1 id="introduction">Introduction</h1>
 <p>When Arch Linux was my daily driver, <a href="https://flatpak.org/" title="Flatpak—the future of application distribution">Flatpak</a> (with <a href="https://flathub.org" title="Flathub - Apps for Linux">Flathub</a>) and <a href="https://aur.archlinux.org/" title="AUR (en) - Home">Arch User Repository (AUR)</a> provided enough packages to satisfy my needs. However, I have since <a href="https://lyuk98.com/62055/switching-from-arch-linux-to-nixos" title="Switching from Arch Linux to NixOS">switched to NixOS</a> and almost ditched Flatpak from my system. Even still, there were two things I could try:</p>
 <ol>
@@ -6394,7 +6464,15 @@ interface &#39;wl_surface&#39; has no event 2
 </span></span></code></pre></div></blockquote>
 <p>Even before properly knowing about Nix and NixOS, I have seen people saying that they have a high learning curve. I am in the process of making them my second nature, and I think I am doing pretty good about it so far; however, I still felt a problem like this could deter potential contributors into the Nix ecosystem.</p>
 <p>Despite the shortcomings, however, I do not think I can go back to other Linux distributions (not for now, at least). Declarative management of resources for a whole operating system is something I did not know I needed, and the deterministic nature of derivations makes me a little more confident that changes to the system will not affect the application.</p>
-]]></content:encoded></item><item><title>Hosting Ente with Terraform, Vault, and NixOS</title><link>https://lyuk98.com/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/</link><pubDate>Sun, 28 Sep 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/</guid><description>Ente, the private photo storage service, was self-hosted in a hard way using declarative methods of resource management.</description><content:encoded><![CDATA[<p><img alt="Logo of Ente" loading="lazy" src="https://images.lyuk98.com/0998d5a9-bafe-4aa2-be99-d49144204337.avif"></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Hosting Ente with Terraform, Vault, and NixOS</title>
+      <link>https://lyuk98.com/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/</link>
+      <pubDate>Sun, 28 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/</guid>
+      <description>Ente, the private photo storage service, was self-hosted in a hard way using declarative methods of resource management.</description>
+      <content:encoded><![CDATA[<p><img alt="Logo of Ente" loading="lazy" src="https://images.lyuk98.com/0998d5a9-bafe-4aa2-be99-d49144204337.avif"></p>
 <p><a href="https://ente.io/" title="Ente Photos: Store and share your photos with absolute privacy">Ente</a> is a platform to host photos that uses end-to-end encryption to store its data.</p>
 <p>I have more than a decade of photos saved with <a href="https://www.google.com/photos/about/" title="Google Photos: Edit, organise, search and back up your photos">Google Photos</a>, but I wanted to keep them in a place that is designed to be private. The problem, however, was that the collection grew to a few terabytes over the years, and putting them on a privacy-respecting image platform was either very expensive or outright impossible. To work around the problem, I decided to self-host Ente.</p>
 <h1 id="the-plan">The plan</h1>
@@ -8367,7 +8445,15 @@ endpoint:
 <h2 id="finishing-up-updates">Keeping instances up to date</h2>
 <p>With Vault and Museum, there are now <a href="https://github.com/lyuk98/nixos-config/blob/4ddfa37239908404f776d502b2b4436b430b07f4/flake.nix#L131-L150" title="nixos-config/flake.nix at 4ddfa37239908404f776d502b2b4436b430b07f4 · lyuk98/nixos-config">three NixOS hosts</a> that I manage declaratively. All of them need to stay up to date, and though I can manually do it for now, I thought it would be a natural thing to consider automating such a process. A project I came across, <a href="https://github.com/nlewo/comin" title="nlewo/comin: GitOps For NixOS Machines">comin</a>, apparently achieves the goal, but I could not find a way to offload configuration builds to a faster machine during the limited time I took to learn about the project.</p>
 <p>However, an interesting <a href="https://github.com/nlewo/comin/tree/b8ab3eccbc3acf171b9ea377e88b8194f81c579d#features" title="nlewo/comin at b8ab3eccbc3acf171b9ea377e88b8194f81c579d">feature</a> it mentioned was &ldquo;Prometheus metrics&rdquo;. I had no practical experience with it, but integrating it seemed like a nice idea on paper. If I am motivated enough, I may be working on it in the future.</p>
-]]></content:encoded></item><item><title>Switching from Arch Linux to NixOS</title><link>https://lyuk98.com/blog/2025/05/switching-from-arch-linux-to-nixos/</link><pubDate>Fri, 16 May 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/05/switching-from-arch-linux-to-nixos/</guid><description>The switch to NixOS involved learning a whole new language. It may not be everyone&amp;#39;s cup of tea, but I personally enjoyed the journey I took to get it running.</description><content:encoded><![CDATA[<blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Switching from Arch Linux to NixOS</title>
+      <link>https://lyuk98.com/blog/2025/05/switching-from-arch-linux-to-nixos/</link>
+      <pubDate>Fri, 16 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/05/switching-from-arch-linux-to-nixos/</guid>
+      <description>The switch to NixOS involved learning a whole new language. It may not be everyone&amp;#39;s cup of tea, but I personally enjoyed the journey I took to get it running.</description>
+      <content:encoded><![CDATA[<blockquote>
 <p>I use Arch btw</p>
 </blockquote>
 <p>Not any more.</p>
@@ -8888,7 +8974,15 @@ these 407 derivations will be built:
 <p>There are still many parts (mostly in Home Manager configurations) that I could not declaratively manage just yet. On top of that, even though I continued using Flatpak, it does not seem to fit well with the declarative nature of this system. Considering those concerns, the next step would be switching from Flatpak to Nixpkgs.</p>
 <p>Switching to NixOS on my Raspberry Pi, <a href="https://lyuk98.com/60610/self-hosting-peertube-with-tailscale" title="Self-hosting PeerTube with Tailscale">which currently hosts PeerTube</a>, is also something I plan to do in the future. It could be an opportunity to apply something new, such as declarative partitioning with <a href="https://github.com/nix-community/disko" title="nix-community/disko: Declarative disk partitioning and formatting using nix [maintainers=Lassulus Enzime iFreilicht Mic92 phaer]">disko</a>.</p>
 <p><a href="https://github.com/lyuk98/nixos-config" title="lyuk98/nixos-config: NixOS Configurations">The repository</a> will continue to be maintained as long as I keep using NixOS. If I know more about Nix than I do now, it will probably look much more different than how it does at the time of writing.</p>
-]]></content:encoded></item><item><title>Using custom domain with Listed</title><link>https://lyuk98.com/blog/2025/04/using-custom-domain-with-listed/</link><pubDate>Mon, 21 Apr 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/04/using-custom-domain-with-listed/</guid><description>I wanted to use a custom domain for my blog. It was supposed to be easy, but the steps I took to solve the problem during the integration were far more than what I have initially expected.</description><content:encoded><![CDATA[<p>Since around September 2025, Listed <a href="https://github.com/standardnotes/listed/pull/302" title="chore: remove new custom domain from settings by antsgar · Pull Request #302 · standardnotes/listed">no longer accepts</a> new requests for custom domains. The information below is therefore no longer relevant, but nevertheless kept as a record of what I have been through to make it work back then.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Using custom domain with Listed</title>
+      <link>https://lyuk98.com/blog/2025/04/using-custom-domain-with-listed/</link>
+      <pubDate>Mon, 21 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/04/using-custom-domain-with-listed/</guid>
+      <description>I wanted to use a custom domain for my blog. It was supposed to be easy, but the steps I took to solve the problem during the integration were far more than what I have initially expected.</description>
+      <content:encoded><![CDATA[<p>Since around September 2025, Listed <a href="https://github.com/standardnotes/listed/pull/302" title="chore: remove new custom domain from settings by antsgar · Pull Request #302 · standardnotes/listed">no longer accepts</a> new requests for custom domains. The information below is therefore no longer relevant, but nevertheless kept as a record of what I have been through to make it work back then.</p>
 <hr>
 <blockquote>
 <p>Custom domains are available for Standard Notes members with an active Productivity or Professional <a href="https://standardnotes.com/plans">plan</a>. Domains include an HTTPS certificate, and require only a simple DNS record on your end.</p>
@@ -10864,7 +10958,15 @@ Tasks: TOP =&gt; ssl:renew
 </blockquote>
 <p>While it was the end of a problem that have bothered me for over a year, not knowing exactly why the integration worked this time was not very satisfying. Nevertheless, I was glad that this problem was done with.</p>
 <p>Will I ever come back to this problem to figure out exactly what went wrong? Probably, if renewing a certificate for my domain ever fails. However, that is still a while away, so I will be focusing on other things for now.</p>
-]]></content:encoded></item><item><title>Using GPT fdisk to recover corrupted partition table</title><link>https://lyuk98.com/blog/2025/04/using-gpt-fdisk-to-recover-corrupted-partition-table/</link><pubDate>Sun, 13 Apr 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/04/using-gpt-fdisk-to-recover-corrupted-partition-table/</guid><description>I was not able to boot into Linux due to a corrupted partition table, which I tried to fix by using GPT fdisk.</description><content:encoded><![CDATA[<p>I used Windows for a few hours on my laptop, which dual boots Arch Linux and Windows 11, and rebooted into Linux. However, after a while of unusual waiting, it failed to do so. It would have been nice to read the error first, but having previously experienced a similar problem, which once occurred when I first installed Windows 11 on top of the existing Linux installation <s>thanks to anti-cheat software</s>, I felt it has something to do with a damaged partition table.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Using GPT fdisk to recover corrupted partition table</title>
+      <link>https://lyuk98.com/blog/2025/04/using-gpt-fdisk-to-recover-corrupted-partition-table/</link>
+      <pubDate>Sun, 13 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/04/using-gpt-fdisk-to-recover-corrupted-partition-table/</guid>
+      <description>I was not able to boot into Linux due to a corrupted partition table, which I tried to fix by using GPT fdisk.</description>
+      <content:encoded><![CDATA[<p>I used Windows for a few hours on my laptop, which dual boots Arch Linux and Windows 11, and rebooted into Linux. However, after a while of unusual waiting, it failed to do so. It would have been nice to read the error first, but having previously experienced a similar problem, which once occurred when I first installed Windows 11 on top of the existing Linux installation <s>thanks to anti-cheat software</s>, I felt it has something to do with a damaged partition table.</p>
 <h1 id="preparing-fedora">Preparing Fedora</h1>
 <p>On Windows, I used <a href="https://fedoraproject.org/workstation/download#fedora-media-writer" title="Fedora Workstation | The Fedora Project">Fedora Media Writer</a> to write Fedora 41 into a blank microSD card and boot into it.</p>
 <p><img alt="Fedora Media Writer on the page named &ldquo;Write Options&rdquo;. Three selections, which are &ldquo;Version&rdquo;, &ldquo;Hardware Architecture&rdquo;, and &ldquo;USB Drive&rdquo;, are set with values &ldquo;41&rdquo;, &ldquo;Intel/AMD 64bit&rdquo;, and &ldquo;SMI USB DISK (63.9 GB)&rdquo;, respectively. A checkbox with a label &ldquo;Delete download after writing&rdquo; is unchecked. Bottom row of the window has two buttons labelled &ldquo;Previous&rdquo; and &ldquo;Write&rdquo;." loading="lazy" src="https://images.lyuk98.com/c785dd37-f170-4f89-aa4c-ddd2d7b786c2.avif" title="Writing Fedora 41 into a microSD card"></p>
@@ -10967,7 +11069,15 @@ liveuser@localhost-live:~$
 [lyuk98@framework ~]$ sudo sgdisk --backup=/tmp/nvme0n1 /dev/nvme0n1
 The operation has completed successfully.
 </code></pre><p>With other problems in hand, I did not bother to take a deeper look into this matter. Perhaps I will, if/when this problem happens again one day.</p>
-]]></content:encoded></item><item><title>Self-hosting PeerTube with Tailscale</title><link>https://lyuk98.com/blog/2025/03/self-hosting-peertube-with-tailscale/</link><pubDate>Thu, 27 Mar 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/03/self-hosting-peertube-with-tailscale/</guid><description>I tried self-hosting PeerTube in a Tailscale network.</description><content:encoded><![CDATA[<p>I have always wanted a dedicated space for my videos that are not necessarily meant to be shared. Even though I have stored them locally, I also wanted the convenience of accessing it from anywhere. That led me to self-hosting, with <a href="https://joinpeertube.org">PeerTube</a> chosen as a platform to host my videos. I also thought it could be a chance to learn new things.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Self-hosting PeerTube with Tailscale</title>
+      <link>https://lyuk98.com/blog/2025/03/self-hosting-peertube-with-tailscale/</link>
+      <pubDate>Thu, 27 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/03/self-hosting-peertube-with-tailscale/</guid>
+      <description>I tried self-hosting PeerTube in a Tailscale network.</description>
+      <content:encoded><![CDATA[<p>I have always wanted a dedicated space for my videos that are not necessarily meant to be shared. Even though I have stored them locally, I also wanted the convenience of accessing it from anywhere. That led me to self-hosting, with <a href="https://joinpeertube.org">PeerTube</a> chosen as a platform to host my videos. I also thought it could be a chance to learn new things.</p>
 <hr>
 <h1 id="preparing-the-hardware">Preparing the hardware</h1>
 <p>I brought a gifted Raspberry Pi 4 and paired it with a five-terabyte external hard drive. A USB hub with an external power supply for the storage was also considered, but I later decided not to use it. I knew I was in need of a serious upgrade to have a decent video streaming website, but I nevertheless decided to try it out.</p>
@@ -11330,20 +11440,28 @@ The operation has completed successfully.
 <li>Tailscale clients for the containers did not have to be ephemeral, since their states could be saved externally.</li>
 </ul>
 <p>I may revisit this setup for improvements, but I am satisfied with it for now.</p>
-]]></content:encoded></item><item><title>Building a project (#1) - Learning about OpenStack</title><link>https://lyuk98.com/blog/2025/03/building-a-project-1-learning-about-openstack/</link><pubDate>Tue, 11 Mar 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/03/building-a-project-1-learning-about-openstack/</guid><description>&lt;p&gt;This is a part of series &lt;em&gt;Building a project&lt;/em&gt;, where I try to make something using &lt;a href="https://www.openstack.org/"&gt;OpenStack&lt;/a&gt;.&lt;/p&gt;
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Building a project (#1) - Learning about OpenStack</title>
+      <link>https://lyuk98.com/blog/2025/03/building-a-project-1-learning-about-openstack/</link>
+      <pubDate>Tue, 11 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/03/building-a-project-1-learning-about-openstack/</guid>
+      <description>&lt;p&gt;This is a part of series &lt;em&gt;Building a project&lt;/em&gt;, where I try to make something using &lt;a href=&#34;https://www.openstack.org/&#34;&gt;OpenStack&lt;/a&gt;.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Learning about OpenStack&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href="https://lyuk98.com/66893/building-a-project-2-preparing-a-server"&gt;Preparing a server&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://lyuk98.com/66893/building-a-project-2-preparing-a-server&#34;&gt;Preparing a server&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href="https://lyuk98.com/67660/building-a-project-3-attempting-to-run-kubernetes-and-openstack"&gt;Attempting to run Kubernetes and OpenStack&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://lyuk98.com/67660/building-a-project-3-attempting-to-run-kubernetes-and-openstack&#34;&gt;Attempting to run Kubernetes and OpenStack&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
-&lt;p&gt;With a suggestion that I should work on a project to improve my skill set, I decided to join my partner in creating one together. I have recently decided to dive into the world of cloud computing, but I lacked knowledge in just about everything. I was still eager to present myself with challenges, however, so I jumped right in.&lt;/p&gt;</description><content:encoded><![CDATA[<p>This is a part of series <em>Building a project</em>, where I try to make something using <a href="https://www.openstack.org/">OpenStack</a>.</p>
+&lt;p&gt;With a suggestion that I should work on a project to improve my skill set, I decided to join my partner in creating one together. I have recently decided to dive into the world of cloud computing, but I lacked knowledge in just about everything. I was still eager to present myself with challenges, however, so I jumped right in.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>This is a part of series <em>Building a project</em>, where I try to make something using <a href="https://www.openstack.org/">OpenStack</a>.</p>
 <ol>
 <li>
 <p>Learning about OpenStack</p>
@@ -11446,9 +11564,17 @@ The operation has completed successfully.
 <p>After taking a brief and high-level look at OpenStack, I could somehow see what it aims to do. I felt deploying one could be feasible, but at the same time, I still had a lot to learn.</p>
 <p>Looking at <a href="https://opendev.org/openstack/">OpenStack&rsquo;s source</a>, it was obvious that a lot of Python was used. I personally do not mind what programming languages to use (maybe except Java), so it was not a big concern to me.</p>
 <p>I intend to try running OpenStack next time, but I will have to go back to learning if I get stuck.</p>
-]]></content:encoded></item><item><title>Getting started with Listed</title><link>https://lyuk98.com/blog/2025/03/getting-started-with-listed/</link><pubDate>Tue, 11 Mar 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/03/getting-started-with-listed/</guid><description>&lt;p&gt;Hello to whoever is reading the first post of this blog! Neither writing nor showing my work to public is within my comfort zone, but it is what I aim to overcome, starting with this post.&lt;/p&gt;
-&lt;h1 id="my-introduction-to-standard-notes-and-listed"&gt;My introduction to Standard Notes and Listed&lt;/h1&gt;
-&lt;p&gt;I have been an everyday user of Proton&amp;rsquo;s products, and I was introduced to Standard Notes when &lt;a href="https://proton.me/blog/proton-standard-notes-join-forces"&gt;they announced that they are &amp;ldquo;joining forces&amp;rdquo;&lt;/a&gt;. My needs for personal note-taking were already satisfied with basic products like Google Keep, but having used Notion for team projects in the past, I was convinced to try it out.&lt;/p&gt;</description><content:encoded><![CDATA[<p>Hello to whoever is reading the first post of this blog! Neither writing nor showing my work to public is within my comfort zone, but it is what I aim to overcome, starting with this post.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Getting started with Listed</title>
+      <link>https://lyuk98.com/blog/2025/03/getting-started-with-listed/</link>
+      <pubDate>Tue, 11 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/03/getting-started-with-listed/</guid>
+      <description>&lt;p&gt;Hello to whoever is reading the first post of this blog! Neither writing nor showing my work to public is within my comfort zone, but it is what I aim to overcome, starting with this post.&lt;/p&gt;
+&lt;h1 id=&#34;my-introduction-to-standard-notes-and-listed&#34;&gt;My introduction to Standard Notes and Listed&lt;/h1&gt;
+&lt;p&gt;I have been an everyday user of Proton&amp;rsquo;s products, and I was introduced to Standard Notes when &lt;a href=&#34;https://proton.me/blog/proton-standard-notes-join-forces&#34;&gt;they announced that they are &amp;ldquo;joining forces&amp;rdquo;&lt;/a&gt;. My needs for personal note-taking were already satisfied with basic products like Google Keep, but having used Notion for team projects in the past, I was convinced to try it out.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>Hello to whoever is reading the first post of this blog! Neither writing nor showing my work to public is within my comfort zone, but it is what I aim to overcome, starting with this post.</p>
 <h1 id="my-introduction-to-standard-notes-and-listed">My introduction to Standard Notes and Listed</h1>
 <p>I have been an everyday user of Proton&rsquo;s products, and I was introduced to Standard Notes when <a href="https://proton.me/blog/proton-standard-notes-join-forces">they announced that they are &ldquo;joining forces&rdquo;</a>. My needs for personal note-taking were already satisfied with basic products like Google Keep, but having used Notion for team projects in the past, I was convinced to try it out.</p>
 <p>While getting used to the new service, I discovered Listed blogging platform. I have previously been advised to write my technical experiences to keep records, and it seemed like a good place to do so.</p>
@@ -11493,4 +11619,7 @@ The operation has completed successfully.
 <p>With my personality, I was hesitant to ask for help, and the problem remains unsolved for almost about a year. I recently came across <a href="https://www.reddit.com/r/StandardNotes/comments/1j46kwg/listedto_custom_domains/">a post on Reddit</a>, where one user claimed disabling DNSSEC helped them; I then immediately visited my domain name provider to switch it off, but the problem still persisted.</p>
 <h1 id="wrapping-up">Wrapping up&hellip;</h1>
 <p>I am with hopes that I will stay committed to keep this blog updated for the foreseeable future. I am simply hoping for now, but time will tell&hellip;</p>
-]]></content:encoded></item></channel></rss>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

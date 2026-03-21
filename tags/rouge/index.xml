@@ -1,5 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Rouge on 이영욱</title><link>https://lyuk98.com/tags/rouge/</link><description>Recent content in Rouge on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Thu, 19 Mar 2026 16:38:20 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/rouge/index.xml" rel="self" type="application/rss+xml"/><item><title>Improving Listed's code legibility in dark theme</title><link>https://lyuk98.com/blog/2025/12/improving-listeds-code-legibility-in-dark-theme/</link><pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/12/improving-listeds-code-legibility-in-dark-theme/</guid><description>&lt;p&gt;It has been some time since I started writing on &lt;a href="https://listed.to/" title="Listed — Welcome to your new public journal."&gt;Listed&lt;/a&gt;. Although the development around the blogging platform seems to be slow-paced (which I feel is an understatement) and some note-taking services like &lt;a href="https://anytype.io/" title="The Everything App"&gt;Anytype&lt;/a&gt; also offer &lt;a href="https://doc.anytype.io/anytype-docs/getting-started/web-publishing" title="Publish | Anytype Docs"&gt;publication of notes&lt;/a&gt;, I have yet to find a compelling reason nor devote my time for migration.&lt;/p&gt;
-&lt;p&gt;That said, there is one thing I do want to see an improvement to.&lt;/p&gt;</description><content:encoded><![CDATA[<p>It has been some time since I started writing on <a href="https://listed.to/" title="Listed — Welcome to your new public journal.">Listed</a>. Although the development around the blogging platform seems to be slow-paced (which I feel is an understatement) and some note-taking services like <a href="https://anytype.io/" title="The Everything App">Anytype</a> also offer <a href="https://doc.anytype.io/anytype-docs/getting-started/web-publishing" title="Publish | Anytype Docs">publication of notes</a>, I have yet to find a compelling reason nor devote my time for migration.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Rouge on 이영욱</title>
+    <link>https://lyuk98.com/tags/rouge/</link>
+    <description>Recent content in Rouge on 이영욱</description>
+    <image>
+      <title>이영욱</title>
+      <url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url>
+      <link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>This work is marked CC0 1.0 Universal</copyright>
+    <lastBuildDate>Thu, 19 Mar 2026 16:38:20 +0900</lastBuildDate>
+    <atom:link href="https://lyuk98.com/tags/rouge/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Improving Listed&#39;s code legibility in dark theme</title>
+      <link>https://lyuk98.com/blog/2025/12/improving-listeds-code-legibility-in-dark-theme/</link>
+      <pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/12/improving-listeds-code-legibility-in-dark-theme/</guid>
+      <description>&lt;p&gt;It has been some time since I started writing on &lt;a href=&#34;https://listed.to/&#34; title=&#34;Listed — Welcome to your new public journal.&#34;&gt;Listed&lt;/a&gt;. Although the development around the blogging platform seems to be slow-paced (which I feel is an understatement) and some note-taking services like &lt;a href=&#34;https://anytype.io/&#34; title=&#34;The Everything App&#34;&gt;Anytype&lt;/a&gt; also offer &lt;a href=&#34;https://doc.anytype.io/anytype-docs/getting-started/web-publishing&#34; title=&#34;Publish | Anytype Docs&#34;&gt;publication of notes&lt;/a&gt;, I have yet to find a compelling reason nor devote my time for migration.&lt;/p&gt;
+&lt;p&gt;That said, there is one thing I do want to see an improvement to.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>It has been some time since I started writing on <a href="https://listed.to/" title="Listed — Welcome to your new public journal.">Listed</a>. Although the development around the blogging platform seems to be slow-paced (which I feel is an understatement) and some note-taking services like <a href="https://anytype.io/" title="The Everything App">Anytype</a> also offer <a href="https://doc.anytype.io/anytype-docs/getting-started/web-publishing" title="Publish | Anytype Docs">publication of notes</a>, I have yet to find a compelling reason nor devote my time for migration.</p>
 <p>That said, there is one thing I do want to see an improvement to.</p>
 <h1 id="the-problem">The problem</h1>
 <p>Listed supports dark theme, which is not something I see in every blogging platforms I come across. However, I include a lot of code snippets, and switching to dark theme meant significant parts of the post become less legible.</p>
@@ -1070,4 +1092,7 @@
 </table>
 <p>It was one less reason for switching the note-taking service. However, it was not a proper solution; the developers could implement a much more permanent one.</p>
 <p>Anyway, I was glad that this problem is finally over with.</p>
-]]></content:encoded></item></channel></rss>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

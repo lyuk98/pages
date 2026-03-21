@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>PeerTube on 이영욱</title><link>https://lyuk98.com/tags/peertube/</link><description>Recent content in PeerTube on 이영욱</description><image><title>이영욱</title><url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url><link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link></image><generator>Hugo</generator><language>en</language><copyright>This work is marked CC0 1.0 Universal</copyright><lastBuildDate>Thu, 19 Mar 2026 16:38:20 +0900</lastBuildDate><atom:link href="https://lyuk98.com/tags/peertube/index.xml" rel="self" type="application/rss+xml"/><item><title>Self-hosting PeerTube with Tailscale</title><link>https://lyuk98.com/blog/2025/03/self-hosting-peertube-with-tailscale/</link><pubDate>Thu, 27 Mar 2025 00:00:00 +0000</pubDate><guid>https://lyuk98.com/blog/2025/03/self-hosting-peertube-with-tailscale/</guid><description>I tried self-hosting PeerTube in a Tailscale network.</description><content:encoded><![CDATA[<p>I have always wanted a dedicated space for my videos that are not necessarily meant to be shared. Even though I have stored them locally, I also wanted the convenience of accessing it from anywhere. That led me to self-hosting, with <a href="https://joinpeertube.org">PeerTube</a> chosen as a platform to host my videos. I also thought it could be a chance to learn new things.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>PeerTube on 이영욱</title>
+    <link>https://lyuk98.com/tags/peertube/</link>
+    <description>Recent content in PeerTube on 이영욱</description>
+    <image>
+      <title>이영욱</title>
+      <url>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</url>
+      <link>https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>This work is marked CC0 1.0 Universal</copyright>
+    <lastBuildDate>Thu, 19 Mar 2026 16:38:20 +0900</lastBuildDate>
+    <atom:link href="https://lyuk98.com/tags/peertube/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Self-hosting PeerTube with Tailscale</title>
+      <link>https://lyuk98.com/blog/2025/03/self-hosting-peertube-with-tailscale/</link>
+      <pubDate>Thu, 27 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://lyuk98.com/blog/2025/03/self-hosting-peertube-with-tailscale/</guid>
+      <description>I tried self-hosting PeerTube in a Tailscale network.</description>
+      <content:encoded><![CDATA[<p>I have always wanted a dedicated space for my videos that are not necessarily meant to be shared. Even though I have stored them locally, I also wanted the convenience of accessing it from anywhere. That led me to self-hosting, with <a href="https://joinpeertube.org">PeerTube</a> chosen as a platform to host my videos. I also thought it could be a chance to learn new things.</p>
 <hr>
 <h1 id="preparing-the-hardware">Preparing the hardware</h1>
 <p>I brought a gifted Raspberry Pi 4 and paired it with a five-terabyte external hard drive. A USB hub with an external power supply for the storage was also considered, but I later decided not to use it. I knew I was in need of a serious upgrade to have a decent video streaming website, but I nevertheless decided to try it out.</p>
@@ -361,4 +383,7 @@
 <li>Tailscale clients for the containers did not have to be ephemeral, since their states could be saved externally.</li>
 </ul>
 <p>I may revisit this setup for improvements, but I am satisfied with it for now.</p>
-]]></content:encoded></item></channel></rss>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>
