@@ -30,9 +30,6 @@ languages:
         - name: Tags
           pageRef: tags/
           weight: 15
-        - name: Search
-          pageRef: search/
-          weight: 10
 
 enableGitInfo: true
 frontmatter:
@@ -66,8 +63,6 @@ markup:
 outputs:
   home:
     - html
-    - rss
-    - json
 
 params:
   env: production

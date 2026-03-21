@@ -25,9 +25,7 @@ jobs:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
         run: |
-          hugo \
-            --gc \
-            --minify
+          hugo --gc
       - name: Copy files for Codeberg Pages
         run: |
           cp _redirects public/_redirects
