@@ -12,7 +12,7 @@ jobs:
     runs-on: codeberg-tiny-lazy
     container:
       # Pin version of Hugo used for building
-      image: ghcr.io/gohugoio/hugo:v0.158.0
+      image: ghcr.io/gohugoio/hugo:v0.160.1
     steps:
       - name: Clone the repository
         uses: https://code.forgejo.org/actions/checkout@v6
