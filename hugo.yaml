@@ -130,3 +130,6 @@ params:
     - name: linkedin
       title: LinkedIn
       url: https://www.linkedin.com/in/lyuk98/
+
+  editPost:
+    URL: "https://codeberg.org/lyuk98/pages"
