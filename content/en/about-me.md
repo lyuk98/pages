@@ -118,7 +118,7 @@ My application of declarative programming soon extended to infrastructure manage
 
 My focus is on [Kubernetes](https://kubernetes.io/), a famous container orchestration system, at this time. I am currently working on migrating my self-hosted services to a cluster I have previously set up.
 
-On top of the above, I am also preparing for a relocation. I may not be able to focus on my next project as a result, but I wish I can manage to do both of them well nonetheless.
+On top of the above, I am also looking for opportunities during my stay in Canada. I may not be able to focus on my next project as a result, but I wish I can manage to do both of them well nonetheless.
 
 ---
 
