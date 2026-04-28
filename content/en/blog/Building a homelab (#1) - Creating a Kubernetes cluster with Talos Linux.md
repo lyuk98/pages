@@ -16,6 +16,7 @@ slug: building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux
 This is part of series *Building a homelab*, where I document my journey to build my own homelab with Kubernetes.
 
 1. Creating a Kubernetes cluster with Talos Linux
+2. [Setting up Argo CD](/blog/2026/04/building-a-homelab-2-setting-up-argo-cd/)
 
 ---
 
