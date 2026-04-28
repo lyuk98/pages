@@ -10,7 +10,7 @@
 <meta name="description" content="Ente, the private photo storage service, was self-hosted in a hard way using declarative methods of resource management.">
 <meta name="author" content="이영욱">
 <link rel="canonical" href="https://lyuk98.com/blog/2025/09/hosting-ente-with-terraform-vault-and-nixos/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e&#43;Ge/K3X9WmUVz&#43;1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.47e51c7d8489b002361bac156ce9a0a8776d08c5462c2cee95801efafdd90d35.css" integrity="sha256-R&#43;UcfYSJsAI2G6wVbOmgqHdtCMVGLCzulYAe&#43;v3ZDTU=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://images.lyuk98.com/313a1eef-52de-4ad3-8f51-bf7f0f17f757.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://images.lyuk98.com/e697b861-1499-4040-b7a4-f25b4ecea28a.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://images.lyuk98.com/9c8c6d90-d044-418c-8d45-cc6298d8d484.png">
@@ -48,12 +48,6 @@
 
             .toc {
                 background: var(--entry);
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            .list::-webkit-scrollbar-thumb {
-                border-color: var(--code-bg);
             }
         }
 
@@ -153,17 +147,17 @@
 </head>
 <body id="top">
     <header class="header">
-    <nav class="nav">
+    <nav class="header-nav">
         <div class="logo">
             <a href="https://lyuk98.com/" accesskey="h" title="이영욱 (Alt + H)">이영욱</a>
             <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -179,7 +173,7 @@
                 </button>
             </div>
         </div>
-        <ul id="menu">
+        <ul id="menu" class="menu">
             <li>
                 <a href="https://lyuk98.com/tags/" title="Tags">
                     <span>Tags</span>
@@ -197,149 +191,155 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://lyuk98.com/">Home</a>&nbsp;»&nbsp;<a href="https://lyuk98.com/blog/">Blogs</a></div>
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    <a href='https://lyuk98.com/'>Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="https://lyuk98.com/blog/">Blogs</a></nav>
     <h1 class="post-title entry-hint-parent">
       Hosting Ente with Terraform, Vault, and NixOS
     </h1>
     <div class="post-description">
       Ente, the private photo storage service, was self-hosted in a hard way using declarative methods of resource management.
     </div>
-    <div class="post-meta"><span title='2025-09-28 00:00:00 +0000 UTC'>28 September 2025</span>&nbsp;·&nbsp;<span>47 min</span>&nbsp;·&nbsp;<span>9894 words</span>&nbsp;·&nbsp;<span>이영욱</span>
+    <div class="post-meta"><span title='2025-09-28 00:00:00 +0000 UTC'>28 September 2025</span>&nbsp;·&nbsp;<span>47 min</span>&nbsp;·&nbsp;<span>9894 words</span>&nbsp;·&nbsp;<span>이영욱</span>&nbsp;|&nbsp;<span>
+    <a href="https://codeberg.org/lyuk98/pages" rel="noopener noreferrer edit" target="_blank">Edit</a>
+</span>
 
 </div>
-  </header> <div class="toc">
-    <details  open>
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">Table of Contents</span>
-        </summary>
+  </header> <details class="toc"  open>
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
 
-        <div class="inner"><ul>
-                <li>
-                    <a href="#the-plan" aria-label="The plan">The plan</a><ul>
-                        
-                <li>
-                    <a href="#the-plan-infrastructure" aria-label="The infrastructure">The infrastructure</a></li>
-                <li>
-                    <a href="#the-plan-code" aria-label="Using code for almost everything">Using code for almost everything</a></li></ul>
-                </li>
-                <li>
-                    <a href="#vault" aria-label="Setting up secret management with Vault">Setting up secret management with Vault</a><ul>
-                        
-                <li>
-                    <a href="#vault-host" aria-label="Hosting Vault">Hosting Vault</a></li>
-                <li>
-                    <a href="#vault-nixos" aria-label="Preparing NixOS configurations">Preparing NixOS configurations</a><ul>
-                        
-                <li>
-                    <a href="#vault-nixos-sops" aria-label="Encrypting secrets with Sops">Encrypting secrets with Sops</a></li>
-                <li>
-                    <a href="#vault-nixos-tailscale" aria-label="Setting up Tailscale">Setting up Tailscale</a></li></ul>
-                </li>
-                <li>
-                    <a href="#vault-custom-image" aria-label="Creating a custom image">Creating a custom image</a></li>
-                <li>
-                    <a href="#vault-create-droplet" aria-label="Creating a Droplet with the image">Creating a Droplet with the image</a></li>
-                <li>
-                    <a href="#vault-run" aria-label="Running Vault">Running Vault</a></li>
-                <li>
-                    <a href="#vault-postinstall" aria-label="Post-installation configuration">Post-installation configuration</a></li></ul>
-                </li>
-                <li>
-                    <a href="#bootstrap-imperative" aria-label="Bootstrapping (the imperative part)">Bootstrapping (the imperative part)</a><ul>
-                        
-                <li>
-                    <a href="#bootstrap-imperative-vault" aria-label="Enabling Vault&#39;s capabilities">Enabling Vault's capabilities</a></li>
-                <li>
-                    <a href="#bootstrap-imperative-b2" aria-label="Enabling access to Backblaze B2">Enabling access to Backblaze B2</a></li>
-                <li>
-                    <a href="#bootstrap-imperative-github" aria-label="Configuring OpenID Connect for GitHub Actions">Configuring OpenID Connect for GitHub Actions</a></li>
-                <li>
-                    <a href="#bootstrap-imperative-aws-auth" aria-label="Setting up Vault&#39;s AWS authentication method">Setting up Vault's AWS authentication method</a></li>
-                <li>
-                    <a href="#bootstrap-imperative-aws-role" aria-label="Creating a policy and a role for AWS authentication">Creating a policy and a role for AWS authentication</a></li></ul>
-                </li>
-                <li>
-                    <a href="#bootstrap-declarative" aria-label="Bootstrapping (the declarative part)">Bootstrapping (the declarative part)</a><ul>
-                        
-                <li>
-                    <a href="#bootstrap-declarative-terraform" aria-label="Preparing Terraform configurations">Preparing Terraform configurations</a><ul>
-                        
-                <li>
-                    <a href="#bootstrap-declarative-terraform-aws" aria-label="Bootstrapping Amazon Web Services">Bootstrapping Amazon Web Services</a></li>
-                <li>
-                    <a href="#bootstrap-declarative-terraform-b2" aria-label="Bootstrapping Backblaze B2">Bootstrapping Backblaze B2</a></li>
-                <li>
-                    <a href="#bootstrap-declarative-terraform-vault" aria-label="Bootstrapping Vault">Bootstrapping Vault</a></li></ul>
-                </li>
-                <li>
-                    <a href="#bootstrap-declarative-github" aria-label="Deploying with GitHub Actions">Deploying with GitHub Actions</a></li></ul>
-                </li>
-                <li>
-                    <a href="#ente-imperative" aria-label="Deploying Ente (the imperative part)">Deploying Ente (the imperative part)</a><ul>
-                        
-                <li>
-                    <a href="#ente-imperative-cloudflare" aria-label="Preparing Cloudflare">Preparing Cloudflare</a><ul>
-                        
-                <li>
-                    <a href="#ente-imperative-cloudflare-token" aria-label="Creating an API token">Creating an API token</a></li>
-                <li>
-                    <a href="#ente-imperative-cloudflare-cert" aria-label="Creating an origin certificate">Creating an origin certificate</a></li></ul>
-                </li>
-                <li>
-                    <a href="#ente-imperative-tailscale" aria-label="Creating an OAuth client at Tailscale">Creating an OAuth client at Tailscale</a></li></ul>
-                </li>
-                <li>
-                    <a href="#ente-declarative" aria-label="Deploying Ente (the declarative part)">Deploying Ente (the declarative part)</a><ul>
-                        
-                <li>
-                    <a href="#ente-declarative-terraform" aria-label="Writing Terraform configurations">Writing Terraform configurations</a><ul>
-                        
-                <li>
-                    <a href="#ente-declarative-terraform-tailscale" aria-label="Tailscale">Tailscale</a></li>
-                <li>
-                    <a href="#ente-declarative-terraform-b2" aria-label="Backblaze B2">Backblaze B2</a></li>
-                <li>
-                    <a href="#ente-declarative-terraform-vault" aria-label="Vault">Vault</a></li>
-                <li>
-                    <a href="#ente-declarative-terraform-aws" aria-label="Amazon Web Services">Amazon Web Services</a></li>
-                <li>
-                    <a href="#ente-declarative-terraform-cloudflare" aria-label="Cloudflare">Cloudflare</a></li></ul>
-                </li>
-                <li>
-                    <a href="#ente-declarative-nixos" aria-label="Writing NixOS configurations">Writing NixOS configurations</a><ul>
-                        
-                <li>
-                    <a href="#ente-declarative-nixos-disko" aria-label="Modifying the disko configuration">Modifying the disko configuration</a></li>
-                <li>
-                    <a href="#ente-declarative-nixos-vault" aria-label="Accessing secrets with Vault">Accessing secrets with Vault</a></li>
-                <li>
-                    <a href="#ente-declarative-nixos-tailscale" aria-label="Connecting to the tailnet">Connecting to the tailnet</a></li>
-                <li>
-                    <a href="#ente-declarative-nixos-museum" aria-label="Configuring Ente">Configuring Ente</a></li></ul>
-                </li>
-                <li>
-                    <a href="#ente-declarative-github" aria-label="The GitHub Actions workflow">The GitHub Actions workflow</a></li>
-                <li>
-                    <a href="#ente-declarative-deployment" aria-label="The manual deployment">The manual deployment</a></li></ul>
-                </li>
-                <li>
-                    <a href="#postinstall" aria-label="Post-installation configurations">Post-installation configurations</a></li>
-                <li>
-                    <a href="#finishing-up" aria-label="Finishing up">Finishing up</a><ul>
-                        
-                <li>
-                    <a href="#finishing-up-opentofu" aria-label="A note on OpenTofu (and OpenBao)">A note on OpenTofu (and OpenBao)</a></li>
-                <li>
-                    <a href="#finishing-up-updates" aria-label="Keeping instances up to date">Keeping instances up to date</a>
-                </li>
-            </ul>
+    <div class="inner"><ul>
+            <li>
+                <a href="#the-plan" aria-label="The plan">The plan</a><ul>
+                    
+            <li>
+                <a href="#the-plan-infrastructure" aria-label="The infrastructure">The infrastructure</a></li>
+            <li>
+                <a href="#the-plan-code" aria-label="Using code for almost everything">Using code for almost everything</a></li></ul>
             </li>
-            </ul>
-        </div>
-    </details>
-</div>
+            <li>
+                <a href="#vault" aria-label="Setting up secret management with Vault">Setting up secret management with Vault</a><ul>
+                    
+            <li>
+                <a href="#vault-host" aria-label="Hosting Vault">Hosting Vault</a></li>
+            <li>
+                <a href="#vault-nixos" aria-label="Preparing NixOS configurations">Preparing NixOS configurations</a><ul>
+                    
+            <li>
+                <a href="#vault-nixos-sops" aria-label="Encrypting secrets with Sops">Encrypting secrets with Sops</a></li>
+            <li>
+                <a href="#vault-nixos-tailscale" aria-label="Setting up Tailscale">Setting up Tailscale</a></li></ul>
+            </li>
+            <li>
+                <a href="#vault-custom-image" aria-label="Creating a custom image">Creating a custom image</a></li>
+            <li>
+                <a href="#vault-create-droplet" aria-label="Creating a Droplet with the image">Creating a Droplet with the image</a></li>
+            <li>
+                <a href="#vault-run" aria-label="Running Vault">Running Vault</a></li>
+            <li>
+                <a href="#vault-postinstall" aria-label="Post-installation configuration">Post-installation configuration</a></li></ul>
+            </li>
+            <li>
+                <a href="#bootstrap-imperative" aria-label="Bootstrapping (the imperative part)">Bootstrapping (the imperative part)</a><ul>
+                    
+            <li>
+                <a href="#bootstrap-imperative-vault" aria-label="Enabling Vault&#39;s capabilities">Enabling Vault's capabilities</a></li>
+            <li>
+                <a href="#bootstrap-imperative-b2" aria-label="Enabling access to Backblaze B2">Enabling access to Backblaze B2</a></li>
+            <li>
+                <a href="#bootstrap-imperative-github" aria-label="Configuring OpenID Connect for GitHub Actions">Configuring OpenID Connect for GitHub Actions</a></li>
+            <li>
+                <a href="#bootstrap-imperative-aws-auth" aria-label="Setting up Vault&#39;s AWS authentication method">Setting up Vault's AWS authentication method</a></li>
+            <li>
+                <a href="#bootstrap-imperative-aws-role" aria-label="Creating a policy and a role for AWS authentication">Creating a policy and a role for AWS authentication</a></li></ul>
+            </li>
+            <li>
+                <a href="#bootstrap-declarative" aria-label="Bootstrapping (the declarative part)">Bootstrapping (the declarative part)</a><ul>
+                    
+            <li>
+                <a href="#bootstrap-declarative-terraform" aria-label="Preparing Terraform configurations">Preparing Terraform configurations</a><ul>
+                    
+            <li>
+                <a href="#bootstrap-declarative-terraform-aws" aria-label="Bootstrapping Amazon Web Services">Bootstrapping Amazon Web Services</a></li>
+            <li>
+                <a href="#bootstrap-declarative-terraform-b2" aria-label="Bootstrapping Backblaze B2">Bootstrapping Backblaze B2</a></li>
+            <li>
+                <a href="#bootstrap-declarative-terraform-vault" aria-label="Bootstrapping Vault">Bootstrapping Vault</a></li></ul>
+            </li>
+            <li>
+                <a href="#bootstrap-declarative-github" aria-label="Deploying with GitHub Actions">Deploying with GitHub Actions</a></li></ul>
+            </li>
+            <li>
+                <a href="#ente-imperative" aria-label="Deploying Ente (the imperative part)">Deploying Ente (the imperative part)</a><ul>
+                    
+            <li>
+                <a href="#ente-imperative-cloudflare" aria-label="Preparing Cloudflare">Preparing Cloudflare</a><ul>
+                    
+            <li>
+                <a href="#ente-imperative-cloudflare-token" aria-label="Creating an API token">Creating an API token</a></li>
+            <li>
+                <a href="#ente-imperative-cloudflare-cert" aria-label="Creating an origin certificate">Creating an origin certificate</a></li></ul>
+            </li>
+            <li>
+                <a href="#ente-imperative-tailscale" aria-label="Creating an OAuth client at Tailscale">Creating an OAuth client at Tailscale</a></li></ul>
+            </li>
+            <li>
+                <a href="#ente-declarative" aria-label="Deploying Ente (the declarative part)">Deploying Ente (the declarative part)</a><ul>
+                    
+            <li>
+                <a href="#ente-declarative-terraform" aria-label="Writing Terraform configurations">Writing Terraform configurations</a><ul>
+                    
+            <li>
+                <a href="#ente-declarative-terraform-tailscale" aria-label="Tailscale">Tailscale</a></li>
+            <li>
+                <a href="#ente-declarative-terraform-b2" aria-label="Backblaze B2">Backblaze B2</a></li>
+            <li>
+                <a href="#ente-declarative-terraform-vault" aria-label="Vault">Vault</a></li>
+            <li>
+                <a href="#ente-declarative-terraform-aws" aria-label="Amazon Web Services">Amazon Web Services</a></li>
+            <li>
+                <a href="#ente-declarative-terraform-cloudflare" aria-label="Cloudflare">Cloudflare</a></li></ul>
+            </li>
+            <li>
+                <a href="#ente-declarative-nixos" aria-label="Writing NixOS configurations">Writing NixOS configurations</a><ul>
+                    
+            <li>
+                <a href="#ente-declarative-nixos-disko" aria-label="Modifying the disko configuration">Modifying the disko configuration</a></li>
+            <li>
+                <a href="#ente-declarative-nixos-vault" aria-label="Accessing secrets with Vault">Accessing secrets with Vault</a></li>
+            <li>
+                <a href="#ente-declarative-nixos-tailscale" aria-label="Connecting to the tailnet">Connecting to the tailnet</a></li>
+            <li>
+                <a href="#ente-declarative-nixos-museum" aria-label="Configuring Ente">Configuring Ente</a></li></ul>
+            </li>
+            <li>
+                <a href="#ente-declarative-github" aria-label="The GitHub Actions workflow">The GitHub Actions workflow</a></li>
+            <li>
+                <a href="#ente-declarative-deployment" aria-label="The manual deployment">The manual deployment</a></li></ul>
+            </li>
+            <li>
+                <a href="#postinstall" aria-label="Post-installation configurations">Post-installation configurations</a></li>
+            <li>
+                <a href="#finishing-up" aria-label="Finishing up">Finishing up</a><ul>
+                    
+            <li>
+                <a href="#finishing-up-opentofu" aria-label="A note on OpenTofu (and OpenBao)">A note on OpenTofu (and OpenBao)</a></li>
+            <li>
+                <a href="#finishing-up-updates" aria-label="Keeping instances up to date">Keeping instances up to date</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
 
-  <div class="post-content"><p><img alt="Logo of Ente" loading="lazy" src="https://images.lyuk98.com/0998d5a9-bafe-4aa2-be99-d49144204337.avif"></p>
+  <div class="post-content md-content"><p><img alt="Logo of Ente" loading="lazy" src="https://images.lyuk98.com/0998d5a9-bafe-4aa2-be99-d49144204337.avif"></p>
 <p><a href="https://ente.io/" title="Ente Photos: Store and share your photos with absolute privacy">Ente</a> is a platform to host photos that uses end-to-end encryption to store its data.</p>
 <p>I have more than a decade of photos saved with <a href="https://www.google.com/photos/about/" title="Google Photos: Edit, organise, search and back up your photos">Google Photos</a>, but I wanted to keep them in a place that is designed to be private. The problem, however, was that the collection grew to a few terabytes over the years, and putting them on a privacy-respecting image platform was either very expensive or outright impossible. To work around the problem, I decided to self-host Ente.</p>
 <h1 id="the-plan">The plan<a hidden class="anchor" aria-hidden="true" href="#the-plan">#</a></h1>
@@ -2333,12 +2333,10 @@ endpoint:
 <nav class="paginav">
   <a class="prev" href="https://lyuk98.com/blog/2025/10/building-obscure-packages-with-nix/">
     <span class="title">« Prev</span>
-    <br>
     <span>Building obscure packages with Nix</span>
   </a>
   <a class="next" href="https://lyuk98.com/blog/2025/05/switching-from-arch-linux-to-nixos/">
     <span class="title">Next »</span>
-    <br>
     <span>Switching from Arch Linux to NixOS</span>
   </a>
 </nav>
@@ -2356,9 +2354,11 @@ endpoint:
         <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
     </span>
 </footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
 
@@ -2397,14 +2397,13 @@ endpoint:
 
 </script>
 <script>
-    var mybutton = document.getElementById("top-link");
+    var toplink = document.getElementById("top-link");
     window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
         } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
+            toplink.classList.add("hidden");
         }
     };
 

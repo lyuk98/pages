@@ -10,13 +10,14 @@
 <meta name="description" content="This is part of series Building a homelab, where I document my journey to build my own homelab with Kubernetes.
 
 Creating a Kubernetes cluster with Talos Linux
+Setting up Argo CD
 
 
 Up until now, I have had some experiences with self-hosting services. However, as I learned more, I could see ways to make my setup better.
 While learning about Kubernetes, I thought it could be used to host everything that I have self-hosted so far. If I could get it right, it would allow me to manage all the services while also reducing costs.">
 <meta name="author" content="이영욱">
 <link rel="canonical" href="https://lyuk98.com/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e&#43;Ge/K3X9WmUVz&#43;1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.47e51c7d8489b002361bac156ce9a0a8776d08c5462c2cee95801efafdd90d35.css" integrity="sha256-R&#43;UcfYSJsAI2G6wVbOmgqHdtCMVGLCzulYAe&#43;v3ZDTU=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://images.lyuk98.com/313a1eef-52de-4ad3-8f51-bf7f0f17f757.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://images.lyuk98.com/e697b861-1499-4040-b7a4-f25b4ecea28a.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://images.lyuk98.com/9c8c6d90-d044-418c-8d45-cc6298d8d484.png">
@@ -57,12 +58,6 @@ While learning about Kubernetes, I thought it could be used to host everything t
             }
         }
 
-        @media (prefers-color-scheme: light) {
-            .list::-webkit-scrollbar-thumb {
-                border-color: var(--code-bg);
-            }
-        }
-
     </style>
 </noscript>
 <script>
@@ -89,13 +84,13 @@ While learning about Kubernetes, I thought it could be used to host everything t
   <meta property="og:site_name" content="이영욱">
   <meta property="og:title" content="Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux">
   <meta property="og:description" content="This is part of series Building a homelab, where I document my journey to build my own homelab with Kubernetes.
-Creating a Kubernetes cluster with Talos Linux Up until now, I have had some experiences with self-hosting services. However, as I learned more, I could see ways to make my setup better.
+Creating a Kubernetes cluster with Talos Linux Setting up Argo CD Up until now, I have had some experiences with self-hosting services. However, as I learned more, I could see ways to make my setup better.
 While learning about Kubernetes, I thought it could be used to host everything that I have self-hosted so far. If I could get it right, it would allow me to manage all the services while also reducing costs.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
     <meta property="article:published_time" content="2026-02-26T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-03-20T22:43:36+09:00">
+    <meta property="article:modified_time" content="2026-04-28T09:19:54-04:00">
     <meta property="article:tag" content="Backblaze B2">
     <meta property="article:tag" content="Cloudflare">
     <meta property="article:tag" content="Helm">
@@ -108,7 +103,7 @@ While learning about Kubernetes, I thought it could be used to host everything t
   <meta name="twitter:image" content="https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif">
   <meta name="twitter:title" content="Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux">
   <meta name="twitter:description" content="This is part of series Building a homelab, where I document my journey to build my own homelab with Kubernetes.
-Creating a Kubernetes cluster with Talos Linux Up until now, I have had some experiences with self-hosting services. However, as I learned more, I could see ways to make my setup better.
+Creating a Kubernetes cluster with Talos Linux Setting up Argo CD Up until now, I have had some experiences with self-hosting services. However, as I learned more, I could see ways to make my setup better.
 While learning about Kubernetes, I thought it could be used to host everything that I have self-hosted so far. If I could get it right, it would allow me to manage all the services while also reducing costs.">
 
 
@@ -138,15 +133,15 @@ While learning about Kubernetes, I thought it could be used to host everything t
   "@type": "BlogPosting",
   "headline": "Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux",
   "name": "Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux",
-  "description": "This is part of series Building a homelab, where I document my journey to build my own homelab with Kubernetes.\nCreating a Kubernetes cluster with Talos Linux Up until now, I have had some experiences with self-hosting services. However, as I learned more, I could see ways to make my setup better.\nWhile learning about Kubernetes, I thought it could be used to host everything that I have self-hosted so far. If I could get it right, it would allow me to manage all the services while also reducing costs.\n",
+  "description": "This is part of series Building a homelab, where I document my journey to build my own homelab with Kubernetes.\nCreating a Kubernetes cluster with Talos Linux Setting up Argo CD Up until now, I have had some experiences with self-hosting services. However, as I learned more, I could see ways to make my setup better.\nWhile learning about Kubernetes, I thought it could be used to host everything that I have self-hosted so far. If I could get it right, it would allow me to manage all the services while also reducing costs.\n",
   "keywords": [
     "Backblaze B2", "Cloudflare", "Helm", "Kubernetes", "OpenTofu", "Tailscale", "Talos Linux"
   ],
-  "articleBody": "This is part of series Building a homelab, where I document my journey to build my own homelab with Kubernetes.\nCreating a Kubernetes cluster with Talos Linux Up until now, I have had some experiences with self-hosting services. However, as I learned more, I could see ways to make my setup better.\nWhile learning about Kubernetes, I thought it could be used to host everything that I have self-hosted so far. If I could get it right, it would allow me to manage all the services while also reducing costs.\nThe plan The goal is to build a homelab, if it was not obvious from the title. A Kubernetes cluster is to be set up, where all the services I am currently hosting will reside.\nMy current set of hosts using NixOS is described in the following topology (using nix-topology):\nThe Dell XPS 13, which I have previously used to run Kubernetes that is no longer active, was to be utilised again for this project. Once I get the cluster and services set up and running, I may consider letting the Raspberry Pi join the cluster (after migrating PeerTube that I have hosted there, of course).\nFor all the “cloud” services, I hope to eventually reduce my reliance to them by ultimately making Backblaze the only dependency (for their object storage).\nRunning Kubernetes with Talos Linux The next thing to consider was the operating system Kubernetes will run on. I have used NixOS for this in the past, but it was (to me) complicated to configure and was designed to do much more than simply running the container orchestration system, which I realised after being aware of the operating system I will soon mention.\nTalos is a modern OS for running Kubernetes: secure, immutable, and minimal. Talos is fully open source, production-ready, and supported by the people at Sidero Labs. All system management is done via an API - there is no shell or interactive console. Benefits include:\nSecurity: Talos reduces your attack surface: It’s minimal, hardened, and immutable. All API access is secured with mutual TLS (mTLS) authentication. Predictability: Talos eliminates configuration drift, reduces unknown factors by employing immutable infrastructure ideology, and delivers atomic updates. Evolvability: Talos simplifies your architecture, increases your agility, and always delivers current stable Kubernetes and Linux versions. From what I could find among the list of purpose-built operating systems for Kubernetes, Talos Linux seemed to be the best fit for my use case. Bottlerocket exists, which can be used to set up my own Elastic Kubernetes Service (EKS) cluster using EKS Anywhere, but I did not see any particular benefit in integrating with Amazon’s Kubernetes distribution that will justify its somewhat steeper hardware requirements compared to the ones for Talos Linux. Developers of the latter compared two operating systems in their blog post; the small number of binaries in their system, in my mind, correlated to reduced attack surface compared to general-purpose Linux distributions like, say, NixOS and Debian.\nAnother thing about Talos Linux was that it could seemingly be declaratively configured. I had to find out how it does so compared to NixOS, but it still sounded nice on the surface.\nOperating hybrid clusters with Tailscale Tailscale became an essential part of my infrastructure since the day I used it to set up my PeerTube instance, and this time, I was about to take it to the next level. My ideal setup was for the nodes to communicate through the private network, while eliminating geographical boundaries that may be introduced by changes to the cluster.\nHowever, ever since I started tinkering with Kubernetes, I could not figure out how to implement this ideal setup. Before I started implementing this setup, I initially thought Tailscale’s Kubernetes operator would do the trick; however, it was apparently far from what the operator was designed to do.\nFor now, I decided to integrate Tailscale both on the OS level and with the Kubernetes operator. In the meantime, I found something named KubeSpan.\nKubeSpan is a feature of Talos that automates the setup and maintenance of a full mesh WireGuard network for your cluster, giving you the ability to operate hybrid Kubernetes clusters that can span the edge, datacenter, and cloud. Management of keys and discovery of peers can be completely automated, making it simple and easy to create hybrid clusters.\nKubeSpan consists of client code in Talos Linux, as well as a discovery service that enables clients to securely find each other. Sidero Labs operates a free Discovery Service, but the discovery service may, with a commercial license, be operated by your organization and can be downloaded here.\nIf I understood things correctly, it meant that I can use KubeSpan to help my nodes form a cluster. Since I will be starting with a one-node cluster for now, I decided to come back and learn more about it when I introduce a new one.\nDeclarative cluster provisioning with OpenTofu One thing I struggled with Kubernetes in the past was figuring out how I can configure its environment (and not just its deployments) declaratively. Being heavily inspired by the reproducible environment NixOS provides, I wanted to see if I can apply it to my cluster. However, after my not-so-successful journey that I have previously documented, the container orchestration system and the declarative operating system just did not seem to mix well together.\nI wished to use Helm package manager due to its ease of use, but forcing it the NixOS way brought me a considerable amount of headache. Even if I manage to do it, I will need to think about how charts should be updated later on. After a significant amount of trying, including setting up Talhelper, I eventually settled on a method that I felt was the cleanest way.\nOpenTofu is a reliable, flexible, community-driven infrastructure as code tool under the Linux Foundation’s stewardship. It serves as a drop-in replacement for Terraform, preserving your existing workflows and configurations.\nI have previously expressed my wish to keep my code interoperable with both Terraform and OpenTofu, but in this particular case, I decided not to bother with the former. This move was due to the open-source variant’s ability to encrypt its state, which is technically possible but pretty limited with Terraform.\nStoring your state remotely can provide better security by letting you encrypt your state when it’s at rest. For example, the following backends support state encryption:\nHCP Terraform encrypts state at rest, lets you supply your own encryption keys, and protects state with TLS in transit The S3 backend can encrypt state at rest if you enable the encrypt option, and protects state with TLS in transit The GCS backend supports using customer-supplied or customer-managed encryption keys The Talos provider would set up the cluster using provisioned secrets (with the Tailscale provider, for example). The Helm provider would then install charts needed to achieve the desired initial state of my cluster.\nAddressing potential hardware issues Before delving into the Kubernetes world, however, I was concerned about a few issues that could potentially damage the laptop to run the cluster with.\nThe thermal issue The first issue I was reminded of was the age of the laptop. Although I do not believe it saw a lot of heavy workloads during its ten-year life so far, I thought it could now struggle once they are introduced.\nTo find out if I need to make changes to the hardware, I used lm_sensors to measure this device’s thermal performance. By running sensors-detect and answering default values at each prompt by simply pressing Enter, except the last one where I said YES to generating /etc/sysconfig/lm_sensors, I was ready to monitor the temperatures.\n[lyuk98@xps13:~]$ nix shell nixpkgs#lm_sensors [lyuk98@xps13:~]$ sudo sensors-detect # sensors-detect version 3.6.2 # System: Dell Inc. XPS 13 9350 (laptop) # Board: Dell Inc. 07TYC2 # Kernel: 6.12.63 x86_64 # Processor: Intel(R) Core(TM) i5-6200U CPU @ 2.30GHz (6/78/3) This program will help you determine which kernel modules you need to load to use lm_sensors most effectively. It is generally safe and recommended to accept the default answers to all questions, unless you know what you're doing. Some south bridges, CPUs or memory controllers contain embedded sensors. Do you want to scan for them? This is totally safe. (YES/no): Module cpuid loaded successfully. Silicon Integrated Systems SIS5595... No VIA VT82C686 Integrated Sensors... No VIA VT8231 Integrated Sensors... No AMD K8 thermal sensors... No AMD Family 10h thermal sensors... No AMD Family 11h thermal sensors... No AMD Family 12h and 14h thermal sensors... No AMD Family 15h thermal sensors... No AMD Family 16h thermal sensors... No AMD Family 17h thermal sensors... No AMD Family 15h power sensors... No AMD Family 16h power sensors... No Hygon Family 18h thermal sensors... No AMD Family 19h thermal sensors... No Intel digital thermal sensor... Success! (driver `coretemp') Intel AMB FB-DIMM thermal sensor... No Intel 5500/5520/X58 thermal sensor... No VIA C7 thermal sensor... No VIA Nano thermal sensor... No Some Super I/O chips contain embedded sensors. We have to write to standard I/O ports to probe them. This is usually safe. Do you want to scan for Super I/O sensors? (YES/no): Probing for Super-I/O at 0x2e/0x2f Trying family `National Semiconductor/ITE'... No Trying family `SMSC'... Yes Found unknown chip with ID 0x1d00 Probing for Super-I/O at 0x4e/0x4f Trying family `National Semiconductor/ITE'... No Trying family `SMSC'... No Trying family `VIA/Winbond/Nuvoton/Fintek'... No Trying family `ITE'... No Some hardware monitoring chips are accessible through the ISA I/O ports. We have to write to arbitrary I/O ports to probe them. This is usually safe though. Yes, you do have ISA I/O ports even if you do not have any ISA slots! Do you want to scan the ISA I/O ports? (YES/no): Probing for `National Semiconductor LM78' at 0x290... No Probing for `National Semiconductor LM79' at 0x290... No Probing for `Winbond W83781D' at 0x290... No Probing for `Winbond W83782D' at 0x290... No Lastly, we can probe the I2C/SMBus adapters for connected hardware monitoring devices. This is the most risky part, and while it works reasonably well on most systems, it has been reported to cause trouble on some systems. Do you want to probe the I2C/SMBus adapters now? (YES/no): Using driver `i2c-i801' for device 0000:00:1f.4: Sunrise Point-LP (PCH) Module i2c-dev loaded successfully. Next adapter: SMBus I801 adapter at f040 (i2c-0) Do you want to scan it? (YES/no/selectively): Next adapter: i915 gmbus dpc (i2c-1) Do you want to scan it? (yes/NO/selectively): Next adapter: i915 gmbus dpb (i2c-2) Do you want to scan it? (yes/NO/selectively): Next adapter: i915 gmbus dpd (i2c-3) Do you want to scan it? (yes/NO/selectively): Next adapter: Synopsys DesignWare I2C adapter (i2c-4) Do you want to scan it? (YES/no/selectively): Adapter doesn't support all probing functions. Some addresses won't be probed. Next adapter: AUX A/DDI A/PHY A (i2c-5) Do you want to scan it? (yes/NO/selectively): Next adapter: AUX B/DDI B/PHY B (i2c-6) Do you want to scan it? (yes/NO/selectively): Next adapter: AUX C/DDI C/PHY C (i2c-7) Do you want to scan it? (yes/NO/selectively): Next adapter: Synopsys DesignWare I2C adapter (i2c-8) Do you want to scan it? (YES/no/selectively): Adapter doesn't support all probing functions. Some addresses won't be probed. Client at address 0x2c can not be probed - unload all client drivers first! Now follows a summary of the probes I have just done. Just press ENTER to continue: Driver `coretemp': * Chip `Intel digital thermal sensor' (confidence: 9) Do you want to generate /etc/sysconfig/lm_sensors? (yes/NO): YES Copy prog/init/lm_sensors.init to /etc/init.d/lm_sensors for initialization at boot time. You should now start the lm_sensors service to load the required kernel modules. Unloading i2c-dev... OK Unloading cpuid... OK Running sensors printed temperatures at the time I ran the command, which indicated that the device is pretty cool at the moment.\n[lyuk98@xps13:~]$ sensors dell_smm-isa-00de Adapter: ISA adapter Processor Fan: 0 RPM (min = 0 RPM, max = 4900 RPM) CPU: +27.0°C Ambient: +26.0°C Other: +27.0°C Other: +26.0°C SODIMM: +25.0°C pwm1: 0% acpitz-acpi-0 Adapter: ACPI interface temp1: +25.0°C temp2: +27.8°C temp3: +29.8°C nvme-pci-3c00 Adapter: PCI adapter Composite: +23.9°C coretemp-isa-0000 Adapter: ISA adapter Package id 0: +27.0°C (high = +100.0°C, crit = +100.0°C) Core 0: +25.0°C (high = +100.0°C, crit = +100.0°C) Core 1: +25.0°C (high = +100.0°C, crit = +100.0°C) pch_skylake-virtual-0 Adapter: Virtual device temp1: +26.0°C It was all about to change, though, as I prepared to run an intensive task.\n[lyuk98@xps13:~]$ nix shell nixpkgs#wget nixpkgs#unzip nixpkgs#ffmpeg [lyuk98@xps13:~]$ cd $(mktemp --directory) [lyuk98@xps13:/tmp/tmp.UCGgcM1cOh]$ wget https://download.blender.org/demo/movies/BBB/bbb_sunflower_2160p_60fps_normal.mp4.zip [lyuk98@xps13:/tmp/tmp.UCGgcM1cOh]$ unzip bbb_sunflower_2160p_60fps_normal.mp4.zip First, I started monitoring the temperatures in a different shell.\n[lyuk98@xps13:~]$ watch --differences --no-title sensors Then, with FFmpeg, I re-encoded the downloaded video to AV1, which I thought was the kind of intensive task the device will be subject to.\n[lyuk98@xps13:/tmp/tmp.UCGgcM1cOh]$ ffmpeg -i bbb_sunflower_2160p_60fps_normal.mp4 \\ -c:v libsvtav1 \\ -c:a copy \\ output.mkv The process took about 63 minutes, which was much longer than 14 minutes my Framework Laptop 13 took to do the same thing. I guess six years of generation gap does make a lot of difference.\nThe fan started running after a minute at about mid-80°C mark, which subsequently kept the system at around low-to-mid 70 degrees Celsius at first. The temperature gradually rose, though, and after about 50 minutes, it did reach as high as 81 degrees Celsius. It did not get any warmer than that, however, and finishing the task rapidly dropped the temperature to about 45 degrees Celsius, where the fan stopped.\ndell_smm-isa-00de Adapter: ISA adapter Processor Fan: 3620 RPM (min = 0 RPM, max = 4900 RPM) CPU: +76.0°C Ambient: +41.0°C Other: +32.0°C Other: +54.0°C SODIMM: +48.0°C pwm1: 64% acpitz-acpi-0 Adapter: ACPI interface temp1: +25.0°C temp2: +27.8°C temp3: +29.8°C nvme-pci-3c00 Adapter: PCI adapter Composite: +31.9°C coretemp-isa-0000 Adapter: ISA adapter Package id 0: +76.0°C (high = +100.0°C, crit = +100.0°C) Core 0: +76.0°C (high = +100.0°C, crit = +100.0°C) Core 1: +75.0°C (high = +100.0°C, crit = +100.0°C) pch_skylake-virtual-0 Adapter: Virtual device temp1: +64.5°C From what I could find online, this temperature range seemed to be fine. As a result, I did not proceed with the thermal paste replacement. It was a bit disappointing, though, as I had some PTM7950 left after applying it to my Framework Laptop 13.\nThe display problem This computer was to be run at all times. However, due to the minimal nature of Talos Linux, the screen stayed on no matter what, and I could not figure out how to turn it off after some time of inactivity.\nAside from increased energy consumption for almost no benefit, I was worried that it could prematurely render the screen inoperable. To fix this potential issue, I decided to try disconnecting the display.\nI could not find any guide from iFixit that does it; as a result, I ended up reading the laptop’s service manual.\nAfter taking off the cover, I found and disconnected the part that says “Touch Screen.”\nAt first, I thought it was done, only to be surprised by the display still working. I seemingly only disabled the “touch” part of the screen; to disconnect the actual display, I opened up the laptop once more.\nBetween the fan and the SSD was where the cable was connected to.\nWhen it was disconnected, I tried turning the device on. However, something did not seem right; the laptop, after blinking twice in amber and seven times in white, just shut off. Based on what I could find afterwards, I realised that it was a result of “LCD failure” and that there was probably nothing I could do for it to be ignored.\nAs a result, I reconnected everything (except the battery that I have previously disconnected) again. Later on, I found a kernel parameter that would disable the display anyway, which I thought was a cleaner solution.\nPreparing infrastructure Before writing any code, I first prepared cloud providers. Previously, while working on my self-hosted Ente instance, I wrote bootstrapping configurations to create an environment for Terraform to do the actual provisioning with. I decided not to bother doing so this time, though, as it brought more confusion and complexity during the implementation.\nGranting access to Tailscale For this part, I focused on letting nodes join the tailnet, setting up the Kubernetes operator, and using it to access the control plane.\nOn top of existing ones, such as tag:ci, I created tags tag:k8s-operator and tag:k8s, as well as node-specific tags tag:k8s-control-plane and tag:k8s-worker, at the access control editor.\n{ // Define the tags which can be applied to devices and by which users. \"tagOwners\": { // Existing tags \"tag:k8s-operator\": [\"autogroup:admin\", \"tag:ci\"], \"tag:k8s\": [\"tag:k8s-operator\"], // Control plane nodes in the Kubernetes cluster \"tag:k8s-control-plane\": [\"autogroup:admin\", \"tag:ci\"], // Worker nodes in the Kubernetes cluster \"tag:k8s-worker\": [\"tag:k8s-control-plane\", \"tag:ci\"], }, } To utilise Tailscale’s subnet routers for pods and services, their IP ranges were set to be automatically approved.\n{ \"autoApprovers\": { \"routes\": { // The pod subnet CIDR (IPv4) \"10.244.0.0/16\": [\"tag:k8s-control-plane\"], // The pod subnet CIDR (IPv6) \"fd00:10:244::/56\": [\"tag:k8s-control-plane\"], // The service subnet CIDR (IPv4) \"10.96.0.0/12\": [\"tag:k8s-control-plane\"], // The service subnet CIDR (IPv6) \"fd00:10:96::/112\": [\"tag:k8s-control-plane\"], }, }, } I then created an OAuth credential for the OpenTofu workflow to do its thing. Because the tags tag:k8s-operator and tag:k8s-node are owned by tag:ci, I did not have to be overly specific in assigning one.\nGeneral Devices Keys ",
-  "wordCount" : "6970",
+  "articleBody": "This is part of series Building a homelab, where I document my journey to build my own homelab with Kubernetes.\nCreating a Kubernetes cluster with Talos Linux Setting up Argo CD Up until now, I have had some experiences with self-hosting services. However, as I learned more, I could see ways to make my setup better.\nWhile learning about Kubernetes, I thought it could be used to host everything that I have self-hosted so far. If I could get it right, it would allow me to manage all the services while also reducing costs.\nThe plan The goal is to build a homelab, if it was not obvious from the title. A Kubernetes cluster is to be set up, where all the services I am currently hosting will reside.\nMy current set of hosts using NixOS is described in the following topology (using nix-topology):\nThe Dell XPS 13, which I have previously used to run Kubernetes that is no longer active, was to be utilised again for this project. Once I get the cluster and services set up and running, I may consider letting the Raspberry Pi join the cluster (after migrating PeerTube that I have hosted there, of course).\nFor all the “cloud” services, I hope to eventually reduce my reliance to them by ultimately making Backblaze the only dependency (for their object storage).\nRunning Kubernetes with Talos Linux The next thing to consider was the operating system Kubernetes will run on. I have used NixOS for this in the past, but it was (to me) complicated to configure and was designed to do much more than simply running the container orchestration system, which I realised after being aware of the operating system I will soon mention.\nTalos is a modern OS for running Kubernetes: secure, immutable, and minimal. Talos is fully open source, production-ready, and supported by the people at Sidero Labs. All system management is done via an API - there is no shell or interactive console. Benefits include:\nSecurity: Talos reduces your attack surface: It’s minimal, hardened, and immutable. All API access is secured with mutual TLS (mTLS) authentication. Predictability: Talos eliminates configuration drift, reduces unknown factors by employing immutable infrastructure ideology, and delivers atomic updates. Evolvability: Talos simplifies your architecture, increases your agility, and always delivers current stable Kubernetes and Linux versions. From what I could find among the list of purpose-built operating systems for Kubernetes, Talos Linux seemed to be the best fit for my use case. Bottlerocket exists, which can be used to set up my own Elastic Kubernetes Service (EKS) cluster using EKS Anywhere, but I did not see any particular benefit in integrating with Amazon’s Kubernetes distribution that will justify its somewhat steeper hardware requirements compared to the ones for Talos Linux. Developers of the latter compared two operating systems in their blog post; the small number of binaries in their system, in my mind, correlated to reduced attack surface compared to general-purpose Linux distributions like, say, NixOS and Debian.\nAnother thing about Talos Linux was that it could seemingly be declaratively configured. I had to find out how it does so compared to NixOS, but it still sounded nice on the surface.\nOperating hybrid clusters with Tailscale Tailscale became an essential part of my infrastructure since the day I used it to set up my PeerTube instance, and this time, I was about to take it to the next level. My ideal setup was for the nodes to communicate through the private network, while eliminating geographical boundaries that may be introduced by changes to the cluster.\nHowever, ever since I started tinkering with Kubernetes, I could not figure out how to implement this ideal setup. Before I started implementing this setup, I initially thought Tailscale’s Kubernetes operator would do the trick; however, it was apparently far from what the operator was designed to do.\nFor now, I decided to integrate Tailscale both on the OS level and with the Kubernetes operator. In the meantime, I found something named KubeSpan.\nKubeSpan is a feature of Talos that automates the setup and maintenance of a full mesh WireGuard network for your cluster, giving you the ability to operate hybrid Kubernetes clusters that can span the edge, datacenter, and cloud. Management of keys and discovery of peers can be completely automated, making it simple and easy to create hybrid clusters.\nKubeSpan consists of client code in Talos Linux, as well as a discovery service that enables clients to securely find each other. Sidero Labs operates a free Discovery Service, but the discovery service may, with a commercial license, be operated by your organization and can be downloaded here.\nIf I understood things correctly, it meant that I can use KubeSpan to help my nodes form a cluster. Since I will be starting with a one-node cluster for now, I decided to come back and learn more about it when I introduce a new one.\nDeclarative cluster provisioning with OpenTofu One thing I struggled with Kubernetes in the past was figuring out how I can configure its environment (and not just its deployments) declaratively. Being heavily inspired by the reproducible environment NixOS provides, I wanted to see if I can apply it to my cluster. However, after my not-so-successful journey that I have previously documented, the container orchestration system and the declarative operating system just did not seem to mix well together.\nI wished to use Helm package manager due to its ease of use, but forcing it the NixOS way brought me a considerable amount of headache. Even if I manage to do it, I will need to think about how charts should be updated later on. After a significant amount of trying, including setting up Talhelper, I eventually settled on a method that I felt was the cleanest way.\nOpenTofu is a reliable, flexible, community-driven infrastructure as code tool under the Linux Foundation’s stewardship. It serves as a drop-in replacement for Terraform, preserving your existing workflows and configurations.\nI have previously expressed my wish to keep my code interoperable with both Terraform and OpenTofu, but in this particular case, I decided not to bother with the former. This move was due to the open-source variant’s ability to encrypt its state, which is technically possible but pretty limited with Terraform.\nStoring your state remotely can provide better security by letting you encrypt your state when it’s at rest. For example, the following backends support state encryption:\nHCP Terraform encrypts state at rest, lets you supply your own encryption keys, and protects state with TLS in transit The S3 backend can encrypt state at rest if you enable the encrypt option, and protects state with TLS in transit The GCS backend supports using customer-supplied or customer-managed encryption keys The Talos provider would set up the cluster using provisioned secrets (with the Tailscale provider, for example). The Helm provider would then install charts needed to achieve the desired initial state of my cluster.\nAddressing potential hardware issues Before delving into the Kubernetes world, however, I was concerned about a few issues that could potentially damage the laptop to run the cluster with.\nThe thermal issue The first issue I was reminded of was the age of the laptop. Although I do not believe it saw a lot of heavy workloads during its ten-year life so far, I thought it could now struggle once they are introduced.\nTo find out if I need to make changes to the hardware, I used lm_sensors to measure this device’s thermal performance. By running sensors-detect and answering default values at each prompt by simply pressing Enter, except the last one where I said YES to generating /etc/sysconfig/lm_sensors, I was ready to monitor the temperatures.\n[lyuk98@xps13:~]$ nix shell nixpkgs#lm_sensors [lyuk98@xps13:~]$ sudo sensors-detect # sensors-detect version 3.6.2 # System: Dell Inc. XPS 13 9350 (laptop) # Board: Dell Inc. 07TYC2 # Kernel: 6.12.63 x86_64 # Processor: Intel(R) Core(TM) i5-6200U CPU @ 2.30GHz (6/78/3) This program will help you determine which kernel modules you need to load to use lm_sensors most effectively. It is generally safe and recommended to accept the default answers to all questions, unless you know what you're doing. Some south bridges, CPUs or memory controllers contain embedded sensors. Do you want to scan for them? This is totally safe. (YES/no): Module cpuid loaded successfully. Silicon Integrated Systems SIS5595... No VIA VT82C686 Integrated Sensors... No VIA VT8231 Integrated Sensors... No AMD K8 thermal sensors... No AMD Family 10h thermal sensors... No AMD Family 11h thermal sensors... No AMD Family 12h and 14h thermal sensors... No AMD Family 15h thermal sensors... No AMD Family 16h thermal sensors... No AMD Family 17h thermal sensors... No AMD Family 15h power sensors... No AMD Family 16h power sensors... No Hygon Family 18h thermal sensors... No AMD Family 19h thermal sensors... No Intel digital thermal sensor... Success! (driver `coretemp') Intel AMB FB-DIMM thermal sensor... No Intel 5500/5520/X58 thermal sensor... No VIA C7 thermal sensor... No VIA Nano thermal sensor... No Some Super I/O chips contain embedded sensors. We have to write to standard I/O ports to probe them. This is usually safe. Do you want to scan for Super I/O sensors? (YES/no): Probing for Super-I/O at 0x2e/0x2f Trying family `National Semiconductor/ITE'... No Trying family `SMSC'... Yes Found unknown chip with ID 0x1d00 Probing for Super-I/O at 0x4e/0x4f Trying family `National Semiconductor/ITE'... No Trying family `SMSC'... No Trying family `VIA/Winbond/Nuvoton/Fintek'... No Trying family `ITE'... No Some hardware monitoring chips are accessible through the ISA I/O ports. We have to write to arbitrary I/O ports to probe them. This is usually safe though. Yes, you do have ISA I/O ports even if you do not have any ISA slots! Do you want to scan the ISA I/O ports? (YES/no): Probing for `National Semiconductor LM78' at 0x290... No Probing for `National Semiconductor LM79' at 0x290... No Probing for `Winbond W83781D' at 0x290... No Probing for `Winbond W83782D' at 0x290... No Lastly, we can probe the I2C/SMBus adapters for connected hardware monitoring devices. This is the most risky part, and while it works reasonably well on most systems, it has been reported to cause trouble on some systems. Do you want to probe the I2C/SMBus adapters now? (YES/no): Using driver `i2c-i801' for device 0000:00:1f.4: Sunrise Point-LP (PCH) Module i2c-dev loaded successfully. Next adapter: SMBus I801 adapter at f040 (i2c-0) Do you want to scan it? (YES/no/selectively): Next adapter: i915 gmbus dpc (i2c-1) Do you want to scan it? (yes/NO/selectively): Next adapter: i915 gmbus dpb (i2c-2) Do you want to scan it? (yes/NO/selectively): Next adapter: i915 gmbus dpd (i2c-3) Do you want to scan it? (yes/NO/selectively): Next adapter: Synopsys DesignWare I2C adapter (i2c-4) Do you want to scan it? (YES/no/selectively): Adapter doesn't support all probing functions. Some addresses won't be probed. Next adapter: AUX A/DDI A/PHY A (i2c-5) Do you want to scan it? (yes/NO/selectively): Next adapter: AUX B/DDI B/PHY B (i2c-6) Do you want to scan it? (yes/NO/selectively): Next adapter: AUX C/DDI C/PHY C (i2c-7) Do you want to scan it? (yes/NO/selectively): Next adapter: Synopsys DesignWare I2C adapter (i2c-8) Do you want to scan it? (YES/no/selectively): Adapter doesn't support all probing functions. Some addresses won't be probed. Client at address 0x2c can not be probed - unload all client drivers first! Now follows a summary of the probes I have just done. Just press ENTER to continue: Driver `coretemp': * Chip `Intel digital thermal sensor' (confidence: 9) Do you want to generate /etc/sysconfig/lm_sensors? (yes/NO): YES Copy prog/init/lm_sensors.init to /etc/init.d/lm_sensors for initialization at boot time. You should now start the lm_sensors service to load the required kernel modules. Unloading i2c-dev... OK Unloading cpuid... OK Running sensors printed temperatures at the time I ran the command, which indicated that the device is pretty cool at the moment.\n[lyuk98@xps13:~]$ sensors dell_smm-isa-00de Adapter: ISA adapter Processor Fan: 0 RPM (min = 0 RPM, max = 4900 RPM) CPU: +27.0°C Ambient: +26.0°C Other: +27.0°C Other: +26.0°C SODIMM: +25.0°C pwm1: 0% acpitz-acpi-0 Adapter: ACPI interface temp1: +25.0°C temp2: +27.8°C temp3: +29.8°C nvme-pci-3c00 Adapter: PCI adapter Composite: +23.9°C coretemp-isa-0000 Adapter: ISA adapter Package id 0: +27.0°C (high = +100.0°C, crit = +100.0°C) Core 0: +25.0°C (high = +100.0°C, crit = +100.0°C) Core 1: +25.0°C (high = +100.0°C, crit = +100.0°C) pch_skylake-virtual-0 Adapter: Virtual device temp1: +26.0°C It was all about to change, though, as I prepared to run an intensive task.\n[lyuk98@xps13:~]$ nix shell nixpkgs#wget nixpkgs#unzip nixpkgs#ffmpeg [lyuk98@xps13:~]$ cd $(mktemp --directory) [lyuk98@xps13:/tmp/tmp.UCGgcM1cOh]$ wget https://download.blender.org/demo/movies/BBB/bbb_sunflower_2160p_60fps_normal.mp4.zip [lyuk98@xps13:/tmp/tmp.UCGgcM1cOh]$ unzip bbb_sunflower_2160p_60fps_normal.mp4.zip First, I started monitoring the temperatures in a different shell.\n[lyuk98@xps13:~]$ watch --differences --no-title sensors Then, with FFmpeg, I re-encoded the downloaded video to AV1, which I thought was the kind of intensive task the device will be subject to.\n[lyuk98@xps13:/tmp/tmp.UCGgcM1cOh]$ ffmpeg -i bbb_sunflower_2160p_60fps_normal.mp4 \\ -c:v libsvtav1 \\ -c:a copy \\ output.mkv The process took about 63 minutes, which was much longer than 14 minutes my Framework Laptop 13 took to do the same thing. I guess six years of generation gap does make a lot of difference.\nThe fan started running after a minute at about mid-80°C mark, which subsequently kept the system at around low-to-mid 70 degrees Celsius at first. The temperature gradually rose, though, and after about 50 minutes, it did reach as high as 81 degrees Celsius. It did not get any warmer than that, however, and finishing the task rapidly dropped the temperature to about 45 degrees Celsius, where the fan stopped.\ndell_smm-isa-00de Adapter: ISA adapter Processor Fan: 3620 RPM (min = 0 RPM, max = 4900 RPM) CPU: +76.0°C Ambient: +41.0°C Other: +32.0°C Other: +54.0°C SODIMM: +48.0°C pwm1: 64% acpitz-acpi-0 Adapter: ACPI interface temp1: +25.0°C temp2: +27.8°C temp3: +29.8°C nvme-pci-3c00 Adapter: PCI adapter Composite: +31.9°C coretemp-isa-0000 Adapter: ISA adapter Package id 0: +76.0°C (high = +100.0°C, crit = +100.0°C) Core 0: +76.0°C (high = +100.0°C, crit = +100.0°C) Core 1: +75.0°C (high = +100.0°C, crit = +100.0°C) pch_skylake-virtual-0 Adapter: Virtual device temp1: +64.5°C From what I could find online, this temperature range seemed to be fine. As a result, I did not proceed with the thermal paste replacement. It was a bit disappointing, though, as I had some PTM7950 left after applying it to my Framework Laptop 13.\nThe display problem This computer was to be run at all times. However, due to the minimal nature of Talos Linux, the screen stayed on no matter what, and I could not figure out how to turn it off after some time of inactivity.\nAside from increased energy consumption for almost no benefit, I was worried that it could prematurely render the screen inoperable. To fix this potential issue, I decided to try disconnecting the display.\nI could not find any guide from iFixit that does it; as a result, I ended up reading the laptop’s service manual.\nAfter taking off the cover, I found and disconnected the part that says “Touch Screen.”\nAt first, I thought it was done, only to be surprised by the display still working. I seemingly only disabled the “touch” part of the screen; to disconnect the actual display, I opened up the laptop once more.\nBetween the fan and the SSD was where the cable was connected to.\nWhen it was disconnected, I tried turning the device on. However, something did not seem right; the laptop, after blinking twice in amber and seven times in white, just shut off. Based on what I could find afterwards, I realised that it was a result of “LCD failure” and that there was probably nothing I could do for it to be ignored.\nAs a result, I reconnected everything (except the battery that I have previously disconnected) again. Later on, I found a kernel parameter that would disable the display anyway, which I thought was a cleaner solution.\nPreparing infrastructure Before writing any code, I first prepared cloud providers. Previously, while working on my self-hosted Ente instance, I wrote bootstrapping configurations to create an environment for Terraform to do the actual provisioning with. I decided not to bother doing so this time, though, as it brought more confusion and complexity during the implementation.\nGranting access to Tailscale For this part, I focused on letting nodes join the tailnet, setting up the Kubernetes operator, and using it to access the control plane.\nOn top of existing ones, such as tag:ci, I created tags tag:k8s-operator and tag:k8s, as well as node-specific tags tag:k8s-control-plane and tag:k8s-worker, at the access control editor.\n{ // Define the tags which can be applied to devices and by which users. \"tagOwners\": { // Existing tags \"tag:k8s-operator\": [\"autogroup:admin\", \"tag:ci\"], \"tag:k8s\": [\"tag:k8s-operator\"], // Control plane nodes in the Kubernetes cluster \"tag:k8s-control-plane\": [\"autogroup:admin\", \"tag:ci\"], // Worker nodes in the Kubernetes cluster \"tag:k8s-worker\": [\"tag:k8s-control-plane\", \"tag:ci\"], }, } To utilise Tailscale’s subnet routers for pods and services, their IP ranges were set to be automatically approved.\n{ \"autoApprovers\": { \"routes\": { // The pod subnet CIDR (IPv4) \"10.244.0.0/16\": [\"tag:k8s-control-plane\"], // The pod subnet CIDR (IPv6) \"fd00:10:244::/56\": [\"tag:k8s-control-plane\"], // The service subnet CIDR (IPv4) \"10.96.0.0/12\": [\"tag:k8s-control-plane\"], // The service subnet CIDR (IPv6) \"fd00:10:96::/112\": [\"tag:k8s-control-plane\"], }, }, } I then created an OAuth credential for the OpenTofu workflow to do its thing. Because the tags tag:k8s-operator and tag:k8s-node are owned by tag:ci, I did not have to be overly specific in assigning one.\nGeneral Devices Keys ",
+  "wordCount" : "6974",
   "inLanguage": "en",
   "image": "https://images.lyuk98.com/5052433f-7965-498c-8799-4e7ac343dbf5.avif","datePublished": "2026-02-26T00:00:00Z",
-  "dateModified": "2026-03-20T22:43:36+09:00",
+  "dateModified": "2026-04-28T09:19:54-04:00",
   "author":{
     "@type": "Person",
     "name": "이영욱"
@@ -168,17 +163,17 @@ While learning about Kubernetes, I thought it could be used to host everything t
 </head>
 <body id="top">
     <header class="header">
-    <nav class="nav">
+    <nav class="header-nav">
         <div class="logo">
             <a href="https://lyuk98.com/" accesskey="h" title="이영욱 (Alt + H)">이영욱</a>
             <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -194,7 +189,7 @@ While learning about Kubernetes, I thought it could be used to host everything t
                 </button>
             </div>
         </div>
-        <ul id="menu">
+        <ul id="menu" class="menu">
             <li>
                 <a href="https://lyuk98.com/tags/" title="Tags">
                     <span>Tags</span>
@@ -212,103 +207,110 @@ While learning about Kubernetes, I thought it could be used to host everything t
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://lyuk98.com/">Home</a>&nbsp;»&nbsp;<a href="https://lyuk98.com/blog/">Blogs</a></div>
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    <a href='https://lyuk98.com/'>Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="https://lyuk98.com/blog/">Blogs</a></nav>
     <h1 class="post-title entry-hint-parent">
       Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux
     </h1>
-    <div class="post-meta"><span title='2026-02-26 00:00:00 +0000 UTC'>26 February 2026</span>&nbsp;·&nbsp;<span>33 min</span>&nbsp;·&nbsp;<span>6970 words</span>&nbsp;·&nbsp;<span>이영욱</span>
+    <div class="post-meta"><span title='2026-02-26 00:00:00 +0000 UTC'>26 February 2026</span>&nbsp;·&nbsp;<span>33 min</span>&nbsp;·&nbsp;<span>6974 words</span>&nbsp;·&nbsp;<span>이영욱</span>&nbsp;|&nbsp;<span>
+    <a href="https://codeberg.org/lyuk98/pages" rel="noopener noreferrer edit" target="_blank">Edit</a>
+</span>
 
 </div>
-  </header> <div class="toc">
-    <details  open>
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">Table of Contents</span>
-        </summary>
+  </header> <details class="toc"  open>
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
 
-        <div class="inner"><ul>
-                <li>
-                    <a href="#the-plan" aria-label="The plan">The plan</a><ul>
-                        
-                <li>
-                    <a href="#running-kubernetes-with-talos-linux" aria-label="Running Kubernetes with Talos Linux">Running Kubernetes with Talos Linux</a></li>
-                <li>
-                    <a href="#operating-hybrid-clusters-with-tailscale" aria-label="Operating hybrid clusters with Tailscale">Operating hybrid clusters with Tailscale</a></li>
-                <li>
-                    <a href="#declarative-cluster-provisioning-with-opentofu" aria-label="Declarative cluster provisioning with OpenTofu">Declarative cluster provisioning with OpenTofu</a></li></ul>
-                </li>
-                <li>
-                    <a href="#addressing-potential-hardware-issues" aria-label="Addressing potential hardware issues">Addressing potential hardware issues</a><ul>
-                        
-                <li>
-                    <a href="#the-thermal-issue" aria-label="The thermal issue">The thermal issue</a></li>
-                <li>
-                    <a href="#the-display-problem" aria-label="The display problem">The display problem</a></li></ul>
-                </li>
-                <li>
-                    <a href="#preparing-infrastructure" aria-label="Preparing infrastructure">Preparing infrastructure</a><ul>
-                        
-                <li>
-                    <a href="#granting-access-to-tailscale" aria-label="Granting access to Tailscale">Granting access to Tailscale</a></li>
-                <li>
-                    <a href="#preparing-state-storage-with-backblaze-b2" aria-label="Preparing state storage with Backblaze B2">Preparing state storage with Backblaze B2</a></li>
-                <li>
-                    <a href="#preparing-cloudflare" aria-label="Preparing Cloudflare">Preparing Cloudflare</a></li></ul>
-                </li>
-                <li>
-                    <a href="#writing-configurations" aria-label="Writing configurations">Writing configurations</a><ul>
-                        
-                <li>
-                    <a href="#backend-and-provider-configurations" aria-label="Backend and provider configurations">Backend and provider configurations</a></li>
-                <li>
-                    <a href="#tailscale" aria-label="Tailscale">Tailscale</a></li>
-                <li>
-                    <a href="#talos-linux" aria-label="Talos Linux">Talos Linux</a><ul>
-                        
-                <li>
-                    <a href="#cluster-wide-resources" aria-label="Cluster-wide resources">Cluster-wide resources</a></li>
-                <li>
-                    <a href="#control-plane-specific-resources" aria-label="Control plane-specific resources">Control plane-specific resources</a></li>
-                <li>
-                    <a href="#host-specific-resources" aria-label="Host-specific resources">Host-specific resources</a></li>
-                <li>
-                    <a href="#back-to-cluster-wide-resources" aria-label="Back to cluster-wide resources">Back to cluster-wide resources</a></li></ul>
-                </li>
-                <li>
-                    <a href="#cloudflare" aria-label="Cloudflare">Cloudflare</a><ul>
-                        
-                <li>
-                    <a href="#waiting-for-dns-propagation" aria-label="Waiting for DNS propagation">Waiting for DNS propagation</a></li></ul>
-                </li>
-                <li>
-                    <a href="#helm" aria-label="Helm">Helm</a></li></ul>
-                </li>
-                <li>
-                    <a href="#applying-configurations" aria-label="Applying configurations">Applying configurations</a><ul>
-                        
-                <li>
-                    <a href="#preparing-the-host" aria-label="Preparing the host">Preparing the host</a></li>
-                <li>
-                    <a href="#running-opentofu" aria-label="Running OpenTofu">Running OpenTofu</a></li></ul>
-                </li>
-                <li>
-                    <a href="#post-installation-configuration" aria-label="Post-installation configuration">Post-installation configuration</a><ul>
-                        
-                <li>
-                    <a href="#accessing-the-cluster" aria-label="Accessing the cluster">Accessing the cluster</a></li>
-                <li>
-                    <a href="#upgrading-talos-linux" aria-label="Upgrading Talos Linux">Upgrading Talos Linux</a></li></ul>
-                </li>
-                <li>
-                    <a href="#conclusion" aria-label="Conclusion">Conclusion</a>
-                </li>
-            </ul>
-        </div>
-    </details>
-</div>
+    <div class="inner"><ul>
+            <li>
+                <a href="#the-plan" aria-label="The plan">The plan</a><ul>
+                    
+            <li>
+                <a href="#running-kubernetes-with-talos-linux" aria-label="Running Kubernetes with Talos Linux">Running Kubernetes with Talos Linux</a></li>
+            <li>
+                <a href="#operating-hybrid-clusters-with-tailscale" aria-label="Operating hybrid clusters with Tailscale">Operating hybrid clusters with Tailscale</a></li>
+            <li>
+                <a href="#declarative-cluster-provisioning-with-opentofu" aria-label="Declarative cluster provisioning with OpenTofu">Declarative cluster provisioning with OpenTofu</a></li></ul>
+            </li>
+            <li>
+                <a href="#addressing-potential-hardware-issues" aria-label="Addressing potential hardware issues">Addressing potential hardware issues</a><ul>
+                    
+            <li>
+                <a href="#the-thermal-issue" aria-label="The thermal issue">The thermal issue</a></li>
+            <li>
+                <a href="#the-display-problem" aria-label="The display problem">The display problem</a></li></ul>
+            </li>
+            <li>
+                <a href="#preparing-infrastructure" aria-label="Preparing infrastructure">Preparing infrastructure</a><ul>
+                    
+            <li>
+                <a href="#granting-access-to-tailscale" aria-label="Granting access to Tailscale">Granting access to Tailscale</a></li>
+            <li>
+                <a href="#preparing-state-storage-with-backblaze-b2" aria-label="Preparing state storage with Backblaze B2">Preparing state storage with Backblaze B2</a></li>
+            <li>
+                <a href="#preparing-cloudflare" aria-label="Preparing Cloudflare">Preparing Cloudflare</a></li></ul>
+            </li>
+            <li>
+                <a href="#writing-configurations" aria-label="Writing configurations">Writing configurations</a><ul>
+                    
+            <li>
+                <a href="#backend-and-provider-configurations" aria-label="Backend and provider configurations">Backend and provider configurations</a></li>
+            <li>
+                <a href="#tailscale" aria-label="Tailscale">Tailscale</a></li>
+            <li>
+                <a href="#talos-linux" aria-label="Talos Linux">Talos Linux</a><ul>
+                    
+            <li>
+                <a href="#cluster-wide-resources" aria-label="Cluster-wide resources">Cluster-wide resources</a></li>
+            <li>
+                <a href="#control-plane-specific-resources" aria-label="Control plane-specific resources">Control plane-specific resources</a></li>
+            <li>
+                <a href="#host-specific-resources" aria-label="Host-specific resources">Host-specific resources</a></li>
+            <li>
+                <a href="#back-to-cluster-wide-resources" aria-label="Back to cluster-wide resources">Back to cluster-wide resources</a></li></ul>
+            </li>
+            <li>
+                <a href="#cloudflare" aria-label="Cloudflare">Cloudflare</a><ul>
+                    
+            <li>
+                <a href="#waiting-for-dns-propagation" aria-label="Waiting for DNS propagation">Waiting for DNS propagation</a></li></ul>
+            </li>
+            <li>
+                <a href="#helm" aria-label="Helm">Helm</a></li></ul>
+            </li>
+            <li>
+                <a href="#applying-configurations" aria-label="Applying configurations">Applying configurations</a><ul>
+                    
+            <li>
+                <a href="#preparing-the-host" aria-label="Preparing the host">Preparing the host</a></li>
+            <li>
+                <a href="#running-opentofu" aria-label="Running OpenTofu">Running OpenTofu</a></li></ul>
+            </li>
+            <li>
+                <a href="#post-installation-configuration" aria-label="Post-installation configuration">Post-installation configuration</a><ul>
+                    
+            <li>
+                <a href="#accessing-the-cluster" aria-label="Accessing the cluster">Accessing the cluster</a></li>
+            <li>
+                <a href="#upgrading-talos-linux" aria-label="Upgrading Talos Linux">Upgrading Talos Linux</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a>
+            </li>
+        </ul>
+    </div>
+</details>
 
-  <div class="post-content"><p>This is part of series <em>Building a homelab</em>, where I document my journey to build my own homelab with Kubernetes.</p>
+  <div class="post-content md-content"><p>This is part of series <em>Building a homelab</em>, where I document my journey to build my own homelab with Kubernetes.</p>
 <ol>
 <li>Creating a Kubernetes cluster with Talos Linux</li>
+<li><a href="/blog/2026/04/building-a-homelab-2-setting-up-argo-cd/">Setting up Argo CD</a></li>
 </ol>
 <hr>
 <p>Up until now, I have had some experiences with self-hosting services. However, as I learned more, I could see ways to make my setup better.</p>
@@ -1627,12 +1629,10 @@ To further debug and diagnose cluster problems, use &#39;kubectl cluster-info du
 <nav class="paginav">
   <a class="prev" href="https://lyuk98.com/blog/2026/03/migrating-to-codeberg-pages/">
     <span class="title">« Prev</span>
-    <br>
     <span>Migrating to Codeberg Pages</span>
   </a>
   <a class="next" href="https://lyuk98.com/blog/2025/12/using-zrythm-for-audio-production/">
     <span class="title">Next »</span>
-    <br>
     <span>Using Zrythm for audio production</span>
   </a>
 </nav>
@@ -1650,9 +1650,11 @@ To further debug and diagnose cluster problems, use &#39;kubectl cluster-info du
         <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
     </span>
 </footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
 
@@ -1691,14 +1693,13 @@ To further debug and diagnose cluster problems, use &#39;kubectl cluster-info du
 
 </script>
 <script>
-    var mybutton = document.getElementById("top-link");
+    var toplink = document.getElementById("top-link");
     window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
         } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
+            toplink.classList.add("hidden");
         }
     };
 

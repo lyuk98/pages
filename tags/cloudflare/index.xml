@@ -12,7 +12,7 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>This work is marked CC0 1.0 Universal</copyright>
-    <lastBuildDate>Fri, 20 Mar 2026 22:43:36 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 28 Apr 2026 09:19:54 -0400</lastBuildDate>
     <atom:link href="https://lyuk98.com/tags/cloudflare/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux</title>
@@ -22,6 +22,7 @@
       <description>&lt;p&gt;This is part of series &lt;em&gt;Building a homelab&lt;/em&gt;, where I document my journey to build my own homelab with Kubernetes.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Creating a Kubernetes cluster with Talos Linux&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://lyuk98.com/blog/2026/04/building-a-homelab-2-setting-up-argo-cd/&#34;&gt;Setting up Argo CD&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
 &lt;p&gt;Up until now, I have had some experiences with self-hosting services. However, as I learned more, I could see ways to make my setup better.&lt;/p&gt;
@@ -29,6 +30,7 @@
       <content:encoded><![CDATA[<p>This is part of series <em>Building a homelab</em>, where I document my journey to build my own homelab with Kubernetes.</p>
 <ol>
 <li>Creating a Kubernetes cluster with Talos Linux</li>
+<li><a href="/blog/2026/04/building-a-homelab-2-setting-up-argo-cd/">Setting up Argo CD</a></li>
 </ol>
 <hr>
 <p>Up until now, I have had some experiences with self-hosting services. However, as I learned more, I could see ways to make my setup better.</p>

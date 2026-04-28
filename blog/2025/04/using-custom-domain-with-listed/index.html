@@ -10,7 +10,7 @@
 <meta name="description" content="I wanted to use a custom domain for my blog. It was supposed to be easy, but the steps I took to solve the problem during the integration were far more than what I have initially expected.">
 <meta name="author" content="이영욱">
 <link rel="canonical" href="https://lyuk98.com/blog/2025/04/using-custom-domain-with-listed/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e&#43;Ge/K3X9WmUVz&#43;1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.47e51c7d8489b002361bac156ce9a0a8776d08c5462c2cee95801efafdd90d35.css" integrity="sha256-R&#43;UcfYSJsAI2G6wVbOmgqHdtCMVGLCzulYAe&#43;v3ZDTU=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://images.lyuk98.com/313a1eef-52de-4ad3-8f51-bf7f0f17f757.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://images.lyuk98.com/e697b861-1499-4040-b7a4-f25b4ecea28a.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://images.lyuk98.com/9c8c6d90-d044-418c-8d45-cc6298d8d484.png">
@@ -48,12 +48,6 @@
 
             .toc {
                 background: var(--entry);
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            .list::-webkit-scrollbar-thumb {
-                border-color: var(--code-bg);
             }
         }
 
@@ -151,17 +145,17 @@
 </head>
 <body id="top">
     <header class="header">
-    <nav class="nav">
+    <nav class="header-nav">
         <div class="logo">
             <a href="https://lyuk98.com/" accesskey="h" title="이영욱 (Alt + H)">이영욱</a>
             <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -177,7 +171,7 @@
                 </button>
             </div>
         </div>
-        <ul id="menu">
+        <ul id="menu" class="menu">
             <li>
                 <a href="https://lyuk98.com/tags/" title="Tags">
                     <span>Tags</span>
@@ -195,64 +189,70 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://lyuk98.com/">Home</a>&nbsp;»&nbsp;<a href="https://lyuk98.com/blog/">Blogs</a></div>
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    <a href='https://lyuk98.com/'>Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="https://lyuk98.com/blog/">Blogs</a></nav>
     <h1 class="post-title entry-hint-parent">
       Using custom domain with Listed
     </h1>
     <div class="post-description">
       I wanted to use a custom domain for my blog. It was supposed to be easy, but the steps I took to solve the problem during the integration were far more than what I have initially expected.
     </div>
-    <div class="post-meta"><span title='2025-04-21 00:00:00 +0000 UTC'>21 April 2025</span>&nbsp;·&nbsp;<span>53 min</span>&nbsp;·&nbsp;<span>11202 words</span>&nbsp;·&nbsp;<span>이영욱</span>
+    <div class="post-meta"><span title='2025-04-21 00:00:00 +0000 UTC'>21 April 2025</span>&nbsp;·&nbsp;<span>53 min</span>&nbsp;·&nbsp;<span>11202 words</span>&nbsp;·&nbsp;<span>이영욱</span>&nbsp;|&nbsp;<span>
+    <a href="https://codeberg.org/lyuk98/pages" rel="noopener noreferrer edit" target="_blank">Edit</a>
+</span>
 
 </div>
-  </header> <div class="toc">
-    <details  open>
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">Table of Contents</span>
-        </summary>
+  </header> <details class="toc"  open>
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
 
-        <div class="inner"><ul>
-                <li>
-                    <a href="#the-problem" aria-label="The problem">The problem</a></li>
-                <li>
-                    <a href="#reading-the-source" aria-label="Reading the source">Reading the source</a><ul>
-                        
-                <li>
-                    <a href="#listed" aria-label="Listed">Listed</a></li>
-                <li>
-                    <a href="#rails-letsencrypt" aria-label="rails-letsencrypt">rails-letsencrypt</a></li>
-                <li>
-                    <a href="#acmeclient" aria-label="Acme::Client">Acme::Client</a><ul>
-                        
-                <li>
-                    <a href="#setting-up-a-client" aria-label="Setting up a client">Setting up a client</a></li>
-                <li>
-                    <a href="#creating-an-order-with-the-client" aria-label="Creating an order with the client">Creating an order with the client</a></li>
-                <li>
-                    <a href="#accessing-the-http-01-challenge" aria-label="Accessing the HTTP-01 challenge">Accessing the HTTP-01 challenge</a></li>
-                <li>
-                    <a href="#completing-the-challenge" aria-label="Completing the challenge">Completing the challenge</a></li></ul>
-                </li></ul>
-                </li>
-                <li>
-                    <a href="#what-actually-went-wrong" aria-label="What actually went wrong?">What actually went wrong?</a><ul>
-                        
-                <li>
-                    <a href="#running-certbot" aria-label="Running Certbot">Running Certbot</a></li>
-                <li>
-                    <a href="#self-hosting-listed-for-debugging" aria-label="Self-hosting Listed for debugging">Self-hosting Listed for debugging</a></li>
-                <li>
-                    <a href="#testing-against-the-root-domain" aria-label="Testing against the root domain">Testing against the root domain</a></li></ul>
-                </li>
-                <li>
-                    <a href="#the-unsatisfying-resolution" aria-label="The unsatisfying resolution">The unsatisfying resolution</a>
-                </li>
-            </ul>
-        </div>
-    </details>
-</div>
+    <div class="inner"><ul>
+            <li>
+                <a href="#the-problem" aria-label="The problem">The problem</a></li>
+            <li>
+                <a href="#reading-the-source" aria-label="Reading the source">Reading the source</a><ul>
+                    
+            <li>
+                <a href="#listed" aria-label="Listed">Listed</a></li>
+            <li>
+                <a href="#rails-letsencrypt" aria-label="rails-letsencrypt">rails-letsencrypt</a></li>
+            <li>
+                <a href="#acmeclient" aria-label="Acme::Client">Acme::Client</a><ul>
+                    
+            <li>
+                <a href="#setting-up-a-client" aria-label="Setting up a client">Setting up a client</a></li>
+            <li>
+                <a href="#creating-an-order-with-the-client" aria-label="Creating an order with the client">Creating an order with the client</a></li>
+            <li>
+                <a href="#accessing-the-http-01-challenge" aria-label="Accessing the HTTP-01 challenge">Accessing the HTTP-01 challenge</a></li>
+            <li>
+                <a href="#completing-the-challenge" aria-label="Completing the challenge">Completing the challenge</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#what-actually-went-wrong" aria-label="What actually went wrong?">What actually went wrong?</a><ul>
+                    
+            <li>
+                <a href="#running-certbot" aria-label="Running Certbot">Running Certbot</a></li>
+            <li>
+                <a href="#self-hosting-listed-for-debugging" aria-label="Self-hosting Listed for debugging">Self-hosting Listed for debugging</a></li>
+            <li>
+                <a href="#testing-against-the-root-domain" aria-label="Testing against the root domain">Testing against the root domain</a></li></ul>
+            </li>
+            <li>
+                <a href="#the-unsatisfying-resolution" aria-label="The unsatisfying resolution">The unsatisfying resolution</a>
+            </li>
+        </ul>
+    </div>
+</details>
 
-  <div class="post-content"><p>Since around September 2025, Listed <a href="https://github.com/standardnotes/listed/pull/302" title="chore: remove new custom domain from settings by antsgar · Pull Request #302 · standardnotes/listed">no longer accepts</a> new requests for custom domains. The information below is therefore no longer relevant, but nevertheless kept as a record of what I have been through to make it work back then.</p>
+  <div class="post-content md-content"><p>Since around September 2025, Listed <a href="https://github.com/standardnotes/listed/pull/302" title="chore: remove new custom domain from settings by antsgar · Pull Request #302 · standardnotes/listed">no longer accepts</a> new requests for custom domains. The information below is therefore no longer relevant, but nevertheless kept as a record of what I have been through to make it work back then.</p>
 <hr>
 <blockquote>
 <p>Custom domains are available for Standard Notes members with an active Productivity or Professional <a href="https://standardnotes.com/plans">plan</a>. Domains include an HTTPS certificate, and require only a simple DNS record on your end.</p>
@@ -2242,12 +2242,10 @@ Tasks: TOP =&gt; ssl:renew
 <nav class="paginav">
   <a class="prev" href="https://lyuk98.com/blog/2025/05/switching-from-arch-linux-to-nixos/">
     <span class="title">« Prev</span>
-    <br>
     <span>Switching from Arch Linux to NixOS</span>
   </a>
   <a class="next" href="https://lyuk98.com/blog/2025/04/using-gpt-fdisk-to-recover-corrupted-partition-table/">
     <span class="title">Next »</span>
-    <br>
     <span>Using GPT fdisk to recover corrupted partition table</span>
   </a>
 </nav>
@@ -2265,9 +2263,11 @@ Tasks: TOP =&gt; ssl:renew
         <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
     </span>
 </footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
 
@@ -2306,14 +2306,13 @@ Tasks: TOP =&gt; ssl:renew
 
 </script>
 <script>
-    var mybutton = document.getElementById("top-link");
+    var toplink = document.getElementById("top-link");
     window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
         } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
+            toplink.classList.add("hidden");
         }
     };
 

@@ -12,7 +12,7 @@ My introduction to Standard Notes and Listed
 I have been an everyday user of Proton&rsquo;s products, and I was introduced to Standard Notes when they announced that they are &ldquo;joining forces&rdquo;. My needs for personal note-taking were already satisfied with basic products like Google Keep, but having used Notion for team projects in the past, I was convinced to try it out.">
 <meta name="author" content="이영욱">
 <link rel="canonical" href="https://lyuk98.com/blog/2025/03/getting-started-with-listed/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e&#43;Ge/K3X9WmUVz&#43;1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.47e51c7d8489b002361bac156ce9a0a8776d08c5462c2cee95801efafdd90d35.css" integrity="sha256-R&#43;UcfYSJsAI2G6wVbOmgqHdtCMVGLCzulYAe&#43;v3ZDTU=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://images.lyuk98.com/313a1eef-52de-4ad3-8f51-bf7f0f17f757.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://images.lyuk98.com/e697b861-1499-4040-b7a4-f25b4ecea28a.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://images.lyuk98.com/9c8c6d90-d044-418c-8d45-cc6298d8d484.png">
@@ -50,12 +50,6 @@ I have been an everyday user of Proton&rsquo;s products, and I was introduced to
 
             .toc {
                 background: var(--entry);
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            .list::-webkit-scrollbar-thumb {
-                border-color: var(--code-bg);
             }
         }
 
@@ -154,17 +148,17 @@ My introduction to Standard Notes and Listed I have been an everyday user of Pro
 </head>
 <body id="top">
     <header class="header">
-    <nav class="nav">
+    <nav class="header-nav">
         <div class="logo">
             <a href="https://lyuk98.com/" accesskey="h" title="이영욱 (Alt + H)">이영욱</a>
             <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -180,7 +174,7 @@ My introduction to Standard Notes and Listed I have been an everyday user of Pro
                 </button>
             </div>
         </div>
-        <ul id="menu">
+        <ul id="menu" class="menu">
             <li>
                 <a href="https://lyuk98.com/tags/" title="Tags">
                     <span>Tags</span>
@@ -198,39 +192,45 @@ My introduction to Standard Notes and Listed I have been an everyday user of Pro
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://lyuk98.com/">Home</a>&nbsp;»&nbsp;<a href="https://lyuk98.com/blog/">Blogs</a></div>
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    <a href='https://lyuk98.com/'>Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="https://lyuk98.com/blog/">Blogs</a></nav>
     <h1 class="post-title entry-hint-parent">
       Getting started with Listed
     </h1>
-    <div class="post-meta"><span title='2025-03-11 00:00:00 +0000 UTC'>11 March 2025</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>459 words</span>&nbsp;·&nbsp;<span>이영욱</span>
+    <div class="post-meta"><span title='2025-03-11 00:00:00 +0000 UTC'>11 March 2025</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>459 words</span>&nbsp;·&nbsp;<span>이영욱</span>&nbsp;|&nbsp;<span>
+    <a href="https://codeberg.org/lyuk98/pages" rel="noopener noreferrer edit" target="_blank">Edit</a>
+</span>
 
 </div>
-  </header> <div class="toc">
-    <details >
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">Table of Contents</span>
-        </summary>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
 
-        <div class="inner"><ul>
-                <li>
-                    <a href="#my-introduction-to-standard-notes-and-listed" aria-label="My introduction to Standard Notes and Listed">My introduction to Standard Notes and Listed</a></li>
-                <li>
-                    <a href="#setting-up-the-blog" aria-label="Setting up the blog">Setting up the blog</a></li>
-                <li>
-                    <a href="#to-do" aria-label="To do">To do</a><ul>
-                        
-                <li>
-                    <a href="#using-a-custom-domain" aria-label="Using a custom domain">Using a custom domain</a></li></ul>
-                </li>
-                <li>
-                    <a href="#wrapping-up" aria-label="Wrapping up&hellip;">Wrapping up&hellip;</a>
-                </li>
-            </ul>
-        </div>
-    </details>
-</div>
+    <div class="inner"><ul>
+            <li>
+                <a href="#my-introduction-to-standard-notes-and-listed" aria-label="My introduction to Standard Notes and Listed">My introduction to Standard Notes and Listed</a></li>
+            <li>
+                <a href="#setting-up-the-blog" aria-label="Setting up the blog">Setting up the blog</a></li>
+            <li>
+                <a href="#to-do" aria-label="To do">To do</a><ul>
+                    
+            <li>
+                <a href="#using-a-custom-domain" aria-label="Using a custom domain">Using a custom domain</a></li></ul>
+            </li>
+            <li>
+                <a href="#wrapping-up" aria-label="Wrapping up&hellip;">Wrapping up&hellip;</a>
+            </li>
+        </ul>
+    </div>
+</details>
 
-  <div class="post-content"><p>Hello to whoever is reading the first post of this blog! Neither writing nor showing my work to public is within my comfort zone, but it is what I aim to overcome, starting with this post.</p>
+  <div class="post-content md-content"><p>Hello to whoever is reading the first post of this blog! Neither writing nor showing my work to public is within my comfort zone, but it is what I aim to overcome, starting with this post.</p>
 <h1 id="my-introduction-to-standard-notes-and-listed">My introduction to Standard Notes and Listed<a hidden class="anchor" aria-hidden="true" href="#my-introduction-to-standard-notes-and-listed">#</a></h1>
 <p>I have been an everyday user of Proton&rsquo;s products, and I was introduced to Standard Notes when <a href="https://proton.me/blog/proton-standard-notes-join-forces">they announced that they are &ldquo;joining forces&rdquo;</a>. My needs for personal note-taking were already satisfied with basic products like Google Keep, but having used Notion for team projects in the past, I was convinced to try it out.</p>
 <p>While getting used to the new service, I discovered Listed blogging platform. I have previously been advised to write my technical experiences to keep records, and it seemed like a good place to do so.</p>
@@ -288,7 +288,6 @@ My introduction to Standard Notes and Listed I have been an everyday user of Pro
 <nav class="paginav">
   <a class="prev" href="https://lyuk98.com/blog/2025/03/building-a-project-1-learning-about-openstack/">
     <span class="title">« Prev</span>
-    <br>
     <span>Building a project (#1) - Learning about OpenStack</span>
   </a>
 </nav>
@@ -306,9 +305,11 @@ My introduction to Standard Notes and Listed I have been an everyday user of Pro
         <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
     </span>
 </footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
 
@@ -347,14 +348,13 @@ My introduction to Standard Notes and Listed I have been an everyday user of Pro
 
 </script>
 <script>
-    var mybutton = document.getElementById("top-link");
+    var toplink = document.getElementById("top-link");
     window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
         } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
+            toplink.classList.add("hidden");
         }
     };
 

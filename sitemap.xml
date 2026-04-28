@@ -2,10 +2,55 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://lyuk98.com/tags/blog/</loc>
-    <lastmod>2026-03-20T22:43:36+09:00</lastmod>
+    <loc>https://lyuk98.com/about-me/</loc>
+    <lastmod>2026-04-28T09:23:05-04:00</lastmod>
+  </url><url>
+    <loc>https://lyuk98.com/</loc>
+    <lastmod>2026-04-28T09:23:05-04:00</lastmod>
+  </url><url>
+    <loc>https://lyuk98.com/tags/argo-cd/</loc>
+    <lastmod>2026-04-28T09:19:54-04:00</lastmod>
   </url><url>
     <loc>https://lyuk98.com/blog/</loc>
+    <lastmod>2026-04-28T09:19:54-04:00</lastmod>
+  </url><url>
+    <loc>https://lyuk98.com/blog/2026/04/building-a-homelab-2-setting-up-argo-cd/</loc>
+    <lastmod>2026-04-28T09:19:54-04:00</lastmod>
+  </url><url>
+    <loc>https://lyuk98.com/tags/cert-manager/</loc>
+    <lastmod>2026-04-28T09:19:54-04:00</lastmod>
+  </url><url>
+    <loc>https://lyuk98.com/tags/cilium/</loc>
+    <lastmod>2026-04-28T09:19:54-04:00</lastmod>
+  </url><url>
+    <loc>https://lyuk98.com/tags/externaldns/</loc>
+    <lastmod>2026-04-28T09:19:54-04:00</lastmod>
+  </url><url>
+    <loc>https://lyuk98.com/tags/gateway-api/</loc>
+    <lastmod>2026-04-28T09:19:54-04:00</lastmod>
+  </url><url>
+    <loc>https://lyuk98.com/tags/helm/</loc>
+    <lastmod>2026-04-28T09:19:54-04:00</lastmod>
+  </url><url>
+    <loc>https://lyuk98.com/tags/kubernetes/</loc>
+    <lastmod>2026-04-28T09:19:54-04:00</lastmod>
+  </url><url>
+    <loc>https://lyuk98.com/tags/kustomize/</loc>
+    <lastmod>2026-04-28T09:19:54-04:00</lastmod>
+  </url><url>
+    <loc>https://lyuk98.com/tags/opentofu/</loc>
+    <lastmod>2026-04-28T09:19:54-04:00</lastmod>
+  </url><url>
+    <loc>https://lyuk98.com/tags/</loc>
+    <lastmod>2026-04-28T09:19:54-04:00</lastmod>
+  </url><url>
+    <loc>https://lyuk98.com/tags/tailscale/</loc>
+    <lastmod>2026-04-28T09:19:54-04:00</lastmod>
+  </url><url>
+    <loc>https://lyuk98.com/tags/talos-linux/</loc>
+    <lastmod>2026-04-28T09:19:54-04:00</lastmod>
+  </url><url>
+    <loc>https://lyuk98.com/tags/blog/</loc>
     <lastmod>2026-03-20T22:43:36+09:00</lastmod>
   </url><url>
     <loc>https://lyuk98.com/tags/codeberg/</loc>
@@ -29,41 +74,17 @@
     <loc>https://lyuk98.com/tags/papermod/</loc>
     <lastmod>2026-03-19T15:36:17+09:00</lastmod>
   </url><url>
-    <loc>https://lyuk98.com/tags/</loc>
-    <lastmod>2026-03-20T22:43:36+09:00</lastmod>
-  </url><url>
-    <loc>https://lyuk98.com/</loc>
-    <lastmod>2026-03-20T22:43:36+09:00</lastmod>
-  </url><url>
-    <loc>https://lyuk98.com/about-me/</loc>
-    <lastmod>2026-03-17T21:46:45+09:00</lastmod>
-  </url><url>
     <loc>https://lyuk98.com/search/</loc>
     <lastmod>2026-03-17T08:47:36+09:00</lastmod>
   </url><url>
     <loc>https://lyuk98.com/tags/backblaze-b2/</loc>
-    <lastmod>2026-03-20T22:43:36+09:00</lastmod>
+    <lastmod>2026-04-28T09:19:54-04:00</lastmod>
   </url><url>
     <loc>https://lyuk98.com/blog/2026/02/building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux/</loc>
-    <lastmod>2026-03-20T22:43:36+09:00</lastmod>
+    <lastmod>2026-04-28T09:19:54-04:00</lastmod>
   </url><url>
     <loc>https://lyuk98.com/tags/cloudflare/</loc>
-    <lastmod>2026-03-20T22:43:36+09:00</lastmod>
-  </url><url>
-    <loc>https://lyuk98.com/tags/helm/</loc>
-    <lastmod>2026-03-20T22:43:36+09:00</lastmod>
-  </url><url>
-    <loc>https://lyuk98.com/tags/kubernetes/</loc>
-    <lastmod>2026-03-20T22:43:36+09:00</lastmod>
-  </url><url>
-    <loc>https://lyuk98.com/tags/opentofu/</loc>
-    <lastmod>2026-03-20T22:43:36+09:00</lastmod>
-  </url><url>
-    <loc>https://lyuk98.com/tags/tailscale/</loc>
-    <lastmod>2026-03-20T22:43:36+09:00</lastmod>
-  </url><url>
-    <loc>https://lyuk98.com/tags/talos-linux/</loc>
-    <lastmod>2026-03-20T22:43:36+09:00</lastmod>
+    <lastmod>2026-04-28T09:19:54-04:00</lastmod>
   </url><url>
     <loc>https://lyuk98.com/tags/lv2/</loc>
     <lastmod>2026-03-19T16:38:20+09:00</lastmod>
