@@ -3,7 +3,7 @@ tags:
   - NixOS
   - SOPS
   - Tailscale
-date: '2025-11-05'
+pubdate: '2025-11-05T04:14:09.000Z'
 title: Building a project (#2) - Preparing a server
 description: As an effort to host OpenStack, I prepared a device to run the service with.
 slug: building-a-project-2-preparing-a-server

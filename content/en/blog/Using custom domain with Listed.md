@@ -5,7 +5,7 @@ tags:
   - Google Cloud Platform
   - Listed
 tocopen: true
-date: '2025-04-21'
+pubdate: '2025-04-21T07:51:00.000Z'
 title: Using custom domain with Listed
 description: I wanted to use a custom domain for my blog. It was supposed to be easy, but the steps I took to solve the problem during the integration were far more than what I have initially expected.
 ---

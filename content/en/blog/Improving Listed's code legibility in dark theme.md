@@ -3,7 +3,7 @@ tags:
   - Blog
   - Listed
   - Rouge
-date: '2025-12-04'
+pubdate: '2025-12-04T12:36:52.000Z'
 title: Improving Listed's code legibility in dark theme
 ---
 

@@ -8,7 +8,7 @@ tags:
   - Raspberry Pi
   - Tailscale
   - Ubuntu
-date: '2025-03-27'
+pubdate: '2025-03-27T09:35:05.000Z'
 title: Self-hosting PeerTube with Tailscale
 description: I tried self-hosting PeerTube in a Tailscale network.
 ---

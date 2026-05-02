@@ -8,7 +8,7 @@ tags:
   - Tailscale
   - Talos Linux
 tocopen: true
-date: '2026-02-26'
+pubdate: '2026-02-26T05:42:07.000Z'
 title: Building a homelab (#1) - Creating a Kubernetes cluster with Talos Linux
 slug: building-a-homelab-1-creating-a-kubernetes-cluster-with-talos-linux
 ---

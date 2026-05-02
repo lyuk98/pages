@@ -3,7 +3,7 @@ tags:
   - LV2
   - NixOS
   - Zrythm
-date: '2025-12-25'
+pubdate: '2025-12-25T14:17:34.000Z'
 title: Using Zrythm for audio production
 description: I gave Zrythm a try for recording music before the end of this year.
 ---

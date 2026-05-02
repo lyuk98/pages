@@ -3,7 +3,7 @@ tags:
   - Blog
   - Listed
   - Standard Notes
-date: '2025-03-11'
+pubdate: '2025-03-10T16:21:32.000Z'
 title: 'Getting started with Listed'
 ---
 

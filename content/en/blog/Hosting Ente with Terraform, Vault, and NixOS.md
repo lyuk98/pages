@@ -12,7 +12,7 @@ tags:
   - Tailscale
   - Terraform
 tocopen: true
-date: '2025-09-28'
+pubdate: '2025-09-27T15:36:41.000Z'
 title: Hosting Ente with Terraform, Vault, and NixOS
 description: Ente, the private photo storage service, was self-hosted in a hard way using declarative methods of resource management.
 ---
