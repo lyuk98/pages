@@ -12,6 +12,7 @@ tags:
   - Tailscale
   - Talos Linux
 tocopen: true
+publishDate: 2026-04-28T09:19:54-0400
 title: Building a homelab (#2) - Setting up Argo CD
 slug: building-a-homelab-2-setting-up-argo-cd
 ---
@@ -30,7 +31,7 @@ I have previously stated [at the end of my post about Talos Linux](/blog/2026/02
 With how (somewhat) effortless installing [Helm](https://helm.sh/ "Helm") charts with [Terraform](https://developer.hashicorp.com/terraform "Terraform | HashiCorp Developer")/[OpenTofu](https://opentofu.org/ "OpenTofu") was, I initially considered using the infrastructure-as-code tool to deploy just about everything. However, I then realised that:
 
 - not everything is packaged as Helm charts
-- applying some manifests with Terraform/OpenTofu can be problematic, especially if the resource in question is a [`CustomResourceDefinition`](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/ "Extend the Kubernetes API with CustomResourceDefinitions | Kubernetes") (CRD) object
+- if the [Kubernetes provider](https://search.opentofu.org/provider/hashicorp/kubernetes/v3.0.1 "Provider: Kubernetes - hashicorp/kubernetes - OpenTofu Registry") is used as an alternative to Helm, applying some manifests with Terraform/OpenTofu can be problematic, especially if the resource in question is a [`CustomResourceDefinition`](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/ "Extend the Kubernetes API with CustomResourceDefinitions | Kubernetes") (CRD) object
 
 The reason for the latter is that the [`kubernetes_manifest` resource](https://search.opentofu.org/provider/hashicorp/kubernetes/v3.0.1/docs/resources/manifest "Kubernetes: kubernetes_manifest - hashicorp/kubernetes - OpenTofu Registry") from the [Kubernetes provider](https://search.opentofu.org/provider/hashicorp/kubernetes/v3.0.1 "Provider: Kubernetes - hashicorp/kubernetes - OpenTofu Registry") requires the cluster to be already set up prior to planning.
 
